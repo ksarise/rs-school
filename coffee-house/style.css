@@ -1,19 +1,43 @@
+html {
+    scroll-behavior: smooth;
+}
 body {
     max-width: 1440px;
     background-color: #E1D4C9;
     margin: 0 auto;
+}
+a {
+    text-decoration: none;
 }
 .header-content {
     height: 60px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin: 20px 0 20px;
+    padding: 0 40px;
 }
 .header-logo {
-
+    margin: 20px 0 0;
 }
 .nav-menu {
     display: flex;
+}
+.nav-item {
+    list-style: none;
+    text-decoration: none;
+    font-family: Inter;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 24px;
+    letter-spacing: 0em;
+    text-align: left;
+    color: #403F3D;
+    display: inline-block;
+    cursor: pointer;
+}
+.nav-item a {
+    color: #403F3D;
 }
 ul {
     display: flex;
@@ -22,7 +46,7 @@ ul {
 .hero-container {
     width: 1440px;
     height: 644px;
-    background-image: url("/images/img-hero.jpg");
+    background-image: url("https://github.com/rolling-scopes-school/ksarise-JSFE2023Q4/blob/coffee-house/coffee-house/images/img-hero.jpg");
     background-size: cover;
     padding: 100px;
     border-radius: 40px;
@@ -107,7 +131,7 @@ h2 {
     text-align: center;
 }
 .favorite-coffee-controls {
-    
+
 }
 .content-slide1 {
     gap: 16px;
