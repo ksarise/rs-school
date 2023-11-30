@@ -1,30 +1,33 @@
-~<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
     <title>Coffee House</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel=”shortcut icon” href=”favicon.png” type=”image/x-icon”>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet">
 </head>
 <body>
-    Тут скоро будет верстка )
-    Если есть возможность и желание, то просьба проверить в последний день кросс-чека
-    В любом случае спасибо!
     <header>
         <div class="header-content">
             <div class="header-logo">
-                <img src="images/logo.jpg" alt="">
+                <a href="#">
+                    <img src="images/logo.svg" alt="logo">
+                </a>
             </div>
             <nav class="nav-menu">
                 <ul>
-                    <li class="nav-item"><a href="">Favorite coffee</a></li>
-                    <li class="nav-item"><a href="">About</a></li>
-                    <li class="nav-item"><a href="">Mobile App</a></li>
-                    <li class="nav-item"><a href="">Contact us</a></li>
+                    <li class="nav-item"><a href="#favorite-coffee">Favorite coffee</a></li>
+                    <li class="nav-item"><a href="#about">About</a></li>
+                    <li class="nav-item"><a href="#mobile-app">Mobile App</a></li>
+                    <li class="nav-item"><a href="#contact-us">Contact us</a></li>
                 </ul>
             </nav>
-            <a href="/menu.html">
+            <a href="/menu.html" class="coffee-menu">
                 Menu
                 <img src="images/coffee-cup.svg" alt="">
             </a>
@@ -34,7 +37,7 @@
     <main>
         <section class="hero-container">
             <div class="hero-offer">
-                <h1 class="hero-title">Enjoy premium coffee at our charming cafe</h1>
+                <h1 class="hero-title"> <span class="text-accent">Enjoy</span>premium coffee at our charming cafe</h1>
                 <p class="hero-text">With its inviting atmosphere and delicious coffee options, the Coffee House Resource 
                     is a popular destination for coffee lovers 
                     and those seeking a warm and inviting space to enjoy their favorite beverage.</p>
@@ -42,14 +45,14 @@
                     <a href="/menu.html">
                         <div class="hero-button-content">
                             <p>Menu</p>
-                            <img src="images/coffee-cup.svg" alt="">
+                            <img src="images/coffee-cup.svg" alt="header-menu">
                         </div>
                     </a>
                 </div>
             </div>
 
         </section>
-        <section class="favorite-coffee">
+        <section class="favorite-coffee" id="favorite-coffee">
             <h2 class="favorite-coffee-title">Choose your favorite coffee</h2>
             <div class="favorite-coffee-slider">
                 <div class="favorite-coffee-arrow-left">
@@ -72,9 +75,13 @@
                     <img src="images/arrow-right.svg" alt="">
                 </div>
             </div>
-            <div class="favorite-coffee-controls"></div>
+            <div class="favorite-coffee-controls">
+                <div class=""></div>
+                <div class=""></div>
+                <div class=""></div>
+            </div>
         </section>
-        <section class="about">
+        <section class="about" id="about">
             <div class="about-text">
                 <h2>Resource is the perfect and cozy place where you can enjoy a variety of hot beverages, relax, catch up with friends, or get some work done.</h2>
             </div>
@@ -97,7 +104,7 @@
                 </div>
             </div>
         </section>
-        <section class="mobile-app">
+        <section class="mobile-app" id="mobile-app">
             <div class="mobile-app-offer">
                 <h2>Download our apps to start ordering</h2>
                 <p>Download the Resource app today and experience the comfort of ordering your favorite coffee from wherever you are</p>
@@ -126,7 +133,7 @@
             <img src="images/mobile-screens.png" alt="">
         </section>
     </main>
-    <footer class="contacts">
+    <footer class="contacts" id="contact-us">
         <div class="contacts-offer">
             <h2>Sip, Savor, Smile. It’s coffee time!</h2>
             <div class="socials">
@@ -146,13 +153,13 @@
             <h3>Contact us</h3>
             <div class="contacts-list">
                 <div class="link-item">
-                    <a href="">
+                    <a href="https://maps.app.goo.gl/F1t3m9G7Xg7Dy3VL6" target="_blank">
                         <img src="images/pin-alt.svg" alt="">
                         <p>8558 Green Rd., LA</p>
                     </a>
                 </div>
                 <div class="link-item">
-                    <a href="">
+                    <a href="tel:+1 (603) 555-0123">
                         <img src="images/phone.svg" alt="">
                         <p>+1 (603) 555-0123</p>
                     </a>
