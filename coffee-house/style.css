@@ -1,0 +1,21 @@
+body {
+    max-width: 1440px;
+    background-color: #E1D4C9;
+    margin: 0 auto;
+}
+.header-content {
+    height: 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.header-logo {
+
+}
+.nav-menu {
+    display: flex;
+}
+ul {
+    display: flex;
+    gap: 40px;
+}
