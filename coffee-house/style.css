@@ -10,6 +10,9 @@ body {
 a {
     text-decoration: none;
 }
+.temp {
+    display: none;
+}
 .header-content {
     height: 60px;
     display: flex;
