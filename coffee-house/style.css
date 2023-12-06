@@ -1,6 +1,9 @@
 html {
     scroll-behavior: smooth;
 }
+/*{
+    border: 1px solid red;
+}*/
 body {
     max-width: 1440px;
     background-color: #E1D4C9;
@@ -10,21 +13,26 @@ body {
 a {
     text-decoration: none;
 }
-.temp {
-    display: none;
+.header {
+    padding: 20px 0;
 }
 .header-content {
+    max-width: 1440px;
     height: 60px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin: 20px 0 20px;
+    margin: 0 auto;
     padding: 0 40px;
 }
 .header-logo {
     margin: 20px 0 0;
 }
 .nav-menu {
+    display: flex;
+    gap: 40px;
+}
+.nav-list {
     display: flex;
     gap: 40px;
 }
@@ -40,15 +48,28 @@ a {
     color: #403F3D;
     display: inline-block;
     cursor: pointer;
+    flex-direction: column;
 }
 .nav-menu a {
     color: #403F3D;
 }
-ul {
-    display: flex;
-    gap: 40px;
+.header-hover-line {
+    height: 2px;
+    width: 0px;
+    opacity: 0;
+    background-color:#403F3D;
+    transition: 1s;
 }
+
 .coffee-menu {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    display: inline-block;
+    cursor: pointer;
+}
+.coffee-menu a {
+    color: #403F3D;
     list-style: none;
     text-decoration: none;
     font-family: Inter;
@@ -57,15 +78,14 @@ ul {
     line-height: 24px;
     letter-spacing: 0em;
     text-align: left;
-    color: #403F3D;
-    display: inline-block;
-    cursor: pointer;
 }
-.coffee-menu a {
-    color: #403F3D;
+.nav-item:hover .header-hover-line,
+.coffee-menu:hover .header-hover-line {
+    opacity: 1;
+    width: 100%;
 }
 .hero-container {
-    width: 1280px;
+    max-width: 1440px;
     height: 644px;
     background-image: url("https://rolling-scopes-school.github.io/ksarise-JSFE2023Q4/coffee-house/images/img-hero.jpg");
     background-size: cover;
