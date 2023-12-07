@@ -115,6 +115,7 @@ p {
 .text-accent {
     color: #B0907A;
     font-style: italic;
+    line-height: 1.5;
 }
 .hero-text {
     color:#E1D4C9;
@@ -295,6 +296,15 @@ h3 {
     display: flex;
     flex-direction: column;
 }
+.mobile-app-title {
+    font-family: Inter, sans-serif;
+    font-size: 60px;
+    font-weight: 600;
+    line-height: 1.25;
+    font-style: normal;
+    text-align: start;
+    color: #403F3D;
+}
 .mobile-app-offer-description {
     font-family: Inter;
     font-size: 16px;
@@ -353,6 +363,7 @@ h3 {
 }
 .contacts {
     margin: 40px 40px;
+    max-width: 1440px;
     gap: 100px;
     padding: 100px;
     border-radius: 40px;
@@ -361,7 +372,16 @@ h3 {
     align-items: center;
 }
 .contacts-offer {
-    width: 530px;
+    max-width: 530px;
+}
+.contacts-offer-title {
+    font-family: Inter;
+    font-size: 60px;
+    font-weight: 600;
+    line-height: 75px;
+    letter-spacing: 0em;
+    text-align: left;
+    color: #E1D4C9;
 }
 .socials {
     margin: 40px 0 0;
@@ -376,9 +396,26 @@ h3 {
     display: flex;
     justify-content: center;
     align-items: center;
+    transition: 1s;
+}
+.socials-logo:hover {
+    background-color: #E1D4C9;
+}
+.socials-logo:hover svg path {
+    stroke:#403F3D
 }
 .contacts-info {
-    width: 530px;
+    max-width: 530px;
+}
+.contacts-info-title {
+    font-family: Inter;
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 30px;
+    letter-spacing: 0em;
+    text-align: left;
+    color: #E1D4C9;
+    margin: 0;
 }
 .contacts-list {
     gap: 20px;
@@ -389,4 +426,18 @@ h3 {
 .link-item a {
     display: flex;
     gap: 8px;
+    text-decoration: none;
+    color: #E1D4C9;
+}
+.footer-hover-line {
+    height: 2px;
+    width: 0;
+    opacity:0;
+    transition: 1s;
+    background-color: #E1D4C9;
+}
+.link-item:hover .footer-hover-line {
+    width: 100%;
+    opacity:1;
+
 }
