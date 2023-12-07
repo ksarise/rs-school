@@ -13,6 +13,9 @@ body {
 a {
     text-decoration: none;
 }
+p {
+    margin: 0;
+}
 .header {
     padding: 20px 0;
 }
@@ -156,6 +159,7 @@ h2 {
     letter-spacing: 0em;
     text-align: center;
     color: #403F3D;
+    margin: 0;
 }
 .favorite-coffee {
     margin-top: 100px;
@@ -282,40 +286,60 @@ h3 {
     display: flex;
     align-items: center;
     justify-content: space-between;
-
+    padding: 0 40px;
 }
 
 .mobile-app-offer {
-    width: 630px;
+    max-width: 630px;
     gap: 40px;
     display: flex;
     flex-direction: column;
+}
+.mobile-app-offer-description {
+    font-family: Inter;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+    letter-spacing: 0em;
+    text-align: left;
 }
 .mobile-app-buttons {
     gap: 20px;
     display: flex;
 }
-.button-app-store {
+.mobile-button-app {
     width: 200px;
     height: 64px;
-    padding: 12px, 20px, 12px, 20px;
+    display: flex;
+    align-items: center;
     border-radius: 100px;
     border: 1px solid;
     gap: 8px;
-}
-.button-google-play {
-    width: 200px;
-    height: 64px;
-    padding: 12px, 20px, 12px, 20px;
-    border-radius: 100px;
-    border: 1px solid;
-    gap: 8px;
+    background: transparent;
+    color: #403F3D;
 }
 .mobile-app-button {
     margin: 12px 20px;
     display: flex;
     align-items: center;
     gap: 8px;
+}
+.mobile-button-text{}
+.mobile-button-text-small {
+    font-family: Inter;
+    font-size: 10px;
+    font-weight: 600;
+    line-height: 14px;
+    letter-spacing: 0em;
+    text-align: center;
+}
+.mobile-button-text-big {
+    font-family: Inter;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 24px;
+    letter-spacing: 0em;
+    text-align: left;
 }
 .contacts {
     margin: 40px 40px;
