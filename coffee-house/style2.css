@@ -8,13 +8,17 @@ body {
     max-width: 1440px;
     background-color: #E1D4C9;
     margin: 0 auto;
-    font-family: 'Inter', sans-serif;
+    font-family: 'Inter';
 }
 a {
     text-decoration: none;
 }
 p {
     margin: 0;
+    font-size: 16px;
+    font-weight: 600px;
+    line-height: 1.5;
+    color: #403F3D;
 }
 .text-accent {
     color: #B0907A;
@@ -102,7 +106,7 @@ h1 {
     letter-spacing: 0em;
     text-align: center;
     color:#403F3D;
-    margin: 0 auto 40px;
+    margin: 0;
 }
 h2 {
     font-family: Inter;
@@ -116,14 +120,15 @@ h2 {
 }
 
 h3 {
-    margin: 0 0 16px;
+    
     font-family: Inter;
     font-size: 24px;
     font-weight: 600;
     line-height: 30px;
     letter-spacing: 0em;
-    text-align: center;
+    text-align: start;
     color: #403F3D;
+    margin: 0;
 }
 .menu {
     display: flex;
@@ -166,9 +171,7 @@ h3 {
 }
 .tab-item p{
     font-family: Inter;
-    font-size: 16px;
     font-weight: 600;
-    line-height: 24px;
     letter-spacing: 0em;
     text-align: left;
 }
@@ -177,10 +180,33 @@ h3 {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    gap: 35px;
+    gap: 30px;
 }
 .cup {
+    height: 506px;
     width: 310px;
+    border-radius: 40px;
+    border: 1px solid #C1B6AD;
+    cursor: pointer;
+}
+.cup-img {
+    width: 310px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 40px;
+    overflow: hidden;
+}
+.cup-desc {
+    margin: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    text-align: left;
+}
+.cup-desc p {
+    height: 72px;
+    font-weight: 400;
 }
 .contacts {
     margin: 40px 40px;
