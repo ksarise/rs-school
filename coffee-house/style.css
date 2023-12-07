@@ -463,6 +463,10 @@ h3 {
 
 }
 @media screen and (max-width:1439px){
+    .favorite-coffee-arrow,.hero-button, .hero-menu, .about-image-box-big,
+    .about-image-box-small, .coffee-menu, .mobile-button-link,.socials-logo,.link-item{
+        pointer-events: none;
+    }
     .nav-menu, .coffee-menu{
         display: none;
     }
