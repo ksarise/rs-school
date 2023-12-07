@@ -261,7 +261,6 @@ h3 {
 }
 .about-images {
     display: flex;
-    gap: 40px;
 }
 .about-images-column1 {
     width: 100%;
@@ -427,7 +426,6 @@ h3 {
     stroke:#403F3D
 }
 .contacts-info {
-    width: 530px;
 }
 .contacts-info-title {
     font-family: Inter;
