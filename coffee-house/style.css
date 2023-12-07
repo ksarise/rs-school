@@ -27,6 +27,7 @@ a {
 }
 .header-logo {
     margin: 20px 0 0;
+    border-style: none;
 }
 .nav-menu {
     display: flex;
@@ -86,7 +87,6 @@ a {
 }
 .hero-container {
     max-width: 1440px;
-    height: 644px;
     background-image: url("https://rolling-scopes-school.github.io/ksarise-JSFE2023Q4/coffee-house/images/img-hero.jpg");
     background-size: cover;
     padding: 100px;
@@ -95,7 +95,6 @@ a {
 }
 .hero-offer {
     max-width: 530px;
-    height: 444px;
     gap: 40px;
     display: flex;
     flex-direction: column;
@@ -123,10 +122,9 @@ a {
     letter-spacing: 0em;
     text-align: left;
 }
-.hero-button-content {
+.hero-button {
     width: 200px;
     height: 64px;
-    padding: 20px, 78px, 20px, 78px;
     border-radius: 100px;
     background: #E1D4C9;
     display: flex;
@@ -134,10 +132,21 @@ a {
     align-items: center;
     color:#403F3D;
     text-decoration: none;
+    font-family: Inter;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 24px;
+    text-align: center;
 }
-.hero-button {
-    display: flex;
-    gap:8px;
+.hero-menu {
+    width: 0;
+    opacity: 0;
+    transition: 2s;
+}
+.hero-button:hover .hero-menu {
+    width: 20px;
+    margin-left: 8px;
+    opacity: 1;
 }
 h2 {
     font-family: Inter;
