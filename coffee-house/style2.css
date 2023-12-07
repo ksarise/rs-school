@@ -309,6 +309,9 @@ h3 {
     opacity:1;
 }
 @media screen and (max-width:1439px){
+    .socials-logo,.link-item, .cup,.tab-item{
+        pointer-events: none;
+    }
     .nav-menu, .coffee-menu{
         display: none;
     }
