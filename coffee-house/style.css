@@ -157,28 +157,34 @@ h2 {
     text-align: center;
     color: #403F3D;
 }
+.favorite-coffee {
+    margin-top: 100px;
+    max-width: 1440px;
+    padding: 0 40px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+}
 .favorite-coffee-slider {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin-bottom: 44px;
 }
-.favorite-coffee-arrow-left {
+.favorite-coffee-arrow {
     width: 60px;
     height: 60px;
     border-radius: 100px;
-    border: 1px solid;
+    border: 1px solid #403F3D;
     display: flex;
     justify-content: center;
     align-items: center;
+    background: transparent;
+    cursor: pointer;
+    transition: 2s;
 }
-.favorite-coffee-arrow-right {
-    width: 60px;
-    height: 60px;
-    border-radius: 100px;
-    border: 1px solid;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.favorite-coffee-arrow:hover {
+    background: #403F3D
 }
 .favorite-coffee-row-slider {
     width: 480px;
@@ -187,8 +193,31 @@ h2 {
     align-items: center;
     text-align: center;
 }
+.favorite-coffee-row-slider-description {
+    margin: 0 0 16px;
+    font-family: Inter;
+    font-size: 16px;
+    font-weight: 400;
+    letter-spacing: 0em;
+    text-align: center;
+    line-height: 1.5;
+}
 .favorite-coffee-controls {
-
+    display: flex;
+    align-self: center;
+    gap: 12px;
+}
+.favorite-coffee-control {
+    width: 40px;
+    height: 4px;
+    border-radius: 100px;
+    background-color:#C1B6AD;
+}
+.favorite-coffee-control-active {
+    width: 40px;
+    height: 4px;
+    border-radius: 100px;
+    background-color:#665F55;
 }
 .content-slide1 {
     gap: 16px;
@@ -196,6 +225,7 @@ h2 {
     flex-direction: column;
 }
 h3 {
+    margin: 0 0 16px;
     font-family: Inter;
     font-size: 24px;
     font-weight: 600;
