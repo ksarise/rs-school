@@ -235,23 +235,29 @@ h3 {
     color: #403F3D;
 }
 .about {
+    max-width: 1440px;
     padding: 0 40px;
+    margin: 0 auto;
 }
-
+.about-text {
+    margin-bottom:40px;
+}
 .about-images {
     display: flex;
-    justify-content: space-between;
     gap: 40px;
 }
 .about-images-column1 {
+    width: 100%;
     gap: 40px;
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    margin-right: 40px;
+
 }
 .about-images-column2 {
+    width: 100%;
     gap: 40px;
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    margin-right: 0px;
 }
 .about-image-box-big {
     height: 590px;
@@ -259,6 +265,7 @@ h3 {
     justify-content: center;
     align-items: center;
     border-radius: 20px;
+    overflow: hidden;
 }
 .about-image-box-small {
     height: 430px;
@@ -266,7 +273,10 @@ h3 {
     justify-content: center;
     align-items: center;
     border-radius: 20px;
+    overflow: hidden;
 }
+
+
 .mobile-app {
     margin: 100px 0;
     display: flex;
