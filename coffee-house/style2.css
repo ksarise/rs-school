@@ -126,7 +126,9 @@ h3 {
     color: #403F3D;
 }
 .menu {
-
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 .menu-offer {
     max-width: 1440px;
@@ -138,6 +140,7 @@ h3 {
     justify-content: center;
     align-items: center;
     gap:16px;
+    margin: 40px 0;
 }
 .tab-item {
     width: 115px;
@@ -146,14 +149,28 @@ h3 {
     border-radius: 100px;
     gap: 8px;
     background-color: transparent;
-    border: 1px solid #665F55;
+    border: 1px solid #C1B6AD;
     display: flex;
     justify-content: center;
     align-items: center;
-
+    transition: 1s;
+    cursor: pointer;
 }
 .active{
     background-color: #665F55;
+    cursor:default;
+}
+.tab-img {
+    display: flex;
+    border-radius: 100px;
+}
+.tab-item p{
+    font-family: Inter;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 24px;
+    letter-spacing: 0em;
+    text-align: left;
 }
 .menu-grid {
     max-width: 1360px;
