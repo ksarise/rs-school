@@ -186,7 +186,10 @@ h2 {
     align-items: center;
     background: transparent;
     cursor: pointer;
-    transition: 2s;
+    transition: 1s;
+}
+.favorite-coffee-arrow:hover svg path {
+    stroke: #E1D4C9;
 }
 .favorite-coffee-arrow:hover {
     background: #403F3D
@@ -280,7 +283,17 @@ h3 {
     border-radius: 20px;
     overflow: hidden;
 }
-
+.about-images img {
+    display: block;
+    transform: scale(1.1);
+    transition: 1s;
+}
+.about-image-box-small:hover img{
+    transform: scale(1);
+}
+.about-image-box-big:hover img{
+    transform: scale(1);
+}
 
 .mobile-app {
     margin: 100px 0;
