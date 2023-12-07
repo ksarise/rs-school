@@ -25,17 +25,14 @@ p {
     font-style: italic;
     line-height: 1.5;
 }
-.header {
-    padding: 20px 0;
-}
 .header-content {
-    max-width: 1440px;
     height: 60px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin: 0 auto;
     padding: 0 40px;
+    margin: 20px 0 20px;
 }
 .header-logo {
     margin: 20px 0 0;
@@ -157,11 +154,7 @@ h3 {
     align-items: center;
     transition: 1s;
     cursor: pointer;
-    padding:8px, 16px, 8px, 8px;
-    padding-top: 8px;
-    padding-right: 16px;
-    padding-bottom: 8px;
-    padding-left: 8px;
+    padding:8px 16px 8px 8px;
 }
 .tab-item:hover {
     background-color: #665F55;
@@ -172,6 +165,9 @@ h3 {
 .active{
     background-color: #665F55;
     cursor:default;
+}
+.active p{
+    color: #E1D4C9;
 }
 .tab-img {
     display: flex;
@@ -333,6 +329,7 @@ h3 {
     .menu-grid {
         width: auto;
         justify-content: center;
+        gap: 40px;
     }
     .menu-grid .cup {
         display: none;
@@ -357,9 +354,7 @@ h3 {
     }
 }
 @media screen and (max-width:766px){
-    .menu {
-        width: auto;
-    }
+    
     .hero-title {
         width: auto;
         font-size: 32px;
@@ -369,8 +364,11 @@ h3 {
         font-size: 32px;
         line-height: 40px;
     }
-    .header-content,.menu .contacts  {
+    .header-content,.menu, .contacts  {
         padding: 0 16px;
+    }
+    .menu-tabs {
+        gap: 8px;
     }
     .contacts {
         margin: 100px 16px 40px;
