@@ -290,6 +290,9 @@ h3 {
     text-decoration: none;
     color: #E1D4C9;
 }
+.link-item p {
+    color: #E1D4C9;
+}
 .footer-hover-line {
     height: 2px;
     width: 0;
@@ -300,5 +303,4 @@ h3 {
 .link-item:hover .footer-hover-line {
     width: 100%;
     opacity:1;
-
 }
