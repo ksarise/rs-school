@@ -356,33 +356,32 @@ h3 {
         align-items: flex-start;
     }
 }
-@media screen and (max-width:767px){
-    .nav-menu, .coffee-menu{
-        display: none;
-    }
+@media screen and (max-width:766px){
     .menu {
         width: auto;
     }
-    h1 {
+    .hero-title {
+        width: auto;
+        font-size: 32px;
+        line-height: 40px;
+    }
+    h2 {
+        font-size: 32px;
+        line-height: 40px;
+    }
+    .header-content,.menu .contacts  {
+        padding: 0 16px;
+    }
+    .contacts {
+        margin: 100px 16px 40px;
+        padding: 60px 16px;
+        gap:40px;
+    }
+    .contacts-offer, .contacts-info {
         width: auto;
     }
-
-    
-}
-@media screen and (max-width:380px){
-    .nav-menu, .coffee-menu{
-        display: none;
-    }
-    .mobile-app {
-        flex-direction: column;
-    }
-    .about-images{
-        flex-direction: column;
-    }
-    .about-image-box-small {
-        display: none;
-    }
-    .about-image-box-big img {
-        border-radius: 20px;
+    .contacts-offer-title {
+        font-size: 32px;
+        line-height: 40px;
     }
 }

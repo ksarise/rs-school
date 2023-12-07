@@ -20,7 +20,6 @@ p {
     padding: 20px 0;
 }
 .header-content {
-    max-width: 1440px;
     height: 60px;
     display: flex;
     justify-content: space-between;
@@ -103,7 +102,7 @@ p {
     margin-bottom: 100px;
 }
 .hero-offer {
-    max-width: 530px;
+    width: 530px;
     gap: 40px;
     display: flex;
     flex-direction: column;
@@ -147,9 +146,9 @@ p {
     font-weight: 600;
     line-height: 24px;
     text-align: center;
+    gap: 8px;
 }
 .hero-menu {
-    width: 0;
     opacity: 0;
     transition: 2s;
 }
@@ -200,14 +199,14 @@ h2 {
     background: #403F3D
 }
 .favorite-coffee-row-slider {
-    width: 480px;
+    max-width: 480px;
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
 }
 .favorite-coffee-row-slider-description {
-    margin: 0 0 16px;
+    margin: 0;
     font-family: Inter;
     font-size: 16px;
     font-weight: 400;
@@ -236,9 +235,10 @@ h2 {
     gap: 16px;
     display: flex;
     flex-direction: column;
+    margin:20px 0 0;
 }
 h3 {
-    margin: 0 0 16px;
+    margin: 0;
     font-family: Inter;
     font-size: 24px;
     font-weight: 600;
@@ -427,7 +427,7 @@ h3 {
     stroke:#403F3D
 }
 .contacts-info {
-    max-width: 530px;
+    width: 530px;
 }
 .contacts-info-title {
     font-family: Inter;
@@ -507,25 +507,69 @@ h3 {
         align-items: flex-start;
     }
 }
-@media screen and (max-width:767px){
+@media screen and (max-width:766px){
+    .hero-title {
+        font-size: 42px;
+        line-height: 48.3px;
+    }
+    h2 {
+        font-size: 32px;
+        line-height: 40px;
+    }
     .hero-container {
         width: auto;
+        padding: 60px 16px 60px;
+        margin: 0 16px;
     }
-}
-@media screen and (max-width:380px){
-    .nav-menu, .coffee-menu{
+    .hero-offer {
+        width: auto;
+    }
+    .hero-menu {
+        opacity: 1;
+    }
+    .header-content, .about, .favorite-coffee, .mobile-app, .contacts  {
+        padding: 0 16px;
+    }
+    .favorite-coffee {
+        margin: 100px 0;
+    }
+    .favorite-coffee-slider {
+        justify-content: center;
+    }
+    .favorite-coffee-arrow {
         display: none;
+    }
+    .favorite-coffee-row-slider {
+        justify-content: center;
+    }
+    .favorite-coffee-row-slider-slide1 img {
+        width: 348px;
+        height: 348px;
     }
     .mobile-app {
+        gap: 40px;
+        align-items: flex-start;
+    }
+    .mobile-app-title {
+        font-size: 32px;
+        line-height: 40px;
+    }
+    .mobile-app-buttons {
         flex-direction: column;
     }
-    .about-images{
-        flex-direction: column;
+    .mobile-app img {
+        width: 100%;
     }
-    .about-image-box-small {
-        display: none;
+    .contacts {
+        margin: 100px 16px 40px;
+        padding: 60px 16px;
+        gap:40px;
     }
-    .about-image-box-big img {
-        border-radius: 20px;
+    .contacts-offer, .contacts-info {
+        width: auto;
+    }
+    .contacts-offer-title {
+        font-size: 32px;
+        line-height: 40px;
     }
 }
