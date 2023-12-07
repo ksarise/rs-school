@@ -41,6 +41,9 @@ p {
     margin: 20px 0 0;
     border-style: none;
 }
+.burger-menu {
+    display: none;
+}
 .nav-menu {
     display: flex;
     gap: 40px;

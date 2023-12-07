@@ -32,6 +32,9 @@ p {
     margin: 20px 0 0;
     border-style: none;
 }
+.burger-menu {
+    display: none;
+}
 .nav-menu {
     display: flex;
     gap: 40px;
@@ -89,7 +92,7 @@ p {
     width: 100%;
 }
 .hero-container {
-    width: 1440px;
+    width: 1180px;
     background-image: url("https://rolling-scopes-school.github.io/ksarise-JSFE2023Q4/coffee-house/images/img-hero.jpg");
     background-size: cover;
     padding: 100px;
@@ -505,22 +508,9 @@ h3 {
     }
 }
 @media screen and (max-width:767px){
-    .nav-menu, .coffee-menu{
-        display: none;
+    .hero-container {
+        width: auto;
     }
-    .mobile-app {
-        flex-direction: column;
-    }
-    .about-images{
-        flex-direction: column;
-    }
-    .about-image-box-small {
-        display: none;
-    }
-    .about-image-box-big img {
-        border-radius: 20px;
-    }
-    
 }
 @media screen and (max-width:380px){
     .nav-menu, .coffee-menu{
