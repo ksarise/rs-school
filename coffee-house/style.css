@@ -16,6 +16,26 @@ a {
 p {
     margin: 0;
 }
+h2 {
+    font-family: Inter , sans-serif;
+    font-size: 60px;
+    font-weight: 600;
+    line-height: 75px;
+    letter-spacing: 0em;
+    text-align: center;
+    color: #403F3D;
+    margin: 0;
+}
+h3 {
+    margin: 0;
+    font-family: Inter;
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 30px;
+    letter-spacing: 0em;
+    text-align: center;
+    color: #403F3D;
+}
 .header {
     padding: 20px 0;
 }
@@ -92,7 +112,7 @@ p {
 }
 .hero-container {
     width: 1180px;
-    background-image: url("https://rolling-scopes-school.github.io/ksarise-JSFE2023Q4/coffee-house/images/img-hero.jpg");
+    background-image: url("https://rolling-scopes-school.github.io/ksarise-JSFE2023Q4/coffee-house/assets/images/home/img-hero.jpg");
     background-size: cover;
     padding: 100px;
     border-radius: 40px;
@@ -156,16 +176,6 @@ p {
     margin-left: 8px;
     opacity: 1;
 }
-h2 {
-    font-family: Inter;
-    font-size: 60px;
-    font-weight: 600;
-    line-height: 75px;
-    letter-spacing: 0em;
-    text-align: center;
-    color: #403F3D;
-    margin: 0;
-}
 .favorite-coffee {
     margin-bottom: 100px;
     padding: 0 40px;
@@ -223,28 +233,20 @@ h2 {
     height: 4px;
     border-radius: 100px;
     background-color:#C1B6AD;
+    cursor: pointer;
 }
 .favorite-coffee-control-active {
     width: 40px;
     height: 4px;
     border-radius: 100px;
     background-color:#665F55;
+    cursor: default;
 }
 .content-slide1 {
     gap: 16px;
     display: flex;
     flex-direction: column;
     margin:20px 0 0;
-}
-h3 {
-    margin: 0;
-    font-family: Inter;
-    font-size: 24px;
-    font-weight: 600;
-    line-height: 30px;
-    letter-spacing: 0em;
-    text-align: center;
-    color: #403F3D;
 }
 .about {
     max-width: 1440px;
@@ -318,13 +320,8 @@ h3 {
     flex-direction: column;
 }
 .mobile-app-title {
-    font-family: Inter, sans-serif;
-    font-size: 60px;
-    font-weight: 600;
-    line-height: 1.25;
     font-style: normal;
     text-align: start;
-    color: #403F3D;
 }
 .mobile-app-offer-description {
     font-family: Inter;
@@ -396,11 +393,6 @@ h3 {
     max-width: 530px;
 }
 .contacts-offer-title {
-    font-family: Inter;
-    font-size: 60px;
-    font-weight: 600;
-    line-height: 75px;
-    letter-spacing: 0em;
     text-align: left;
     color: #E1D4C9;
 }
@@ -428,14 +420,8 @@ h3 {
 .contacts-info {
 }
 .contacts-info-title {
-    font-family: Inter;
-    font-size: 24px;
-    font-weight: 600;
-    line-height: 30px;
-    letter-spacing: 0em;
     text-align: left;
     color: #E1D4C9;
-    margin: 0;
 }
 .contacts-list {
     gap: 20px;
