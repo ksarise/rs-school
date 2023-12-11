@@ -9,9 +9,14 @@ body {
     background-color: #E1D4C9;
     margin: 0 auto;
     font-family: 'Inter', sans-serif;
+    padding: 20px 40px 40px;
 }
 a {
     text-decoration: none;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 24px;
+    letter-spacing: 0em;
 }
 p {
     margin: 0;
@@ -36,8 +41,11 @@ h3 {
     text-align: center;
     color: #403F3D;
 }
+section {
+    margin-bottom: 100px;
+}
 .header {
-    padding: 20px 0;
+    margin: 0 0 20px;
 }
 .header-content {
     height: 60px;
@@ -45,10 +53,8 @@ h3 {
     justify-content: space-between;
     align-items: center;
     margin: 0 auto;
-    padding: 0 40px;
 }
 .header-logo {
-    margin: 20px 0 0;
     border-style: none;
 }
 .burger-menu {
@@ -56,25 +62,17 @@ h3 {
 }
 .nav-menu {
     display: flex;
-    gap: 40px;
+    justify-content: space-between;
 }
 .nav-list {
     display: flex;
-    gap: 40px;
+    padding: 0;
 }
 .nav-item {
-    list-style: none;
-    text-decoration: none;
-    font-family: Inter;
-    font-size: 16px;
-    font-weight: 600;
-    line-height: 24px;
-    letter-spacing: 0em;
-    text-align: left;
     color: #403F3D;
     display: inline-block;
     cursor: pointer;
-    flex-direction: column;
+    margin-right: 40px;
 }
 .nav-menu a {
     color: #403F3D;
@@ -88,6 +86,8 @@ h3 {
 }
 
 .coffee-menu {
+    margin-left: 366px;
+    margin-right: 0;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -97,12 +97,6 @@ h3 {
 .coffee-menu a {
     color: #403F3D;
     list-style: none;
-    text-decoration: none;
-    font-family: Inter;
-    font-size: 16px;
-    font-weight: 600;
-    line-height: 24px;
-    letter-spacing: 0em;
     text-align: left;
 }
 .nav-item:hover .header-hover-line,
@@ -111,15 +105,12 @@ h3 {
     width: 100%;
 }
 .hero-container {
-    width: 1180px;
     background-image: url("https://rolling-scopes-school.github.io/ksarise-JSFE2023Q4/coffee-house/assets/images/home/img-hero.jpg");
     background-size: cover;
     padding: 100px;
     border-radius: 40px;
-    margin: 0 40px;
     background-position: center;
     background-size:cover;
-    margin-bottom: 100px;
 }
 .hero-offer {
     width: 530px;
@@ -177,8 +168,6 @@ h3 {
     opacity: 1;
 }
 .favorite-coffee {
-    margin-bottom: 100px;
-    padding: 0 40px;
     margin: 0 auto;
     display: flex;
     flex-direction: column;
@@ -250,9 +239,7 @@ h3 {
 }
 .about {
     max-width: 1440px;
-    padding: 0 40px;
     margin: 0 auto;
-    margin-top: 100px;
 }
 .about-text {
     margin-bottom:40px;
@@ -310,7 +297,6 @@ h3 {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0 40px;
 }
 
 .mobile-app-offer {
@@ -380,8 +366,6 @@ h3 {
     letter-spacing: 0em;
 }
 .contacts {
-    margin: 40px 40px;
-    max-width: 1440px;
     gap: 100px;
     padding: 100px;
     border-radius: 40px;
@@ -416,8 +400,6 @@ h3 {
 }
 .socials-logo:hover svg path {
     stroke:#403F3D
-}
-.contacts-info {
 }
 .contacts-info-title {
     text-align: left;
