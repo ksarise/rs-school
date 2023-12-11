@@ -10,18 +10,15 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet">
+    
 </head>
 <body>
-    <header class="header">
+    <header class="header" id="he1">
         <div class="header-content">
             <div class="header-logo">
                 <a href="https://rolling-scopes-school.github.io/ksarise-JSFE2023Q4/coffee-house/">
                     <img src="assets/icons/home/logo.svg" alt="logo">
                 </a>
-            </div>
-            <div class="burger-menu">
-                <div class="burger-line"></div>
-                <div class="burger-line"></div>
             </div>
             <nav class="nav-menu">
                 <ul class="nav-list">
@@ -29,60 +26,112 @@
                     <li class="nav-item"><a href="#about">About</a><div class="header-hover-line"></div></li>
                     <li class="nav-item"><a href="#mobile-app">Mobile App</a><div class="header-hover-line"></div></li>
                     <li class="nav-item"><a href="#contact-us">Contact us</a><div class="header-hover-line"></div></li>
+                    <li class="nav-item coffee-menu"><a href="https://rolling-scopes-school.github.io/ksarise-JSFE2023Q4/coffee-house/pages/menu/menu.html">
+                        Menu
+                        <img src="../../assets/icons/home/coffee-cup.svg" alt="">
+                    </a>
+                    <div class="header-hover-line"></div></li>
                 </ul>
             </nav>
-            <div class="coffee-menu">
-                <a href="https://rolling-scopes-school.github.io/ksarise-JSFE2023Q4/coffee-house/pages/menu/menu.html">
-                    Menu
-                    <img src="assets/icons/home/coffee-cup.svg" alt="">
-                </a>
-                <div class="header-hover-line"></div>
-            </div> 
+            <div class="burger-menu">
+                <div class="burger-line"></div>
+                <div class="burger-line"></div>
+            </div>
         </div>
     </header>
     <main>
-        <section class="hero-container">
-            <div class="hero-offer">
-                <h1 class="hero-title"> <span class="text-accent">Enjoy </span>premium coffee at our charming cafe</h1>
-                <p class="hero-text">With its inviting atmosphere and delicious coffee options, the Coffee House Resource 
-                    is a popular destination for coffee lovers 
-                    and those seeking a warm and inviting space to enjoy their favorite beverage.</p>
-                <a href="https://rolling-scopes-school.github.io/ksarise-JSFE2023Q4/coffee-house/pages/menu/menu.html" class="hero-button">
-                    <p class="hero-button-text">Menu</p> 
-                    <img src="assets/icons/home/coffee-cup.svg" class="hero-menu" alt="hero-menu" >
-                </a>
+        <section id="hero">
+            <div class="hero-container">
+                <div class="video-container">
+                    <video class="hero-video" autoplay muted loop >
+                    <source src="assets/video/hero-video.mp4">
+                    </video>
+                </div>
+                <div class="hero-offer">
+                    <h1 class="hero-title"> <span class="text-accent">Enjoy </span>premium coffee at our charming cafe</h1>
+                    <p class="hero-text">With its inviting atmosphere and delicious coffee options, the Coffee House Resource 
+                        is a popular destination for coffee lovers 
+                        and those seeking a warm and inviting space to enjoy their favorite beverage.</p>
+                    <a href="https://rolling-scopes-school.github.io/ksarise-JSFE2023Q4/coffee-house/pages/menu/menu.html" class="hero-button">
+                        <p class="hero-button-text">Menu</p> 
+                        <img src="assets/icons/home/coffee-cup.svg" class="hero-menu" alt="hero-menu" >
+                    </a>
+                </div>
             </div>
+            
 
         </section>
         <section class="favorite-coffee" id="favorite-coffee">
             <h2 class="favorite-coffee-title">Choose your <span class="text-accent">favorite </span>coffee</h2>
             <div class="favorite-coffee-slider">
-                <div class="favorite-coffee-arrow">
+                <div class="favorite-coffee-arrow" id="left">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M18.5 12H6M6 12L12 6M6 12L12 18" stroke="#403F3D" stroke-linecap="round" stroke-linejoin="round"/>
                     </svg>
                 </div>
                 <div class="favorite-coffee-row-slider">
-                    <div class="favorite-coffee-row-slider-slide1">
-                        <img src="assets/images/home/coffee-slider-1.png" alt="coffee-slider-1">
-                        <div class="content-slide1">
-                            <h3>S’mores Frappuccino</h3>
-                            <p class="favorite-coffee-row-slider-description">This new drink takes an espresso and mixes it with brown sugar and cinnamon before being topped with oat milk.</p>
-                            <h3>$5.50</h3>
-                        </div>
-                    </div>
+                    <ul class="carousel">
+                        <li class="slide">
+                            <div class="slide-img">
+                                <img src="assets/images/home/coffee-slider-1.png" alt="coffee-slider-1">
+                            </div>
+                            <div class="slide-title">
+                                <h3>S’mores Frappuccino</h3>
+                            </div>
+                            <div class="slide-description">
+                                <p>This new drink takes an espresso and
+                                    mixes it with brown sugar and cinnamon before being topped with oat milk.</p>
+                            </div>
+                            <div class="slide-price">
+                                <h3>$5.50</h3>
+                            </div>
+                        </li>
+                        <li class="slide">
+                            <div class="slide-img">
+                                <img src="assets/images/home/coffee-slider-2.png" alt="coffee-slider-1">
+                            </div>
+                            <div class="slide-title">
+                                <h3>Caramel Macchiato</h3>
+                            </div>
+                            <div class="slide-description">
+                                <p>Fragrant and unique classic espresso with rich caramel-peanut syrup,
+                                     with cream under whipped thick foam.</p>
+                            </div>
+                            <div class="slide-price">
+                                <h3>$5.00</h3>
+                            </div>
+                        </li>
+                        <li class="slide">
+                            <div class="slide-img">
+                                <img src="assets/images/home/coffee-slider-3.png" alt="coffee-slider-1">
+                            </div>
+                            <div class="slide-title">
+                                <h3>Ice coffee</h3>
+                            </div>
+                            <div class="slide-description">
+                                <p>A popular summer drink that tones and invigorates.
+                                     Prepared from coffee, milk and ice.</p>
+                            </div>
+                            <div class="slide-price">
+                                <h3>$4.50</h3>
+                            </div>
+                        </li>
+                        
+                    </ul>
                 </div>
-                <div class="favorite-coffee-arrow">
+                
+                <div class="favorite-coffee-arrow" id="right">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M6 12H18.5M18.5 12L12.5 6M18.5 12L12.5 18" stroke="#403F3D" stroke-linecap="round" stroke-linejoin="round"/>
                     </svg>
                 </div>
             </div>
             <div class="favorite-coffee-controls">
-                <div class="favorite-coffee-control-active"></div>
+                <div class="favorite-coffee-control active"></div>
                 <div class="favorite-coffee-control"></div>
                 <div class="favorite-coffee-control"></div>
             </div>
+            
         </section>
         <section class="about" id="about">
             <div class="about-text">
@@ -195,5 +244,6 @@
             </div>
         </div>
     </footer>
+    <script defer src="script.js"></script>
 </body>
 </html>

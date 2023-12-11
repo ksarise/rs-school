@@ -9,9 +9,14 @@ body {
     background-color: #E1D4C9;
     margin: 0 auto;
     font-family: 'Inter', sans-serif;
+    padding: 20px 40px 40px;
 }
 a {
     text-decoration: none;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 24px;
+    letter-spacing: 0em;
 }
 p {
     margin: 0;
@@ -36,8 +41,14 @@ h3 {
     text-align: center;
     color: #403F3D;
 }
+section {
+    margin-bottom: 100px;
+}
+ul {
+    list-style: none;
+}
 .header {
-    padding: 20px 0;
+    margin: 0 0 20px;
 }
 .header-content {
     height: 60px;
@@ -45,10 +56,8 @@ h3 {
     justify-content: space-between;
     align-items: center;
     margin: 0 auto;
-    padding: 0 40px;
 }
 .header-logo {
-    margin: 20px 0 0;
     border-style: none;
 }
 .burger-menu {
@@ -56,25 +65,17 @@ h3 {
 }
 .nav-menu {
     display: flex;
-    gap: 40px;
+    justify-content: space-between;
 }
 .nav-list {
     display: flex;
-    gap: 40px;
+    padding: 0;
 }
 .nav-item {
-    list-style: none;
-    text-decoration: none;
-    font-family: Inter;
-    font-size: 16px;
-    font-weight: 600;
-    line-height: 24px;
-    letter-spacing: 0em;
-    text-align: left;
     color: #403F3D;
     display: inline-block;
     cursor: pointer;
-    flex-direction: column;
+    margin-right: 40px;
 }
 .nav-menu a {
     color: #403F3D;
@@ -88,6 +89,8 @@ h3 {
 }
 
 .coffee-menu {
+    margin-left: 366px;
+    margin-right: 0;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -96,13 +99,6 @@ h3 {
 }
 .coffee-menu a {
     color: #403F3D;
-    list-style: none;
-    text-decoration: none;
-    font-family: Inter;
-    font-size: 16px;
-    font-weight: 600;
-    line-height: 24px;
-    letter-spacing: 0em;
     text-align: left;
 }
 .nav-item:hover .header-hover-line,
@@ -111,21 +107,37 @@ h3 {
     width: 100%;
 }
 .hero-container {
-    width: 1180px;
-    background-image: url("https://rolling-scopes-school.github.io/ksarise-JSFE2023Q4/coffee-house/assets/images/home/img-hero.jpg");
+    /*background-image: url("https://rolling-scopes-school.github.io/ksarise-JSFE2023Q4/coffee-house/assets/images/home/img-hero.jpg");
     background-size: cover;
-    padding: 100px;
+    padding: 100px;*/
     border-radius: 40px;
-    margin: 0 40px;
     background-position: center;
     background-size:cover;
-    margin-bottom: 100px;
+    position: relative;
+    height: 644px;
+}
+.video-container {
+    position: relative;
+    max-width: 1360px;
+    height: 640px;
+    overflow: hidden;
+    border-radius: 40px;
+}
+.hero-video {
+    position: absolute;
+    object-fit: cover;
+    height: 100%;
+    width: 100%;
+
 }
 .hero-offer {
-    width: 530px;
+    max-width: 530px;
     gap: 40px;
     display: flex;
     flex-direction: column;
+    top: 100px;
+    left: 100px;
+    position: absolute;
 }
 .hero-title {
     margin: 0 auto;
@@ -177,9 +189,6 @@ h3 {
     opacity: 1;
 }
 .favorite-coffee {
-    margin-bottom: 100px;
-    padding: 0 40px;
-    margin: 0 auto;
     display: flex;
     flex-direction: column;
 }
@@ -187,7 +196,8 @@ h3 {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 44px;
+    margin-bottom: 40px;
+    margin-top: 40px;
 }
 .favorite-coffee-arrow {
     width: 60px;
@@ -200,6 +210,7 @@ h3 {
     background: transparent;
     cursor: pointer;
     transition: 1s;
+    z-index: 1;
 }
 .favorite-coffee-arrow:hover svg path {
     stroke: #E1D4C9;
@@ -208,14 +219,32 @@ h3 {
     background: #403F3D
 }
 .favorite-coffee-row-slider {
+    margin: 0 auto;
     max-width: 480px;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    text-align: center;
+    overflow: hidden;
 }
-.favorite-coffee-row-slider-description {
+.carousel {
+    padding: 0;
+    display: flex;
+    height: 640px;;
+}
+.slide{
     margin: 0;
+    width: 480px;
+    display: flex;
+    flex-direction: column;
+    transition: 1s ease-in-out;
+}
+.slide img {
+    width: 480px;
+}
+.slide-title {
+    margin-top: 20px;
+}
+.slide-description {
+    margin: 15px auto;
     font-family: Inter;
     font-size: 16px;
     font-weight: 400;
@@ -235,7 +264,7 @@ h3 {
     background-color:#C1B6AD;
     cursor: pointer;
 }
-.favorite-coffee-control-active {
+.active {
     width: 40px;
     height: 4px;
     border-radius: 100px;
@@ -250,9 +279,7 @@ h3 {
 }
 .about {
     max-width: 1440px;
-    padding: 0 40px;
     margin: 0 auto;
-    margin-top: 100px;
 }
 .about-text {
     margin-bottom:40px;
@@ -310,7 +337,6 @@ h3 {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0 40px;
 }
 
 .mobile-app-offer {
@@ -380,8 +406,6 @@ h3 {
     letter-spacing: 0em;
 }
 .contacts {
-    margin: 40px 40px;
-    max-width: 1440px;
     gap: 100px;
     padding: 100px;
     border-radius: 40px;
@@ -417,8 +441,6 @@ h3 {
 .socials-logo:hover svg path {
     stroke:#403F3D
 }
-.contacts-info {
-}
 .contacts-info-title {
     text-align: left;
     color: #E1D4C9;
@@ -448,7 +470,7 @@ h3 {
 
 }
 @media screen and (max-width:1439px){
-    .favorite-coffee-arrow,.hero-button, .hero-menu, .about-image-box-big,
+    .hero-button, .hero-menu, .about-image-box-big,
     .about-image-box-small, .coffee-menu, .mobile-button-link,.socials-logo,.link-item{
         pointer-events: none;
     }
