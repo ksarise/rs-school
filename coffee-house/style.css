@@ -105,18 +105,37 @@ section {
     width: 100%;
 }
 .hero-container {
-    background-image: url("https://rolling-scopes-school.github.io/ksarise-JSFE2023Q4/coffee-house/assets/images/home/img-hero.jpg");
+    /*background-image: url("https://rolling-scopes-school.github.io/ksarise-JSFE2023Q4/coffee-house/assets/images/home/img-hero.jpg");
     background-size: cover;
-    padding: 100px;
+    padding: 100px;*/
     border-radius: 40px;
     background-position: center;
     background-size:cover;
+    position: relative;
+    height: 644px;
+}
+.video-container {
+    position: relative;
+    max-width: 1360px;
+    height: 640px;
+    overflow: hidden;
+    border-radius: 40px;
+}
+.hero-video {
+    position: absolute;
+    object-fit: cover;
+    height: 100%;
+    width: 100%;
+
 }
 .hero-offer {
-    width: 530px;
+    max-width: 530px;
     gap: 40px;
     display: flex;
     flex-direction: column;
+    top: 100px;
+    left: 100px;
+    position: absolute;
 }
 .hero-title {
     margin: 0 auto;
