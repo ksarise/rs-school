@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Coffee House</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="burger.css">
     <link rel="icon" type="image/svg+xml" href="favicon.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -20,22 +21,24 @@
                     <img src="assets/icons/home/logo.svg" alt="logo">
                 </a>
             </div>
-            <nav class="nav-menu">
-                <ul class="nav-list">
-                    <li class="nav-item"><a href="#favorite-coffee">Favorite coffee</a><div class="header-hover-line"></div></li>
-                    <li class="nav-item"><a href="#about">About</a><div class="header-hover-line"></div></li>
-                    <li class="nav-item"><a href="#mobile-app">Mobile App</a><div class="header-hover-line"></div></li>
-                    <li class="nav-item"><a href="#contact-us">Contact us</a><div class="header-hover-line"></div></li>
-                    <li class="nav-item coffee-menu"><a href="https://rolling-scopes-school.github.io/ksarise-JSFE2023Q4/coffee-house/pages/menu/menu.html">
-                        Menu
-                        <img src="../../assets/icons/home/coffee-cup.svg" alt="">
-                    </a>
-                    <div class="header-hover-line"></div></li>
-                </ul>
-            </nav>
+            <div class="nav-container">
+                <nav class="nav-menu">
+                    <ul class="nav-list">
+                        <li class="nav-item"><a href="#favorite-coffee">Favorite coffee</a><div class="header-hover-line"></div></li>
+                        <li class="nav-item"><a href="#about">About</a><div class="header-hover-line"></div></li>
+                        <li class="nav-item"><a href="#mobile-app">Mobile App</a><div class="header-hover-line"></div></li>
+                        <li class="nav-item"><a href="#contact-us">Contact us</a><div class="header-hover-line"></div></li>
+                        <li class="nav-item coffee-menu"><a href="https://rolling-scopes-school.github.io/ksarise-JSFE2023Q4/coffee-house/pages/menu/menu.html">
+                            Menu
+                            <img src="../../assets/icons/home/coffee-cup.svg" alt="">
+                        </a>
+                        <div class="header-hover-line"></div></li>
+                    </ul>
+                </nav>
+            </div>
             <div class="burger-menu">
-                <div class="burger-line"></div>
-                <div class="burger-line"></div>
+                <div class="burger-line-top"></div>
+                <div class="burger-line-bottom"></div>
             </div>
         </div>
     </header>
@@ -245,5 +248,6 @@
         </div>
     </footer>
     <script defer src="script.js"></script>
+    <script defer src="burger.js"></script>
 </body>
 </html>

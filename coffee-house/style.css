@@ -60,9 +60,6 @@ ul {
 .header-logo {
     border-style: none;
 }
-.burger-menu {
-    display: none;
-}
 .nav-menu {
     display: flex;
     justify-content: space-between;
@@ -87,7 +84,6 @@ ul {
     background-color:#403F3D;
     transition: 1s;
 }
-
 .coffee-menu {
     margin-left: 366px;
     margin-right: 0;
@@ -476,23 +472,6 @@ ul {
     }
     .nav-menu, .coffee-menu{
         display: none;
-    }
-    .burger-menu {
-        width: 44px;
-        height: 44px;
-        border-radius: 100px;
-        border: 1px solid #665F55;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        gap: 8px;
-    }
-    .burger-line {
-        width: 16px;
-        height: 2px;
-        position: relative;
-        background: #403F3D;
     }
     .hero-container {
         width: auto;
