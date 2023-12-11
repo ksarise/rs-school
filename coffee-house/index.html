@@ -10,9 +10,10 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet">
+    
 </head>
 <body>
-    <header class="header">
+    <header class="header" id="he1">
         <div class="header-content">
             <div class="header-logo">
                 <a href="https://rolling-scopes-school.github.io/ksarise-JSFE2023Q4/coffee-house/">
@@ -63,32 +64,74 @@
         <section class="favorite-coffee" id="favorite-coffee">
             <h2 class="favorite-coffee-title">Choose your <span class="text-accent">favorite </span>coffee</h2>
             <div class="favorite-coffee-slider">
-                <div class="favorite-coffee-arrow">
+                <div class="favorite-coffee-arrow" id="left">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M18.5 12H6M6 12L12 6M6 12L12 18" stroke="#403F3D" stroke-linecap="round" stroke-linejoin="round"/>
                     </svg>
                 </div>
                 <div class="favorite-coffee-row-slider">
-                    <div class="favorite-coffee-row-slider-slide1">
-                        <img src="assets/images/home/coffee-slider-1.png" alt="coffee-slider-1">
-                        <div class="content-slide1">
-                            <h3>S’mores Frappuccino</h3>
-                            <p class="favorite-coffee-row-slider-description">This new drink takes an espresso and mixes it with brown sugar and cinnamon before being topped with oat milk.</p>
-                            <h3>$5.50</h3>
-                        </div>
-                    </div>
+                    <ul class="carousel">
+                        <li class="slide">
+                            <div class="slide-img">
+                                <img src="assets/images/home/coffee-slider-1.png" alt="coffee-slider-1">
+                            </div>
+                            <div class="slide-title">
+                                <h3>S’mores Frappuccino</h3>
+                            </div>
+                            <div class="slide-description">
+                                <p>This new drink takes an espresso and
+                                    mixes it with brown sugar and cinnamon before being topped with oat milk.</p>
+                            </div>
+                            <div class="slide-price">
+                                <h3>$5.50</h3>
+                            </div>
+                        </li>
+                        <li class="slide">
+                            <div class="slide-img">
+                                <img src="assets/images/home/coffee-slider-2.png" alt="coffee-slider-1">
+                            </div>
+                            <div class="slide-title">
+                                <h3>Caramel Macchiato</h3>
+                            </div>
+                            <div class="slide-description">
+                                <p>Fragrant and unique classic espresso with rich caramel-peanut syrup,
+                                     with cream under whipped thick foam.</p>
+                            </div>
+                            <div class="slide-price">
+                                <h3>$5.00</h3>
+                            </div>
+                        </li>
+                        <li class="slide">
+                            <div class="slide-img">
+                                <img src="assets/images/home/coffee-slider-3.png" alt="coffee-slider-1">
+                            </div>
+                            <div class="slide-title">
+                                <h3>Ice coffee</h3>
+                            </div>
+                            <div class="slide-description">
+                                <p>A popular summer drink that tones and invigorates.
+                                     Prepared from coffee, milk and ice.</p>
+                            </div>
+                            <div class="slide-price">
+                                <h3>$4.50</h3>
+                            </div>
+                        </li>
+                        
+                    </ul>
                 </div>
-                <div class="favorite-coffee-arrow">
+                
+                <div class="favorite-coffee-arrow" id="right">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M6 12H18.5M18.5 12L12.5 6M18.5 12L12.5 18" stroke="#403F3D" stroke-linecap="round" stroke-linejoin="round"/>
                     </svg>
                 </div>
             </div>
             <div class="favorite-coffee-controls">
-                <div class="favorite-coffee-control-active"></div>
+                <div class="favorite-coffee-control active"></div>
                 <div class="favorite-coffee-control"></div>
                 <div class="favorite-coffee-control"></div>
             </div>
+            
         </section>
         <section class="about" id="about">
             <div class="about-text">
@@ -201,5 +244,6 @@
             </div>
         </div>
     </footer>
+    <script defer src="script.js"></script>
 </body>
 </html>
