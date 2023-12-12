@@ -74,6 +74,9 @@ ul {
     cursor: pointer;
     margin-right: 40px;
 }
+.nav-item:nth-child(4) {
+    margin-right: 366px;
+}
 .nav-menu a {
     color: #403F3D;
 }
@@ -85,7 +88,6 @@ ul {
     transition: 1s;
 }
 .coffee-menu {
-    margin-left: 366px;
     margin-right: 0;
     display: flex;
     flex-direction: column;
