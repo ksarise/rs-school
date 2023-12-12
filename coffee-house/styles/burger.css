@@ -1,7 +1,7 @@
 .burger-menu {
     display: none;
 }
-@media screen and (max-width:1439px){
+@media screen and (max-width:768px){
     .burger-menu {
         width: 44px;
         height: 44px;
@@ -20,11 +20,11 @@
         background: #403F3D;
     }
     .burger-line-bottom.cross {
-        transform: rotate(-0.1turn);
+        transform: rotate(-45deg) translate(4px, -2px) translateY(-1px);
         transition: 1s;
     }
     .burger-line-top.cross {
-        transform: rotate(0.1turn);
+        transform: rotate(45deg) translate(4px, 2px) translateY(1px);
         transition: 1s;
     }
     .nav-container {
@@ -32,7 +32,7 @@
         flex-direction: column;
         right: -100%;
         width: 0%;
-        opacity:0;
+        visibility: hidden;
     }
     .nav-menu {
         display: flex;
@@ -43,7 +43,7 @@
         flex-direction: column;
     }
     .nav-container.open {
-        opacity: 1;
+        visibility: visible;
         width: 100%;
     }
 }
