@@ -5,12 +5,11 @@ html {
     border: 1px solid red;
 }*/
 body {
-    max-width: 1440px;
+    margin: 0;
     background-color: #E1D4C9;
-    margin: 0 auto;
     font-family: 'Inter', sans-serif;
-    padding: 20px 40px 40px;
 }
+    
 a {
     text-decoration: none;
     font-size: 16px;
@@ -30,6 +29,7 @@ h2 {
     text-align: center;
     color: #403F3D;
     margin: 0;
+    padding: 0;
 }
 h3 {
     margin: 0;
@@ -47,6 +47,11 @@ section {
 ul {
     list-style: none;
 }
+.page-wrap {
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 20px 40px 40px;
+}
 .header {
     margin: 0 0 20px;
 }
@@ -55,14 +60,16 @@ ul {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin: 0 auto;
+    margin: 0;
 }
 .header-logo {
     border-style: none;
 }
-.nav-menu {
+.nav-container {
     display: flex;
     justify-content: space-between;
+}
+.nav-menu {
 }
 .nav-list {
     display: flex;
@@ -281,42 +288,46 @@ ul {
     max-width: 1440px;
     margin: 0 auto;
 }
+.about-wrap {
+    display: flex;
+    flex-direction: column;
+}
 .about-text {
     margin-bottom:40px;
-    text-align: start;
 }
 .about-text h2 {
     text-align: start;
 }
 .about-images {
     display: flex;
-}
-.about-images-column1 {
-    width: 100%;
     gap: 40px;
-    display: grid;
-    margin-right: 40px;
+    position: relative;
+    align-items: flex-start;
+    flex-wrap: wrap;
+}
+.about-images-column {
+    gap: 40px;
+    display: flex;
+    flex-direction: column;
 
 }
-.about-images-column2 {
-    width: 100%;
-    gap: 40px;
-    display: grid;
-    margin-right: 0px;
-}
 .about-image-box-big {
-    height: 590px;
+    max-height: 590px;
+    width: 660px;
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
     border-radius: 20px;
     overflow: hidden;
 }
 .about-image-box-small {
-    height: 430px;
+    max-height: 430px;
+    width: 660px;
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
     border-radius: 20px;
     overflow: hidden;
 }
