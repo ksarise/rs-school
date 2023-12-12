@@ -11,10 +11,10 @@ document.addEventListener("DOMContentLoaded", function () {
         lineBot.classList.toggle("cross");
         lineTop.classList.toggle("cross");
         if (nav.classList.contains("open")=true) {
-                nav.style.opacity = "1";
+                nav.style.visiblity = "visible";
 
         } else {
-            nav.style.opacity ="0";
+            nav.style.visiblity ="hidden";
         }
     }
 });

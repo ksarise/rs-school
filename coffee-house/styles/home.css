@@ -253,19 +253,21 @@ ul {
     align-self: center;
     gap: 12px;
 }
-.favorite-coffee-control {
+.favorite-coffee-control-container {
     width: 40px;
-    height: 4px;
     border-radius: 100px;
     background-color:#C1B6AD;
-    cursor: pointer;
 }
-.active {
-    width: 40px;
+.favorite-coffee-control {
+    width: 0;
     height: 4px;
     border-radius: 100px;
+}
+.active {
+    width: 100%;
+    border-radius: 100px;
     background-color:#665F55;
-    cursor: default;
+    transition: width 6s;
 }
 .content-slide1 {
     gap: 16px;
@@ -464,101 +466,4 @@ ul {
     width: 100%;
     opacity:1;
 
-}
-@media screen and (max-width:1439px){
-    .hero-button, .hero-menu, .about-image-box-big,
-    .about-image-box-small, .coffee-menu, .mobile-button-link,.socials-logo,.link-item{
-        pointer-events: none;
-    }
-    .nav-menu, .coffee-menu{
-        display: none;
-    }
-    .hero-container {
-        width: auto;
-    }
-    h1 {
-        width: auto;
-    }
-    .mobile-app {
-        flex-direction: column;
-    }
-    .about-images{
-        flex-direction: column;
-    }
-    .about-image-box-small {
-        display: none;
-    }
-    .about-image-box-big img {
-        border-radius: 20px;
-    }
-    .contacts {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-}
-@media screen and (max-width:766px){
-    .hero-title {
-        font-size: 42px;
-        line-height: 48.3px;
-    }
-    h2 {
-        font-size: 32px;
-        line-height: 40px;
-    }
-    .hero-container {
-        width: auto;
-        padding: 60px 16px 60px;
-        margin: 0 16px;
-    }
-    .hero-offer {
-        width: auto;
-    }
-    .hero-menu {
-        opacity: 1;
-    }
-    .header-content, .about, .favorite-coffee, .mobile-app, .contacts  {
-        padding: 0 16px;
-    }
-    .favorite-coffee {
-        margin: 100px 0;
-    }
-    .favorite-coffee-slider {
-        justify-content: center;
-    }
-    .favorite-coffee-arrow {
-        display: none;
-    }
-    .favorite-coffee-row-slider {
-        justify-content: center;
-    }
-    .favorite-coffee-row-slider-slide1 img {
-        width: 348px;
-        height: 348px;
-    }
-    .mobile-app {
-        gap: 40px;
-        align-items: flex-start;
-    }
-    .mobile-app-title {
-        font-size: 32px;
-        line-height: 40px;
-    }
-    .mobile-app-buttons {
-        flex-direction: column;
-    }
-    .mobile-app img {
-        width: 100%;
-    }
-    .contacts {
-        margin: 100px 16px 40px;
-        padding: 60px 16px;
-        gap:40px;
-    }
-    .contacts-offer, .contacts-info {
-        width: auto;
-    }
-    .contacts-offer-title {
-        font-size: 32px;
-        line-height: 40px;
-    }
 }
