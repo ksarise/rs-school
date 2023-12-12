@@ -61,11 +61,10 @@ ul {
     border-style: none;
 }
 .nav-menu {
-    display: flex;
-    justify-content: space-between;
 }
 .nav-list {
     display: flex;
+    justify-content: space-between;
     padding: 0;
 }
 .nav-item {
@@ -290,33 +289,36 @@ ul {
 }
 .about-images {
     display: flex;
+    gap: 40px;
 }
 .about-images-column1 {
     width: 100%;
     gap: 40px;
     display: grid;
-    margin-right: 40px;
 
 }
 .about-images-column2 {
     width: 100%;
     gap: 40px;
     display: grid;
-    margin-right: 0px;
 }
 .about-image-box-big {
-    height: 590px;
+    max-height: 590px;
+    width: 660px;
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
     border-radius: 20px;
     overflow: hidden;
 }
 .about-image-box-small {
-    height: 430px;
+    max-height: 430px;
+    width: 660px;
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
     border-radius: 20px;
     overflow: hidden;
 }

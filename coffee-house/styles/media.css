@@ -49,11 +49,14 @@
     }
 }
 @media screen and (max-width:960px){
+    .hero-offer {
+        left: 60px;
+    }
     .nav-item:nth-child(4) {
         margin-right: 40px;
     }
 }
-@media screen and (max-width:768px){
+@media screen and (max-width:767px){
     .hero-title {
         font-size: 42px;
         line-height: 48.3px;
@@ -61,11 +64,6 @@
     h2 {
         font-size: 32px;
         line-height: 40px;
-    }
-    .hero-container {
-        width: auto;
-        padding: 60px 16px 60px;
-        margin: 0 16px;
     }
     .hero-offer {
         width: auto;
