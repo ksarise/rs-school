@@ -18,6 +18,7 @@
         height: 2px;
         position: relative;
         background: #403F3D;
+        transition-duration: 1s;
     }
     .burger-line-bottom.cross {
         transform: rotate(-45deg) translate(4px, -2px) translateY(-1px);
