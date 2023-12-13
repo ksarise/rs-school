@@ -55,14 +55,16 @@ document.addEventListener("DOMContentLoaded", function () {
           currentIndex = slides.length - 1;
         }
         moveSlider();
+        restartAuto();
       }
     function nextPicture() {
     if (currentIndex < slides.length - 1) {
         currentIndex++;
-    } else {
-        currentIndex = 0; 
-    }
-    moveSlider();
+        } else {
+            currentIndex = 0; 
+        }
+        moveSlider();
+        restartAuto();
     }
     
 
