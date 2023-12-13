@@ -186,7 +186,7 @@ ul {
 }
 .hero-menu {
     opacity: 0;
-    transition: 2s;
+    transition: 1s;
 }
 .hero-button:hover .hero-menu {
     width: 20px;
