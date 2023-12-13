@@ -14,6 +14,9 @@ document.addEventListener("DOMContentLoaded", function () {
     nextButton.addEventListener("click", nextPicture);
     slider.addEventListener("mouseenter",stopAuto);
     slider.addEventListener("mouseleave",slideAuto);
+    slider.addEventListener("touchstart",toggleTouchStart);
+    slider.addEventListener("touchmove",toggleTouchMove);
+    slider.addEventListener("touchend",toggleTouchEnd);
     let currentIndex = 0;
     let autoInt;
 
@@ -55,15 +58,39 @@ document.addEventListener("DOMContentLoaded", function () {
           currentIndex = slides.length - 1;
         }
         moveSlider();
+        restartAuto();
       }
     function nextPicture() {
     if (currentIndex < slides.length - 1) {
         currentIndex++;
-    } else {
-        currentIndex = 0; 
+        } else {
+            currentIndex = 0; 
+        }
+        moveSlider();
+        restartAuto();
     }
-    moveSlider();
+    let TouchStartX =0;
+    let TouchEndX = 0;
+    const TouchThreshhold = 100;
+    function toggleTouchStart (event) {
+        TouchStartX=event.touches[0].clientX;
+        console.log('start', TouchStartX);
     }
-    
+    function toggleTouchMove(event) {
+        
+        console.log('move');
+    }
+    function toggleTouchEnd (event) {
+        TouchEndX=event.changedTouches[0].clientX;
+        swipe();
+        console.log('end',TouchEndX);
+    }
+    function swipe () {
+        if (TouchEndX>TouchStartX+TouchThreshhold) {
+            nextPicture();
+        } else if (TouchEndX<TouchStartX-TouchThreshhold) {
+            prevPicture();
+        }
+    }
 
 });
