@@ -73,6 +73,7 @@ import products from "../products.json" assert {type:"json"};
             });
         }
         const toggleRefresh = Array.from(document.querySelectorAll(".menu-grid > .hidden"));
+        /*console.log(toggleRefresh);*/
         if (window.innerWidth>768 || !toggleRefresh.length) {
             refresh.classList.add("hidden");
         } else {
