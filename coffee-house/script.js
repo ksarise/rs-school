@@ -87,9 +87,9 @@ document.addEventListener("DOMContentLoaded", function () {
     }
     function swipe () {
         if (TouchEndX>TouchStartX+TouchThreshhold) {
-            nextPicture();
-        } else if (TouchEndX<TouchStartX-TouchThreshhold) {
             prevPicture();
+        } else if (TouchEndX<TouchStartX-TouchThreshhold) {
+            nextPicture();
         }
     }
 
