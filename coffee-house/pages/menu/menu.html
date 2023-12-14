@@ -43,6 +43,91 @@
         </div>
     </header>
     <main>
+        <div class="modal-wrap hidden">
+            <div class="modal-container">
+                <div class="cup-img">
+                    <img id="modal-img" src="" alt="">
+                </div>
+                <div class="modal-desc">
+                    <div class="modal-title">
+                        <h3 id="modal-title">Title</h3>
+                        <p id="modal-description">Desc</p>
+                    </div>
+                    <div class="modal-size">
+                        <p>Size</p>
+                        <div class="menu-tabs">
+                            <div class="tab-item active" id="size-small">
+                                <div class="tab-icon">
+                                    <p>S</p>
+                                </div>
+                                <div class="tab-choice" id="size200">
+                                    200ml
+                                </div>
+                            </div>
+                            <div class="tab-item" id="size-medium">
+                                <div class="tab-icon">
+                                    <p>M</p>
+                                </div>
+                                <div class="tab-choice" id="size200">
+                                    200ml
+                                </div>
+                            </div>
+                            <div class="tab-item" id="size-large">
+                                <div class="tab-icon">
+                                    <p>L</p>
+                                </div>
+                                <div class="tab-choice" id="size200">
+                                    200ml
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-additives">
+                        <p>Additivies</p>
+                        <div class="menu-tabs">
+                            <div class="tab-item" id="add1">
+                                <div class="tab-icon">
+                                    <p>1</p>
+                                </div>
+                                <div class="tab-choice" id="addSugar">
+                                    Sugar
+                                </div>
+                            </div>
+                            <div class="tab-item" id="add2">
+                                <div class="tab-icon">
+                                    <p>2</p>
+                                </div>
+                                <div class="tab-choice" id="addCin">
+                                    Cinnamon
+                                </div>
+                            </div>
+                            <div class="tab-item" id="add3">
+                                <div class="tab-icon">
+                                    <p>3</p>
+                                </div>
+                                <div class="tab-choice" id="addSyrup">
+                                    Syrup
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-total">
+                        <h3>Total</h3>
+                        <h3 id="modal-price">$7.99</h3>
+                    </div>
+                    <div class="modal-alert">
+                        <div>
+                            <img src="" alt="">
+                        </div>
+                        <p>The cost is not final. Download our mobile app to see the final price and place your order.
+                             Earn loyalty points and enjoy your favorite coffee with up to 20% discount.</p>
+                    </div>
+                    <div class="modal-close">
+                        <button class="modal-close-button">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
         <section class="menu">
             <div class="menu-offer">
                 <h1 class="hero-title">Behind each of our cups hides an <span class="text-accent"> amazing surprise</span></h1>
@@ -212,5 +297,6 @@
     </footer>
     <script defer src="../../scripts/burger.js"></script>
     <script defer src="../../scripts/menu.js" type="module"></script>
+    <script defer src="../../scripts/modal.js" type="module"></script>
 </body>
 </html>
