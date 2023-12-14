@@ -191,9 +191,6 @@ h3 {
     border: 1px solid #C1B6AD;
     cursor: pointer;
 }
-.hidden {
-    display: none;
-}
 .cup-img {
     width: 310px;
     height: 310px;
@@ -223,7 +220,15 @@ h3 {
     font-weight: 400;
 }
 .menu-refresh {
-    display: none;
+    width: 60px;
+    height: 60px;
+    border: 1px solid #665F55;
+    border-radius: 100px;
+    margin-top: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
 }
 .contacts {
     margin: 100px 40px 40px;
@@ -307,4 +312,8 @@ h3 {
 .link-item:hover .footer-hover-line {
     width: 100%;
     opacity:1;
+}
+
+.hidden {
+    display: none;
 }
