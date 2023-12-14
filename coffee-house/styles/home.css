@@ -107,6 +107,12 @@ ul {
     color: #403F3D;
     text-align: left;
 }
+.coffee-small {
+    display: inline;
+}
+.coffee-big {
+    display: none;
+}
 .nav-item:hover .header-hover-line,
 .coffee-menu:hover .header-hover-line {
     opacity: 1;
