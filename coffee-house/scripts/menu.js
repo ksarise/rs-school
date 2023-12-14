@@ -4,9 +4,7 @@ import products from "../products.json" assert {type:"json"};
     const coffeeTab = document.getElementById("tab-coffee");
     const teaTab = document.getElementById("tab-tea");
     const dessertTab = document.getElementById("tab-dessert");
-    const cups = Array.from(menu.children);
 
-    console.log(cups);
     coffeeTab.addEventListener("click", () =>chooseTab("coffee"));
     teaTab.addEventListener("click", () => chooseTab("tea"));
     dessertTab.addEventListener("click", () => chooseTab("dessert"));
@@ -56,6 +54,7 @@ import products from "../products.json" assert {type:"json"};
         ).join("");
     }
     function display() {
+        const cups = Array.from(menu.children);
         if (window.innerWidth>768) {
             cups.map((item,index) => {
             if (index>=4) {
