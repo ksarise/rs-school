@@ -10,7 +10,7 @@ import products from "../products.json" assert {type:"json"};
     coffeeTab.addEventListener("click", () =>chooseTab("coffee"));
     teaTab.addEventListener("click", () => chooseTab("tea"));
     dessertTab.addEventListener("click", () => chooseTab("dessert"));
-    window.addEventListener("resize", display);
+    window.addEventListener("resize", display());
 
     function chooseTab (category){
         /*for (let i=0;i<=activeTab.length;i++){
@@ -59,13 +59,13 @@ import products from "../products.json" assert {type:"json"};
         if (window.innerWidth>768) {
             cups.map((item,index) => {
             if (index>=4) {
-                item.style.display="block";
+                item.classList.remove("hidden");
                 console.log(item);
             }
         });} else {
             cups.map((item,index) => {
                 if (index>=4) {
-                    item.style.display="none";
+                    item.classList.add("hidden");
                     console.log("none", item);
                 }
             });}
