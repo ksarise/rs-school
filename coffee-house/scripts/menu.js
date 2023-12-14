@@ -1,14 +1,16 @@
 import products from "../products.json" assert {type:"json"};
-    const tabs = document.querySelector(".menu-tabs");
+    
     const menu = document.querySelector(".menu-grid");
     const coffeeTab = document.getElementById("tab-coffee");
     const teaTab = document.getElementById("tab-tea");
     const dessertTab = document.getElementById("tab-dessert");
+    const cups = Array.from(menu.children);
 
-    console.log(coffeeTab,teaTab,dessertTab);
+    console.log(cups);
     coffeeTab.addEventListener("click", () =>chooseTab("coffee"));
     teaTab.addEventListener("click", () => chooseTab("tea"));
     dessertTab.addEventListener("click", () => chooseTab("dessert"));
+    window.addEventListener("resize", display());
 
     function chooseTab (category){
         /*for (let i=0;i<=activeTab.length;i++){
@@ -32,7 +34,7 @@ import products from "../products.json" assert {type:"json"};
                 break;
         }
         menu.innerHTML=createMenu(getProducts(category));
-
+        display();
     }
     function getProducts(category) {
         return products.filter((product) => 
@@ -53,7 +55,21 @@ import products from "../products.json" assert {type:"json"};
             </div>`
         ).join("");
     }
-    
+    function display() {
+        if (window.innerWidth>768) {
+            cups.map((item,index) => {
+            if (index>=4) {
+                item.classList.remove("hidden");
+                console.log(item);
+            }
+        });} else {
+            cups.map((item,index) => {
+                if (index>=4) {
+                    item.classList.add("hidden");
+                    console.log("none", item);
+                }
+            });}
+    }
     
 
-    console.log(createMenu(getProducts("tea")));
+    /*console.log(createMenu(getProducts("tea")));*/

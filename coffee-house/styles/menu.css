@@ -191,6 +191,9 @@ h3 {
     border: 1px solid #C1B6AD;
     cursor: pointer;
 }
+.hidden {
+    display: none;
+}
 .cup-img {
     width: 310px;
     height: 310px;

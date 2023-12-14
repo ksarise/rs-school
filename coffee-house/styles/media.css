@@ -26,12 +26,7 @@
         justify-content: center;
         gap: 40px;
     }
-    .menu-grid .cup {
-        display: none;
-    }
-    .menu-grid .cup:nth-child(-n+4){
-        display: block ;
-    }
+    
     .menu-refresh {
         width: 60px;
         height: 60px;
