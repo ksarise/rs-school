@@ -1,11 +1,13 @@
 document.addEventListener("DOMContentLoaded", function () {
     const burger = document.querySelector(".burger-menu");
     const nav = document.querySelector(".nav-container");
+    const navLinks = document.querySelectorAll(".nav-item");
     const lineBot = document.querySelector(".burger-line-bottom");
     const lineTop = document.querySelector(".burger-line-top");
 
 
     burger.addEventListener("click",openBurger);
+    
     function openBurger () {
         nav.classList.toggle("open");
         lineBot.classList.toggle("cross");
@@ -19,4 +21,14 @@ document.addEventListener("DOMContentLoaded", function () {
             document.body.style.overflow = "";
         }
     }
+    function closeBurger () {
+        nav.classList.remove("open");
+        lineBot.classList.remove("cross");
+        lineTop.classList.remove("cross");
+        document.body.style.overflow = "";
+    }
+    navLinks.forEach((item) => {
+        item.addEventListener("click", closeBurger);
+    })
+    window.addEventListener("resize", closeBurger);
 });
