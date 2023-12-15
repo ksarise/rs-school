@@ -2,15 +2,14 @@ import products from "../products.json" assert {type:"json"};
 
 const menu = document.querySelector(".menu-grid");
 const modal = document.querySelector(".modal-wrap");
-const cup = document.querySelector(".cup");
 menu.addEventListener("click", openModal);
-
 
 function openModal (e) {
     document.body.style.overflow = "hidden";
     modal.classList.remove("hidden");
     const tag = e.target.closest(".cup").dataset.name;
     console.log(tag,findTag(tag));
+    console.log(e.currentTarget, e.target);
     modal.innerHTML=createCup(findTag(tag));
     const modalClose = document.querySelector(".modal-close-button");
     modalClose.addEventListener("click", closeModal);
@@ -24,15 +23,17 @@ function closeModal () {
     document.body.style.overflow = "";
     modal.classList.add("hidden");
 }
-function findTag (tag) {
-    return products.find((product)=>
-    product.tag=tag);
+function closeOutModal (e) {
 }
-function createCup (product) {
-    const {name, description, price, category, sizes, additives} = product;
+function findTag (tag) {
+    return products.find((cup)=>
+    cup.name=tag);
+}
+function createCup (cup) {
+    const {name, description, price, category, sizes, additives} = cup;
     return `<div class="modal-container">
         <div class="cup-img">
-            <img id="modal-img" src="../../assets/images/menu/${category}-${products.indexOf(product)+1}.png" alt="">
+            <img id="modal-img" src="../../assets/images/menu/${category}-${products.indexOf(cup)+1}.png" alt="">
         </div>
         <div class="modal-desc">
             <div class="modal-title">
@@ -110,6 +111,8 @@ function createCup (product) {
             </div>
             <div class="modal-close">
                 <button class="modal-close-button">Close</button>
+            </div>
+            </div>
             </div>`
     ;
 }
