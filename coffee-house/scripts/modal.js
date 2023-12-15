@@ -3,17 +3,17 @@ import products from "../products.json" assert {type:"json"};
 const menu = document.querySelector(".menu-grid");
 const modal = document.querySelector(".modal-wrap");
 const cup = document.querySelector(".cup");
-const modalClose = document.querySelector(".modal-close-button");
 menu.addEventListener("click", openModal);
-modalClose.addEventListener("click", closeModal);
+
 
 function openModal (e) {
     document.body.style.overflow = "hidden";
     modal.classList.remove("hidden");
     const tag = e.target.closest(".cup").dataset.name;
-    /* console.log(tag,findTag(tag));
-    modal.innerHTML=createCup(findTag(tag)); */
-
+    console.log(tag,findTag(tag));
+    modal.innerHTML=createCup(findTag(tag));
+    const modalClose = document.querySelector(".modal-close-button");
+    modalClose.addEventListener("click", closeModal);
 
 }
 function toggleModal () {
@@ -30,10 +30,9 @@ function findTag (tag) {
 }
 function createCup (product) {
     const {name, description, price, category, sizes, additives} = product;
-    return
-        `<div class="modal-container">
+    return `<div class="modal-container">
         <div class="cup-img">
-            <img id="modal-img" src="../../assets/images/menu/${category}-${index+1}.png" alt="">
+            <img id="modal-img" src="../../assets/images/menu/${category}-${products.indexOf(product)+1}.png" alt="">
         </div>
         <div class="modal-desc">
             <div class="modal-title">
@@ -101,6 +100,16 @@ function createCup (product) {
             <div class="modal-total">
                 <h3>Total</h3>
                 <h3 id="modal-price">${price}</h3>
+            </div>
+            <div class="modal-alert">
+                <div>
+                    <img src="" alt="">
+                </div>
+                <p>The cost is not final. Download our mobile app to see the final price and place your order.
+                        Earn loyalty points and enjoy your favorite coffee with up to 20% discount.</p>
+            </div>
+            <div class="modal-close">
+                <button class="modal-close-button">Close</button>
             </div>`
     ;
 }
