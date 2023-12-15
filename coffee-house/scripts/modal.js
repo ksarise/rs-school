@@ -5,12 +5,15 @@ const modal = document.querySelector(".modal-wrap");
 const cup = document.querySelector(".cup");
 const modalClose = document.querySelector(".modal-close-button");
 menu.addEventListener("click", openModal);
-
 modalClose.addEventListener("click", closeModal);
 
-function openModal () {
+function openModal (e) {
     document.body.style.overflow = "hidden";
     modal.classList.remove("hidden");
+    const tag = e.target.closest(".cup").dataset.name;
+    /* console.log(tag,findTag(tag));
+    modal.innerHTML=createCup(findTag(tag)); */
+
 
 }
 function toggleModal () {
@@ -21,9 +24,13 @@ function closeModal () {
     document.body.style.overflow = "";
     modal.classList.add("hidden");
 }
-function createCup (products) {
-    return products.map(
-        ( {name, description, price, category, sizes, additives}, index) =>
+function findTag (tag) {
+    return products.find((product)=>
+    product.tag=tag);
+}
+function createCup (product) {
+    const {name, description, price, category, sizes, additives} = product;
+    return
         `<div class="modal-container">
         <div class="cup-img">
             <img id="modal-img" src="../../assets/images/menu/${category}-${index+1}.png" alt="">
@@ -95,5 +102,5 @@ function createCup (products) {
                 <h3>Total</h3>
                 <h3 id="modal-price">${price}</h3>
             </div>`
-    );
+    ;
 }
