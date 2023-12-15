@@ -6,14 +6,16 @@ document.addEventListener("DOMContentLoaded", function () {
     const slider = document.querySelector(".favorite-coffee-row-slider");
 
     const slides = Array.from(carousel.children);
- 
+    /*const bars = Array.from(progressBars.children);*/
     console.log(slides);
     console.log(progressBars);
 
     prevButton.addEventListener("click", prevPicture);
     nextButton.addEventListener("click", nextPicture);
-    slider.addEventListener("mouseenter",stopAuto);
-    slider.addEventListener("mouseleave",slideAuto);
+        carousel.addEventListener("mouseenter",stopAuto);
+        carousel.addEventListener("mouseleave",slideAuto);
+        carousel.addEventListener("touchstart",stopAuto);
+        carousel.addEventListener("touchend",slideAuto);
     slider.addEventListener("touchstart",toggleTouchStart);
     slider.addEventListener("touchmove",toggleTouchMove);
     slider.addEventListener("touchend",toggleTouchEnd);
@@ -92,5 +94,13 @@ document.addEventListener("DOMContentLoaded", function () {
             nextPicture();
         }
     }
-
+    function getBarXvalue(element) {
+        const style = window.getComputedStyle(element);
+        const transform = new DOMMatrixReadOnly(style.transform);
+        return transform.m41;
+    }
+    const bar = bars.find((item) =>
+        item.classList.contains("")
+    );
+    console.log(getBarXvalue(progressBars));
 });

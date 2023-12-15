@@ -11,6 +11,7 @@ import products from "../products.json" assert {type:"json"};
     dessertTab.addEventListener("click", () => chooseTab("dessert"));
     window.addEventListener("resize", display());
     refresh.addEventListener("click", loadMore);
+    preLoadMenu();
 
     function chooseTab (category){
         /*for (let i=0;i<=activeTab.length;i++){
@@ -43,7 +44,7 @@ import products from "../products.json" assert {type:"json"};
     function createMenu (products) {
         return products.map(
             ( {category, name, description, price}, index) =>
-            `<div class="cup">
+            `<div class="cup" data-name="${name}">
                 <div class="cup-img">
                         <img src="../../assets/images/menu/${category}-${index+1}.png" alt="${name}">
                 </div>
@@ -62,13 +63,13 @@ import products from "../products.json" assert {type:"json"};
             cups.map((item,index) => {
             if (index>=4) {
                 item.classList.remove("hidden");
-                console.log(item);
+                /* console.log(item); */
             }
         });} else {
             cups.map((item,index) => {
                 if (index>=4) {
                     item.classList.add("hidden");
-                    console.log("none", item);
+                    /* console.log("none", item); */
                 }
             });
         }
@@ -85,9 +86,13 @@ import products from "../products.json" assert {type:"json"};
         cups.map((item,index) => {
             if (index>=4) {
                 item.classList.remove("hidden");
-                console.log(item);
+                /* console.log(item); */
             }});
         refresh.classList.add("hidden");
     }
-
+    function preLoadMenu () {
+        coffeeTab.classList.add ("active");
+        menu.innerHTML=createMenu(getProducts("coffee"));
+        display();
+    }
     /*console.log(createMenu(getProducts("tea")));*/
