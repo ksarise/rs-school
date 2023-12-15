@@ -9,7 +9,7 @@ import products from "../products.json" assert {type:"json"};
     coffeeTab.addEventListener("click", () =>chooseTab("coffee"));
     teaTab.addEventListener("click", () => chooseTab("tea"));
     dessertTab.addEventListener("click", () => chooseTab("dessert"));
-    window.addEventListener("resize", display());
+    window.addEventListener("resize", display);
     refresh.addEventListener("click", loadMore);
     preLoadMenu();
 
@@ -44,7 +44,7 @@ import products from "../products.json" assert {type:"json"};
     function createMenu (products) {
         return products.map(
             ( {category, name, description, price}, index) =>
-            `<div class="cup" data-name="${name}">
+            `<div class="cup" data-name="${name} ">
                 <div class="cup-img">
                         <img src="../../assets/images/menu/${category}-${index+1}.png" alt="${name}">
                 </div>

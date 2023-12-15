@@ -1,18 +1,21 @@
 import products from "../products.json" assert {type:"json"};
 
 const menu = document.querySelector(".menu-grid");
-const modal = document.querySelector(".modal-wrap");
+const modal = document.querySelector(".modal-container");
+const modalBackdrop = document.querySelector(".modal-backdrop");
 menu.addEventListener("click", openModal);
 
 function openModal (e) {
     document.body.style.overflow = "hidden";
     modal.classList.remove("hidden");
+    modalBackdrop.classList.remove("hidden");
     const tag = e.target.closest(".cup").dataset.name;
     console.log(tag,findTag(tag));
     console.log(e.currentTarget, e.target);
     modal.innerHTML=createCup(findTag(tag));
     const modalClose = document.querySelector(".modal-close-button");
     modalClose.addEventListener("click", closeModal);
+    modalBackdrop.addEventListener("click", closeModal);
 
 }
 function toggleModal () {
@@ -22,6 +25,7 @@ function toggleModal () {
 function closeModal () {
     document.body.style.overflow = "";
     modal.classList.add("hidden");
+    modalBackdrop.classList.add("hidden");
 }
 function closeOutModal (e) {
 }
@@ -31,7 +35,8 @@ function findTag (tag) {
 }
 function createCup (cup) {
     const {name, description, price, category, sizes, additives} = cup;
-    return `<div class="modal-container">
+    
+    return console.log (),`
         <div class="cup-img">
             <img id="modal-img" src="../../assets/images/menu/${category}-${products.indexOf(cup)+1}.png" alt="">
         </div>
@@ -113,6 +118,6 @@ function createCup (cup) {
                 <button class="modal-close-button">Close</button>
             </div>
             </div>
-            </div>`
+            `
     ;
 }
