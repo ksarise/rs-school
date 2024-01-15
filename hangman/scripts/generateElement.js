@@ -7,7 +7,7 @@ export function generateElement(
   alt
 ) {
   const element = document.createElement(tag);
-  
+
   if (className) {
     element.classList.add(className);
   }
