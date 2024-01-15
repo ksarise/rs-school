@@ -21,5 +21,13 @@ document.addEventListener("DOMContentLoaded", function (){
     keys.push(letter);
   }
 
-
+  async function questBase() {
+    const response = await fetch("./base.json");
+    const data = await response.json();
+    quest.textContent = data[0].secret;
+    definition.textContent = data[0].question;
+    console.log(data[0].secret);
+    return data[0].secret;
+  }
+  questBase();
 });
