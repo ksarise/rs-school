@@ -1,0 +1,7 @@
+.keyboard-block {
+  display: flex;
+}
+.key {
+  background-color: aquamarine;
+  margin: 5px;
+}

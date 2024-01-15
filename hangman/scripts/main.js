@@ -14,7 +14,12 @@ document.addEventListener("DOMContentLoaded", function (){
   const definition = generateElement("div", "def-block", quiz, "definition");
   const fails = generateElement("div", "fails-block", quiz, "Incorrect answers:")
   const keyboard = generateElement("section", "keyboard-block", main, "Keyboard");
-
+  const keys = [];
+  for (let i = 65; i <= 90; i += 1) {
+    const key = String.fromCharCode(i);
+    const letter = generateElement("div", "key", keyboard, key);
+    keys.push(letter);
+  }
 
 
 });
