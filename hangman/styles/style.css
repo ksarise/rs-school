@@ -13,7 +13,7 @@ body {
 .header {
   display: flex;
   max-width: 100%;
-  justify-content: center;
+  justify-content: space-between;
   background-color: #1e4828;
   border-radius: 10px;
   margin-bottom: 10px;
@@ -22,6 +22,17 @@ body {
   border-color: #b87b1e;
   border-radius: 10px;
   align-items: center;
+  padding: 0.5rem;
+}
+.git-link {
+  cursor: pointer;
+  border: 3px #ffffff ridge;
+  border-radius: 50px;
+  transition: 0.5s;
+}
+.git-link:hover {
+  border: 3px #b87b1e dotted;
+  transition: 0.5s;
 }
 .github {
   margin: 0;
@@ -31,6 +42,14 @@ body {
 .title {
   font-family: 'Belanosima', sans-serif;
   color: #f8f7ea;
+}
+.header-arrow {
+  cursor: pointer;
+  transition: 0.5s;
+}
+.header-arrow:hover {
+  transform: rotate(90deg);
+  transition: 0.5s;
 }
 .board-block {
   display: flex;
@@ -58,7 +77,7 @@ body {
   border-radius: 10px;
   padding: 10px 10px;
   gap: 2rem;
-  width: 49%;
+  width: 40rem;
   border-width: 5px;
   border-style: inset;
   border-color: #b87b1e;

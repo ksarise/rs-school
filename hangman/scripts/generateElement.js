@@ -4,6 +4,7 @@ export function generateElement(
   parent,
   text,
   src,
+  href,
   alt
 ) {
   const element = document.createElement(tag);
@@ -25,7 +26,10 @@ export function generateElement(
   if (src) {
     element.src = src;
   }
-
+  if (href) {
+    element.setAttribute("href", href);
+    element.setAttribute("target", "_blank");
+  }
   if (alt) {
     element.setAttribute("alt", alt);
   }

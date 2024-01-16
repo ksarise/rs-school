@@ -4,8 +4,11 @@ document.addEventListener("DOMContentLoaded", function (){
   const body = document.querySelector("body");
   const wrap = generateElement("div", "page-wrap", body);
   const header = generateElement("header", "header", wrap);
-  const github = generateElement("img", "github", header, "", "images/github-logo.png");
+  const gitLink = generateElement("a", "git-link", header,"", "https://github.com/ksarise")
+  const gitLogo = generateElement("img", "github", gitLink, "", "images/github-logo.png");
   const h = generateElement("h1", "title", header, "Hangman");
+  const headerButton = generateElement("div", "header-button", header);
+  const headerButtonImg = generateElement("img", "header-arrow", headerButton, "", "images/arrow.png");
   const main = generateElement("main", "main", wrap);
   const board = generateElement("section", "board-block", main);
   const hangpic = generateElement("div", "pic-block", board);
@@ -105,6 +108,7 @@ document.addEventListener("DOMContentLoaded", function (){
   }
   playStart();
   modalButton.addEventListener("click", playStart);
+  headerButton.addEventListener("click", playStart);
 
 
 });
