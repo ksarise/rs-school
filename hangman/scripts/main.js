@@ -1,6 +1,7 @@
 import {generateElement} from './generateElement.js';
 import {modalOver, modalBlock, modalText, modalButton, toggleModal, closeModal} from './modal.js';
 document.addEventListener("DOMContentLoaded", function (){
+  console.log("Привет!\nДля игры необходима английская раскладка клавиатуры\nТак что не забудь ее переключить)")
   const body = document.querySelector("body");
   const wrap = generateElement("div", "page-wrap", body);
   const header = generateElement("header", "header", wrap);
