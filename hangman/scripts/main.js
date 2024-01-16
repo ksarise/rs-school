@@ -39,10 +39,11 @@ document.addEventListener("DOMContentLoaded", function (){
   async function defBase() {
     const response = await fetch("./base.json");
     const data = await response.json();
-    secretWord = data[0].secret;
+    let indexRandom = Math.floor(Math.random() * data.length);
+    secretWord = data[indexRandom].secret;
     hideWord = secretWord.replace (/./g, "_");
     word.textContent = hideWord;
-    definition.textContent = data[0].definition;
+    definition.textContent = data[indexRandom].definition;
     console.log(secretWord);
     return secretWord;
   }
