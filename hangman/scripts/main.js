@@ -58,10 +58,15 @@ document.addEventListener("DOMContentLoaded", function (){
       }
       word.textContent = hideWord;
     } else {
-      failsCount =+ 1;
+      failsCount += 1;
+      console.log(failsCount,'fails');
+      failsCounter(failsCount);
     } 
   };
 
+  function failsCounter(f) {
+    fails.textContent = `Incorrect answers: ${f} / 6`
+  }
   function toogleKey (letter) {
     for (let i = 0; i < keys.length; i += 1) {
       
@@ -78,4 +83,5 @@ document.addEventListener("DOMContentLoaded", function (){
   }
 
   defBase();
+  failsCounter(0);
 });
