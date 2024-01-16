@@ -1,21 +1,100 @@
+body {
+  font-family: 'Belanosima', sans-serif;
+  background-color: beige;
+}
+.page-wrap {
+  display: flex;
+  margin: auto;
+  max-width: 1080px;
+  background-color: bisque;
+  flex-direction: column;
+}
 .header {
   display: flex;
+  width: 100%;
+  justify-content: center;
+  background-color: #1e4828;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+.title {
+  font-family: 'Belanosima', sans-serif;
+  color: #f8f7ea;
+}
+.board-block {
+  display: flex;
+  border-radius: 10px;
+  justify-content: space-between;
+  gap: 1rem;
 }
 .pic-block {
   display: flex;
-}
-.keyboard-block {
-  display: flex;
+  width: 49%;
 }
 .img1 {
   max-width: 500px;
+  border-radius: 10px;
+}
+.quiz-block {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #3e754bc5;
+  border-radius: 10px;
+  padding: 10px 10px;
+  gap: 2rem;
+  width: 49%;
+}
+.word-block {
+  display: flex;
+  text-align: center;
+  color: #f8f7ea;
+  font-size: 3rem;
+  padding: 1rem;
+  background-color: #1e4828;
+
+}
+.def-block {
+  display: flex;
+  text-align: center;
+  color: #f8f7ea;
+  background-color: #1e4828;
+  padding: 1rem;
+}
+.fails-block {
+  display: flex;
+  text-align: center;
+  color: #f8f7ea;
+  font-size: 1.5rem;
+  background-color: #1e4828;
+  padding: 0.5rem;
+}
+.keyboard-block {
+  margin-top: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  border-radius: 10px;
+  background-color: #3e754bc5;
+  padding: 0.5rem;
+  
 }
 .key {
-  background-color: aquamarine;
-  margin: 5px;
+  background-color: #1e4828;
+  margin: 0.5rem;
+  padding: 0.5rem;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 10px;
+  font-size: 2rem;
+  color: #f8f7ea;
+  text-align: center;
+  cursor: pointer;
 }
 .chosen {
   background-color: red;
+  cursor: default;
 }
 
 .modal-over {
@@ -27,7 +106,7 @@
   align-items: center;
   justify-content: center;
   width: 100%;
-  background-color: gray;
+  background-color: rgba(94,94,101,0.9);
   height: 100vh;
   inset: 0;
 }
@@ -38,11 +117,32 @@
   display: flex;
   position: relative;
   width: 100%;
-  max-width: 500px;
+  max-width: 300px;
   background-color: bisque;
   flex-direction: column;
   align-items: center;
   border-radius: 10px;
+  padding: 0.5rem;
+  gap: 0.5rem;
+}
+.modal-text {
+  font-size: 3rem;
+  color: rgb(85, 9, 9);
+}
+.modal-word {
+  font-size: 2rem;
+  font-style: italic;
+  text-decoration: underline;
+}
+.modal-button {
+  font-size: 2rem;
+  text-align: center;
+  padding: 0.5rem;
+  border-radius: 10px;
+  background-color: #1e4828;
+  color:#f8f7ea;
+  cursor: pointer;
+
 }
 .visible {
   opacity: 1;

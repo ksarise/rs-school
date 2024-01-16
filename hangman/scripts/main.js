@@ -2,17 +2,19 @@ import {generateElement} from './generateElement.js';
 import {modalOver, modalBlock, modalText, modalButton, toggleModal, closeModal} from './modal.js';
 document.addEventListener("DOMContentLoaded", function (){
   const body = document.querySelector("body");
-  const header = generateElement("header", "header", body,);
-  const github = generateElement("div", "github", header, "Github");
+  const wrap = generateElement("div", "page-wrap", body);
+  const header = generateElement("header", "header", wrap);
+  const github = generateElement("div", "github", header);
   const h = generateElement("h1", "title", header, "Hangman");
-  const main = generateElement("main", "main", body);
-  const hangpic = generateElement("section", "pic-block", main);
+  const main = generateElement("main", "main", wrap);
+  const board = generateElement("section", "board-block", main);
+  const hangpic = generateElement("div", "pic-block", board);
   const picture = generateElement("img", "img1", hangpic,"", "images/hangman0.jpg");
-  const quiz = generateElement("section", "quiz-block", main);
+  const quiz = generateElement("div", "quiz-block", board);
   const word = generateElement("div", "word-block", quiz, "word");
   const definition = generateElement("div", "def-block", quiz, "definition");
   const fails = generateElement("div", "fails-block", quiz, "Incorrect answers:")
-  const keyboard = generateElement("section", "keyboard-block", main, "Keyboard");
+  const keyboard = generateElement("section", "keyboard-block", main);
   const keys = [];
   for (let i = 65; i <= 90; i += 1) {
     const key = String.fromCharCode(i);
