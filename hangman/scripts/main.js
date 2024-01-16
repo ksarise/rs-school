@@ -6,10 +6,7 @@ document.addEventListener("DOMContentLoaded", function (){
   const h = generateElement("h1", "title", header, "Hangman");
   const main = generateElement("main", "main", body);
   const hangpic = generateElement("section", "pic-block", main);
-  const pictures = [
-    "./images/hangman.jpeg",
-  ]
-  const picture = generateElement("img", "img1", hangpic,"" ,pictures[0]);
+  const picture = generateElement("img", "img1", hangpic,"", "images/hangman0.jpg");
   const quiz = generateElement("section", "quiz-block", main);
   const word = generateElement("div", "word-block", quiz, "word");
   const definition = generateElement("div", "def-block", quiz, "definition");
@@ -59,14 +56,16 @@ document.addEventListener("DOMContentLoaded", function (){
       word.textContent = hideWord;
     } else {
       failsCount += 1;
-      console.log(failsCount,'fails');
+      // console.log(failsCount,'fails');
       failsCounter(failsCount);
     } 
   };
 
   function failsCounter(f) {
-    fails.textContent = `Incorrect answers: ${f} / 6`
+    fails.textContent = `Incorrect answers: ${f} / 6`;
+    picture.src = `images/hangman${f}.jpg`;
   }
+  
   function toogleKey (letter) {
     for (let i = 0; i < keys.length; i += 1) {
       
