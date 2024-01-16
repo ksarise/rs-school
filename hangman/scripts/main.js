@@ -1,7 +1,8 @@
 import {generateElement} from './generateElement.js';
 document.addEventListener("DOMContentLoaded", function (){
   const body = document.querySelector("body");
-  const header = generateElement("header", "header", body, "header");
+  const header = generateElement("header", "header", body,);
+  const github = generateElement("div", "github", header, "Github");
   const h = generateElement("h1", "title", header, "Hangman");
   const main = generateElement("main", "main", body);
   const hangpic = generateElement("section", "pic-block", main);
@@ -20,14 +21,19 @@ document.addEventListener("DOMContentLoaded", function (){
     const letter = generateElement("div", "key", keyboard, key);
     keys.push(letter);
   }
-
+  let hideWord = "";
   async function questBase() {
     const response = await fetch("./base.json");
     const data = await response.json();
-    quest.textContent = data[0].secret;
+    hideWord = secretHide(data[0].secret);
+    quest.textContent = hideWord;
     definition.textContent = data[0].question;
     console.log(data[0].secret);
     return data[0].secret;
+  }
+  function secretHide (secret) {
+    hideWord = secret.replace (/./g, "_ ");
+    return hideWord;
   }
   questBase();
 });

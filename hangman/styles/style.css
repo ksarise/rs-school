@@ -1,5 +1,14 @@
+.header {
+  display: flex;
+}
+.pic-block {
+  display: flex;
+}
 .keyboard-block {
   display: flex;
+}
+.img1 {
+  max-width: 500px;
 }
 .key {
   background-color: aquamarine;
