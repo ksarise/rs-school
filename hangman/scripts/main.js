@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", function (){
   ]
   const picture = generateElement("img", "img1", hangpic,"" ,pictures[0]);
   const quiz = generateElement("section", "quiz-block", main);
-  const quest = generateElement("div", "quest-block", quiz, "quest");
+  const word = generateElement("div", "word-block", quiz, "word");
   const definition = generateElement("div", "def-block", quiz, "definition");
   const fails = generateElement("div", "fails-block", quiz, "Incorrect answers:")
   const keyboard = generateElement("section", "keyboard-block", main, "Keyboard");
@@ -20,20 +20,61 @@ document.addEventListener("DOMContentLoaded", function (){
     const key = String.fromCharCode(i);
     const letter = generateElement("div", "key", keyboard, key);
     keys.push(letter);
+    letter.addEventListener ('click', () => {
+      toogleKey(letter.textContent.toLowerCase());
+      console.log(letter.textContent);
+    })
   }
+
+  document.addEventListener("keydown", (elem) => {
+    const downKey = elem.key.toLowerCase();
+    if (/^[a-z]$/.test(downKey)) {
+      console.log(downKey);
+      toogleKey(downKey);
+    }
+  });
+
   let hideWord = "";
-  async function questBase() {
+  let secretWord = "";
+  async function defBase() {
     const response = await fetch("./base.json");
     const data = await response.json();
-    hideWord = secretHide(data[0].secret);
-    quest.textContent = hideWord;
-    definition.textContent = data[0].question;
-    console.log(data[0].secret);
-    return data[0].secret;
+    secretWord = data[0].secret;
+    hideWord = secretWord.replace (/./g, "_");
+    word.textContent = hideWord;
+    definition.textContent = data[0].definition;
+    console.log(secretWord);
+    return secretWord;
   }
-  function secretHide (secret) {
-    hideWord = secret.replace (/./g, "_ ");
-    return hideWord;
+
+  let failsCount = 0;
+  function toogleLetter(letter) {
+    if (secretWord.includes(letter)) {
+      for (let i = 0; i < secretWord.length; i += 1) {
+        if (secretWord[i] == letter) {
+          hideWord = hideWord.substring (0, i) + letter + hideWord.substring (i + 1);
+        }
+      }
+      word.textContent = hideWord;
+    } else {
+      failsCount =+ 1;
+    } 
+  };
+
+  function toogleKey (letter) {
+    for (let i = 0; i < keys.length; i += 1) {
+      
+    if (keys[i].textContent.toLowerCase() == letter) {
+          // console.log(keys[i], letter);
+          if (keys[i].classList.contains("chosen")) {
+            return;
+          }
+          toogleLetter(letter);
+          keys[i].classList.add("chosen");
+          break;
+        }
+    }
   }
-  questBase();
+
+  defBase();
 });
