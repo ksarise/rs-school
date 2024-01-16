@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", function (){
   const body = document.querySelector("body");
   const wrap = generateElement("div", "page-wrap", body);
   const header = generateElement("header", "header", wrap);
-  const gitLink = generateElement("a", "git-link", header,"", "https://github.com/ksarise")
+  const gitLink = generateElement("a", "git-link", header,"","", "https://github.com/ksarise")
   const gitLogo = generateElement("img", "github", gitLink, "", "images/github-logo.png");
   const h = generateElement("h1", "title", header, "Hangman");
   const headerButton = generateElement("div", "header-button", header);
