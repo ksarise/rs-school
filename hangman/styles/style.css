@@ -17,3 +17,34 @@
 .chosen {
   background-color: red;
 }
+
+.modal-over {
+  opacity: 0;
+  visibility: hidden;
+  z-index: 2;
+  display: flex;
+  position: fixed;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  background-color: gray;
+  height: 100vh;
+  inset: 0;
+}
+.modal-block {
+  opacity: 0;
+  visibility: hidden;
+  z-index: 2;
+  display: flex;
+  position: relative;
+  width: 100%;
+  max-width: 500px;
+  background-color: bisque;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 10px;
+}
+.visible {
+  opacity: 1;
+  visibility: visible;
+}

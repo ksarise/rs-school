@@ -1,4 +1,5 @@
 import {generateElement} from './generateElement.js';
+import {modalOver, modalBlock, modalText, modalButton, toggleModal, closeModal} from './modal.js';
 document.addEventListener("DOMContentLoaded", function (){
   const body = document.querySelector("body");
   const header = generateElement("header", "header", body,);
@@ -54,10 +55,18 @@ document.addEventListener("DOMContentLoaded", function (){
         }
       }
       word.textContent = hideWord;
+      if (word.textContent == secretWord){
+        toggleModal(secretWord);
+        modalText.textContent = "WIN"
+      }
     } else {
       failsCount += 1;
       // console.log(failsCount,'fails');
       failsCounter(failsCount);
+      if (failsCount == 6) {
+        modalText.textContent = "WASTED";
+        toggleModal(secretWord);
+      }
     } 
   };
 
@@ -65,7 +74,7 @@ document.addEventListener("DOMContentLoaded", function (){
     fails.textContent = `Incorrect answers: ${f} / 6`;
     picture.src = `images/hangman${f}.jpg`;
   }
-  
+
   function toogleKey (letter) {
     for (let i = 0; i < keys.length; i += 1) {
       
@@ -80,7 +89,20 @@ document.addEventListener("DOMContentLoaded", function (){
         }
     }
   }
+  function unToogleKey () {
+    keys.forEach((letter) => {
+      letter.classList.remove("chosen");
+    });
+  }
+  function playStart () {
+    defBase();
+    failsCounter(0);
+    failsCount = 0;
+    closeModal();
+    unToogleKey();
+  }
+  playStart();
+  modalButton.addEventListener("click", playStart);
 
-  defBase();
-  failsCounter(0);
+
 });
