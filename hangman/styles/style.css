@@ -22,7 +22,7 @@ body {
   border-color: #b87b1e;
   border-radius: 10px;
   align-items: center;
-  padding: 0.5rem;
+  padding: 10px 20px;
 }
 .git-link {
   cursor: pointer;
@@ -59,7 +59,7 @@ body {
 }
 .pic-block {
   display: flex;
-  width: 49%;
+  width: 30rem;
 }
 .img1 {
   width: 100%;
@@ -218,4 +218,17 @@ body {
   opacity: 1;
   visibility: visible;
   transition: 0.4s;
+}
+@media screen and (max-width: 960px) {
+  .board-block {
+    flex-direction: column;
+  }
+  .pic-block {
+    align-self: center;
+    max-width: fit-content;
+  }
+  .quiz-block {
+    align-self: center;
+    max-width: fit-content;
+  }
 }
