@@ -1,12 +1,42 @@
 [
   {
-    "index": 1,
     "definition": "the feeling of having already dreamed something that is currently being experienced",
     "secret": "dejavu"
   },
   {
-    "index": 2,
     "definition": "question2",
     "secret": "secret2"
+  },
+  {
+    "definition": "question3",
+    "secret": "secret3"
+  },
+  {
+    "definition": "question4",
+    "secret": "secret4"
+  },
+  {
+    "definition": "question5",
+    "secret": "secret5"
+  },
+  {
+    "definition": "question6",
+    "secret": "secret6"
+  },
+  {
+    "definition": "question7",
+    "secret": "secret7"
+  },
+  {
+    "definition": "question8",
+    "secret": "secret8"
+  },
+  {
+    "definition": "question9",
+    "secret": "secret9"
+  },
+  {
+    "definition": "question10",
+    "secret": "secret10"
   }
 ]
