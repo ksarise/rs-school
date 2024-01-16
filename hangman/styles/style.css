@@ -5,21 +5,51 @@ body {
 .page-wrap {
   display: flex;
   margin: auto;
+  padding: 0.5rem;
   max-width: 1080px;
   background-color: bisque;
   flex-direction: column;
 }
 .header {
   display: flex;
-  width: 100%;
-  justify-content: center;
+  max-width: 100%;
+  justify-content: space-between;
   background-color: #1e4828;
   border-radius: 10px;
   margin-bottom: 10px;
+  border-width: 5px;
+  border-style: ridge;
+  border-color: #b87b1e;
+  border-radius: 10px;
+  align-items: center;
+  padding: 10px 20px;
+}
+.git-link {
+  cursor: pointer;
+  border: 3px #ffffff ridge;
+  border-radius: 50px;
+  transition: 0.5s;
+}
+.git-link:hover {
+  border: 3px #b87b1e dotted;
+  transition: 0.5s;
+}
+.github {
+  margin: 0;
+  width: 48px;
+  height: 48px;
 }
 .title {
   font-family: 'Belanosima', sans-serif;
   color: #f8f7ea;
+}
+.header-arrow {
+  cursor: pointer;
+  transition: 0.5s;
+}
+.header-arrow:hover {
+  transform: rotate(90deg);
+  transition: 0.5s;
 }
 .board-block {
   display: flex;
@@ -29,10 +59,13 @@ body {
 }
 .pic-block {
   display: flex;
-  width: 49%;
+  width: 30rem;
 }
 .img1 {
-  max-width: 500px;
+  width: 100%;
+  border-width: 5px;
+  border-style: outset;
+  border-color: #b87b1e;
   border-radius: 10px;
 }
 .quiz-block {
@@ -44,15 +77,23 @@ body {
   border-radius: 10px;
   padding: 10px 10px;
   gap: 2rem;
-  width: 49%;
+  width: 40rem;
+  border-width: 5px;
+  border-style: inset;
+  border-color: #b87b1e;
+  border-radius: 10px;
 }
 .word-block {
   display: flex;
   text-align: center;
   color: #f8f7ea;
-  font-size: 3rem;
+  font-size: 2.5rem;
   padding: 1rem;
   background-color: #1e4828;
+  border-width: 5px;
+  border-style: inset;
+  border-color: #b87b1e;
+  border-radius: 10px;
 
 }
 .def-block {
@@ -61,6 +102,11 @@ body {
   color: #f8f7ea;
   background-color: #1e4828;
   padding: 1rem;
+  border-width: 5px;
+  border-style: inset;
+  border-color: #b87b1e;
+  border-radius: 10px;
+  font-size: 1.5rem;
 }
 .fails-block {
   display: flex;
@@ -69,6 +115,10 @@ body {
   font-size: 1.5rem;
   background-color: #1e4828;
   padding: 0.5rem;
+  border-width: 5px;
+  border-style: inset;
+  border-color: #b87b1e;
+  border-radius: 10px;
 }
 .keyboard-block {
   margin-top: 1rem;
@@ -78,6 +128,10 @@ body {
   border-radius: 10px;
   background-color: #3e754bc5;
   padding: 0.5rem;
+  border-width: 5px;
+  border-style: ridge;
+  border-color: #b87b1e;
+  border-radius: 10px;
   
 }
 .key {
@@ -91,6 +145,14 @@ body {
   color: #f8f7ea;
   text-align: center;
   cursor: pointer;
+  border-width: 5px;
+  border-style: ridge;
+  border-color: #b87b1e;
+  border-radius: 10px;
+}
+.key:hover {
+  color:#b87b1e;
+  transition: 0.2s;
 }
 .chosen {
   background-color: red;
@@ -117,7 +179,7 @@ body {
   display: flex;
   position: relative;
   width: 100%;
-  max-width: 300px;
+  max-width: 25rem;
   background-color: bisque;
   flex-direction: column;
   align-items: center;
@@ -133,6 +195,7 @@ body {
   font-size: 2rem;
   font-style: italic;
   text-decoration: underline;
+  text-decoration-color: #b87b1e;
 }
 .modal-button {
   font-size: 2rem;
@@ -142,9 +205,30 @@ body {
   background-color: #1e4828;
   color:#f8f7ea;
   cursor: pointer;
+  border: 2px #b87b1e ridge;
+  transition: 0.5s;
+}
 
+.modal-button:hover {
+  background-color: #b87b1e;
+  border: 2px #1e4828 dotted;
+  transition: 0.5s;
 }
 .visible {
   opacity: 1;
   visibility: visible;
+  transition: 0.4s;
+}
+@media screen and (max-width: 960px) {
+  .board-block {
+    flex-direction: column;
+  }
+  .pic-block {
+    align-self: center;
+    max-width: fit-content;
+  }
+  .quiz-block {
+    align-self: center;
+    max-width: fit-content;
+  }
 }
