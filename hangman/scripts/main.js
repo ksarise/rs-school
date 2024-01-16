@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", function (){
   const body = document.querySelector("body");
   const wrap = generateElement("div", "page-wrap", body);
   const header = generateElement("header", "header", wrap);
-  const github = generateElement("div", "github", header);
+  const github = generateElement("img", "github", header, "", "images/github-logo.png");
   const h = generateElement("h1", "title", header, "Hangman");
   const main = generateElement("main", "main", wrap);
   const board = generateElement("section", "board-block", main);
@@ -22,14 +22,14 @@ document.addEventListener("DOMContentLoaded", function (){
     keys.push(letter);
     letter.addEventListener ('click', () => {
       toogleKey(letter.textContent.toLowerCase());
-      console.log(letter.textContent);
+      // console.log(letter.textContent);
     })
   }
 
   document.addEventListener("keydown", (elem) => {
     const downKey = elem.key.toLowerCase();
     if (/^[a-z]$/.test(downKey)) {
-      console.log(downKey);
+      // console.log(downKey);
       toogleKey(downKey);
     }
   });
