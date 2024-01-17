@@ -138,6 +138,7 @@ body {
   
 }
 .key {
+  display: flex;
   background-color: #1e4828;
   margin: 0.5rem;
   padding: 0.5rem;
@@ -152,6 +153,9 @@ body {
   border-style: ridge;
   border-color: #b87b1e;
   border-radius: 10px;
+  box-shadow: 0 5px 0px 0px rgba(0, 0, 0, 0.3);
+  justify-content: center;
+  align-items: center;
 }
 .key:hover {
   color:#b87b1e;
