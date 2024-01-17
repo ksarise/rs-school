@@ -1,5 +1,5 @@
 import {generateElement} from './generateElement.js';
-import {modalOver, modalBlock, modalText, modalButton, toggleModal, closeModal} from './modal.js';
+import {openModal, modalText, modalButton, toggleModal, closeModal} from './modal.js';
 document.addEventListener("DOMContentLoaded", function (){
   console.log("Привет!\nДля игры необходима английская раскладка клавиатуры\nТак что не забудь ее переключить)")
   const body = document.querySelector("body");
@@ -67,7 +67,7 @@ document.addEventListener("DOMContentLoaded", function (){
       }
     } else {
       failsCount += 1;
-      // console.log(failsCount,'fails');
+      console.log(failsCount,'fails');
       failsCounter(failsCount);
       if (failsCount == 6) {
         modalText.textContent = "WASTED";
@@ -82,6 +82,9 @@ document.addEventListener("DOMContentLoaded", function (){
   }
 
   function toogleKey (letter) {
+    if (openModal == true) {
+      return;
+    }
     for (let i = 0; i < keys.length; i += 1) {
       
     if (keys[i].textContent.toLowerCase() == letter) {
