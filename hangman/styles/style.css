@@ -1,3 +1,6 @@
+* {
+  box-sizing: border-box;
+}
 body {
   font-family: 'Belanosima', sans-serif;
   background-color: beige;
@@ -155,8 +158,13 @@ body {
   transition: 0.2s;
 }
 .chosen {
-  background-color: red;
-  cursor: default;
+  background-color: rgba(30,72,32,0.5074404761904762);
+  cursor: not-allowed;
+  pointer-events: none;
+  font-weight: 100;
+  box-shadow: inset 3px 3px #f8f7ea56;
+  transition: all 0.2s ease-in-out;
+  transform: scale(93%);
 }
 
 .modal-over {
@@ -229,6 +237,35 @@ body {
   }
   .quiz-block {
     align-self: center;
+    max-width: 100%;
+  }
+  .def-block {
+    align-self: center;
     max-width: fit-content;
+    font-size: 1rem;
+  }
+  .word-block {
+    align-self: center;
+    max-width: fit-content;
+    font-size: 2rem;
+  }
+  .fails-block {
+    align-self: center;
+    max-width: fit-content;
+    font-size: 1rem;
+  }
+  .key {
+    font-size: 1.5rem;
+  }
+  .img1 {
+    max-width: min-content;
+  }
+}
+@media screen and (max-width: 480px) {
+  .word-block {
+    font-size: 1rem;
+  }
+  .key {
+    font-size: 1rem;
   }
 }
