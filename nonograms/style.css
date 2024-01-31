@@ -4,8 +4,29 @@
 
 .matrix {
   display: flex;
+  justify-content: center;
 }
 .gram {
   width: 5rem;
   height: 5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.black {
+  background-color: black;
+}
+.hHint {
+  width: 2rem;
+  height: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.vHint {
+  width: 2rem;
+  height: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
