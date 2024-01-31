@@ -3,23 +3,25 @@ const body = document.body;
 const wrap = generateElement("div", "page-wrap", body, "wrap");
 const header = generateElement("header", "header", wrap, "header");
 const main = generateElement("main", "main", wrap, "main");
-const mainContainer = generateElement("section","main-container", main, "main-container");
+const mainContainer = generateElement("section","main-container", main, );
 const matrix = generateElement("div", "matrix", mainContainer);
 
-for (let i = 0; i < 5; i += 1) {
+//example matrix
+const matrix2 = [[1,0,0,1,1], [1,0,1,0,1], [0,1,1,0,0], [0,1,1,1,1], [0,1,1,0,1]];
+
+//create cells
+for (let i = 0; i < matrix2.length; i += 1) {
   const row = generateElement("div", "row", matrix);
-  for (let j = 0; j < 5; j += 1) {
-    const cell = generateElement("div", "gram", row, "#");
+  for (let j = 0; j < matrix2[i].length; j += 1) {
+    const cell = generateElement("div", "gram", row, matrix2[i][j].toString());
     cell.addEventListener('click', () => {
       cell.classList.toggle('black');
     })
   }
 }
-const matrix2 = [[1,0,0], [1,0,1], [0,1,1]];
-//hor must be 1112
-//vert must be 212
 
-const horHints = [];
+//compute values for vertical clues
+const vertHints = [];
 for (let i = 0; i < matrix2.length; i += 1) {
   const temp = []
   let accI = 0;
@@ -34,10 +36,11 @@ for (let i = 0; i < matrix2.length; i += 1) {
   if (accI > 0 ) {
     temp.push(accI);
   }
-  horHints.push(temp);
+  vertHints.push(temp);
 }
 
-const vertHints = [];
+//compute values for horizontal clues
+const horHints = [];
 for (let j = 0; j < matrix2.length; j += 1) {
   const temp = []
   let accJ = 0;
@@ -52,13 +55,26 @@ for (let j = 0; j < matrix2.length; j += 1) {
   if (accJ > 0 ) {
     temp.push(accJ);
   }
-  vertHints.push(temp);
+  horHints.push(temp);
 }
+
+//create horizontal clues
 const horHintsPanel = generateElement("div", "horHintsPanel", mainContainer);
+
+for (let i = 0; i < matrix2.length; i += 1){
+  const hHintRow = generateElement("div", "hHintRow", horHintsPanel);
+  horHints[i].forEach((element) => {
+    const hHint = generateElement("div", "hHint", hHintRow, element.toString());
+    console.log(element)
+  })
+}
+
+//create vertical clues
 const vertHintsPanel = generateElement("div", "vertHintsPanel", mainContainer);
 for (let i = 0; i < matrix2.length; i += 1){
-    const hHint = generateElement("div", "hHint", horHintsPanel, horHints[i].toString());
-}
-for (let i = 0; i < matrix2.length; i += 1){
-  const vHint = generateElement("div", "vHint", vertHintsPanel, vertHints[i].toString());
+  const vHintRow = generateElement("div", "vHintRow", vertHintsPanel);
+  vertHints[i].forEach((element) => {
+    const vHint = generateElement("div", "vHint", vHintRow, element.toString());
+    console.log(element)
+  })
 }
