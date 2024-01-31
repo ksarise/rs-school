@@ -1,0 +1,11 @@
+* {
+  border: 1px solid red;
+}
+
+.matrix {
+  display: flex;
+}
+.gram {
+  width: 5rem;
+  height: 5rem;
+}
