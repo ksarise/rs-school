@@ -10,14 +10,43 @@ const matrix = generateElement("div", "matrix", mainContainer);
 const matrix2 = [[1,0,0,1,1], [1,0,1,0,1], [0,1,1,0,0], [0,1,1,1,1], [0,1,1,0,1]];
 
 //create cells
+let count = 0;
+const len = matrix2.reduce((count, row) => count + row.length, 0);
+let checkArray = Array.from({ length: len }, (item) => 0);
 for (let i = 0; i < matrix2.length; i += 1) {
   const row = generateElement("div", "row", matrix);
   for (let j = 0; j < matrix2[i].length; j += 1) {
-    const cell = generateElement("div", "gram", row, matrix2[i][j].toString());
+    const cell = generateElement("div", "gram", row, matrix2[i][j].toString(), count);
+    count += 1;
     cell.addEventListener('click', () => {
-      cell.classList.toggle('black');
+      checkCell(cell, checkArray, matrix2, Number(cell.id));
+      // checkWin(matrix2, checkArray);
     })
   }
+}
+
+//check identity to picture
+function checkCell (cell, arr1, arr2, id) {
+  if (!cell.classList.contains('black')) {
+    arr1[id] = 1;
+    cell.classList.add('black');
+    checkWin(arr2, arr1);
+  } else {
+    arr1[id] = 0;
+    cell.classList.remove('black');
+  }
+  console.log('check', arr1);
+}
+
+//check condition for win
+function checkWin(arr1, arr2) {
+  let equal = (arr1.flat().every((value, index) => value == arr2[index]));
+  if (equal) {
+    console.log("win!");
+  } else {
+    console.log('more');
+  }
+  console.log('matrix', equal, arr1.flat());
 }
 
 //compute values for vertical clues
@@ -65,7 +94,6 @@ for (let i = 0; i < matrix2.length; i += 1){
   const hHintRow = generateElement("div", "hHintRow", horHintsPanel);
   horHints[i].forEach((element) => {
     const hHint = generateElement("div", "hHint", hHintRow, element.toString());
-    console.log(element)
   })
 }
 
@@ -75,6 +103,5 @@ for (let i = 0; i < matrix2.length; i += 1){
   const vHintRow = generateElement("div", "vHintRow", vertHintsPanel);
   vertHints[i].forEach((element) => {
     const vHint = generateElement("div", "vHint", vHintRow, element.toString());
-    console.log(element)
   })
 }

@@ -2,7 +2,8 @@ export function generateElement(
   tag,
   className,
   parent,
-  text
+  text,
+  id
 ) {
   const element = document.createElement(tag);
 
@@ -18,6 +19,9 @@ export function generateElement(
     if (typeof text === "string") {
       element.appendChild(document.createTextNode(text));
     }
+  }
+  if (id) {
+    element.setAttribute('id', id);
   }
   return element;
 }
