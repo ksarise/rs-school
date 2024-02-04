@@ -2,8 +2,11 @@
   border: 1px solid red;
 } */
 .page-wrap {
+  margin: auto;
+  max-width: 1080px;
   background-color: whitesmoke;
   transition: 0.3s;
+
 }
 .dark-theme {
   background-color: gray;
@@ -13,7 +16,7 @@
 .header {
   display: flex;
   justify-content: space-between;
-  max-width: 1400px;
+  max-width: 1080px;
 }
 .theme-container {
 
@@ -62,6 +65,18 @@
 .main-container {
   display: grid;
   justify-content: center;
+}
+.pictures-panel {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+.picture-block {
+
+}
+.picture-img {
+  width: 100px;
+  height: 100px;
 }
 .matrix {
   display: flex;

@@ -1,4 +1,5 @@
 import { generateElement } from "./generateElement.js";
+import data from "../base.json" assert { type: "json" };
 const body = document.body;
 const wrap = generateElement("div", "page-wrap", body, "wrap");
 const header = generateElement("header", "header", wrap, "header");
@@ -7,7 +8,8 @@ const themeContainer = generateElement("div", "theme-container", header, "theme"
 const themeInput = generateElement("input", "theme-input", themeContainer, "",'theme-mode', "checkbox");
 const themeLabel = generateElement("label", "theme-label", themeContainer, "", false, false, 'theme-mode');
 const main = generateElement("main", "main", wrap, "main");
-const mainContainer = generateElement("section","main-container", main, );
+const picturesPanel = generateElement("div", "pictures-panel", main)
+const mainContainer = generateElement("section","main-container", main);
 const matrix = generateElement("div", "matrix", mainContainer);
 const horHintsPanel = generateElement("div", "horHintsPanel", mainContainer);
 const vertHintsPanel = generateElement("div", "vertHintsPanel", mainContainer);
@@ -23,29 +25,31 @@ themeContainer.addEventListener("click", () => {
 
 //example matrix
 const picture2 = [[1,0,0,1,1], [1,0,1,0,1], [0,1,1,0,0], [0,1,1,1,1], [0,1,1,0,1]];
+let u = 0;
+console.log('import', data[u].id);
 
-//fetch matrix from json
-async function picBase() {
-  try {
-    const response = await fetch("./base.json");
-    const data = await response.json();
-    let indexRandom = Math.floor(Math.random() * data.length);
-    console.log(data.length, indexRandom);
-    // console.log(indexRandom, data[indexRandom].matrix);
-    let picture =  data[indexRandom].matrix;
-    return picture;
-  } 
-  catch (error) {
-    console.log('Fetch error: ', error);
+function dataToPicture(y) {
+  console.log('u', y, data[y].matrix);
+  // const id2 =  data[y].id;
+  const picture =  data[y].matrix;
+  console.log('picture',picture, 'id');
+  return picture;
+}
+//create panel for game choose
+function createPicturePanel () {
+  for (let i = 0; i < data.length; i += 1) {
+    const pictureBlock = generateElement("div", "picture-block", picturesPanel,data[i].name);
+    const pictureImg = generateElement("img", "picture-img", pictureBlock );
+    pictureImg.src = data[i].img;
+    pictureImg.addEventListener('click', () => startGame(i));
   }
-};
+}
 
-(async () => {
-  let picture = await picBase();
-
-
+createPicturePanel();
 //create cells
-function createCells(){
+function createCells(y){
+  let picture = dataToPicture(y);
+  console.log('prepic cells',y, picture[0][0])
   let count = 0;
   const len = picture.reduce((count, row) => count + row.length, 0);
   let checkArray = Array.from({ length: len }, (item) => 0);
@@ -86,7 +90,9 @@ function checkWin(arr1, arr2) {
   console.log('matrix', equal, arr1.flat());
 }
 
- function createClues () {
+function createClues (y) {
+  let picture = dataToPicture(y);
+  console.log('prepic clues', y, picture[0][0])
   //compute values for vertical clues
   const vertHints = [];
   for (let i = 0; i < picture.length; i += 1) {
@@ -145,30 +151,39 @@ function checkWin(arr1, arr2) {
   }
 }
 //game state controls
-function startGame() {
+
+function startGame(u) {
   cleanCells();
   cleanMatrix();
-  picBase();
-  createCells();
-  createClues();
+  console.log('start',u);
+  dataToPicture(u);
+  createCells(u);
+  createClues(u);
 }
 
-startGame();
+startGame(u);
 
+//restart button
 restartButton.addEventListener('click', () => {
-  startGame();
+  if (u <= 2){
+  startGame(u);
+  u += 1;
+  } else {
+    u = 0;
+    startGame(u);
+  }
+  console.log("restart",u);
 });
-
+//clean matrix
 function cleanMatrix () {
   matrix.replaceChildren();
   vertHintsPanel.replaceChildren();
   horHintsPanel.replaceChildren();
 }
-
+//clean filled cells
 function cleanCells () {
   const cells = document.querySelectorAll(".black");
   cells.forEach((cell) => {
     cell.classList.remove("black");
   });
 }
-})();
