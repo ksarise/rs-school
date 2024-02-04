@@ -3,7 +3,9 @@ export function generateElement(
   className,
   parent,
   text,
-  id
+  id,
+  type,
+  labelFor
 ) {
   const element = document.createElement(tag);
 
@@ -20,8 +22,17 @@ export function generateElement(
       element.appendChild(document.createTextNode(text));
     }
   }
+
   if (id) {
     element.setAttribute('id', id);
+  }
+
+  if (type) {
+    element.setAttribute('type', type);
+  }
+  
+  if (labelFor) {
+    element.setAttribute('for', labelFor);
   }
   return element;
 }
