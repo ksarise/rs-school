@@ -4,7 +4,8 @@ import {openModal, modalText, modalTime, modalButton, isOpen, closeModal} from '
 const body = document.body;
 const wrap = generateElement("div", "page-wrap", body, "wrap");
 const header = generateElement("header", "header", wrap, "header");
-const restartButton = generateElement("button", "restart", header, "restart");
+const restartButton = generateElement("button", "restart-button", header, "restart");
+const solutionButton = generateElement("button", "solution-button", header, "Solution");
 const themeContainer = generateElement("div", "theme-container", header, "theme");
 const themeInput = generateElement("input", "theme-input", themeContainer, "",'theme-mode', "checkbox");
 const themeLabel = generateElement("label", "theme-label", themeContainer, "", false, false, 'theme-mode');
@@ -33,10 +34,10 @@ let u = 0;
 // console.log('import', data[u].id);
 
 function dataToPicture(y) {
-  console.log('u', y, data[y].matrix);
+  // console.log('datatopicture', y, data[y].matrix);
   // const id2 =  data[y].id;
   const picture =  data[y].matrix;
-  console.log('picture',picture, 'id');
+  // console.log('picture',picture, 'id');
   return picture;
 }
 //create panel for game choose
@@ -80,7 +81,7 @@ function createCells(y){
   for (let i = 0; i < picture.length; i += 1) {
     const row = generateElement("div", "row", matrix);
     for (let j = 0; j < picture[i].length; j += 1) {
-      const cell = generateElement("div", "gram", row, picture[i][j].toString(), count);
+      const cell = generateElement("div", "gram", row, picture[i][j].toString(), count.toString());
       count += 1;
       cell.addEventListener('click', () => {
         checkCell(cell, checkArray, picture, Number(cell.id));
@@ -207,19 +208,21 @@ function createClues (y) {
 
 //game state controls
 
-function startGame(u) {
+function startGame(a) {
   clearInterval(swInterval);
   stopWatch.textContent = "00:00";
   closeModal();
   cleanCells();
   cleanMatrix();
-  console.log('start',u);
-  dataToPicture(u);
-  createCells(u);
-  createClues(u);
+  console.log('start',a);
+  dataToPicture(a);
+  createCells(a);
+  createClues(a);
+  u = a;
 }
 
 startGame(u);
+
 
 //restart button
 restartButton.addEventListener('click', () => {
@@ -233,7 +236,31 @@ restartButton.addEventListener('click', () => {
   }
   console.log("restart",u);
 });
+
+
+//solution button 
+solutionButton.addEventListener('click', () => addSolution(u));
+function addSolution (currIndex)  {
+  console.log('curr', currIndex);
+  clearInterval(swInterval);
+  let picture = dataToPicture(currIndex);
+  const grams = document.querySelectorAll(".gram");
+
+  grams.forEach((gram) => {
+    gram.classList.remove("black");
+    picture.flat().forEach((value, index) => {
+      if (value === 1 && Number(gram.id) === index) {
+        gram.classList.add("black");
+      }
+    });
+    gram.style.pointerEvents = "none";
+  });
+  
+}
+//modal close
 modalButton.addEventListener('click', () => startGame(u));
+
+
 //clean matrix
 function cleanMatrix () {
   matrix.replaceChildren();
