@@ -87,17 +87,38 @@ function createCells(y){
         startSWTimer();
         console.log(isSWTimerStarted, 'seconds',seconds);
       })
+      cell.addEventListener("contextmenu", () => {
+        setCross(cell);
+        console.log('cross');
+      });
     }
+  }
+}
+
+//set up a cross 
+
+function setCross (cell) {
+  event.preventDefault();
+  startSWTimer();
+  if (!cell.classList.contains('black') && !cell.classList.contains('cross')) {
+    cell.classList.add('cross');
+  } else if (cell.classList.contains('cross')) {
+    cell.classList.remove('cross');
+  } else {
+    cell.classList.remove('black');
+    cell.classList.add('cross');
   }
 }
 
 
 //check identity to picture
 function checkCell (cell, arr1, arr2, id) {
-  if (!cell.classList.contains('black')) {
+  if (!cell.classList.contains('black') && !cell.classList.contains('cross')) {
     arr1[id] = 1;
     cell.classList.add('black');
     checkWin(arr2, arr1);
+  } else if (cell.classList.contains('cross')) {
+    cell.classList.remove('cross');
   } else {
     arr1[id] = 0;
     cell.classList.remove('black');

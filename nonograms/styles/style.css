@@ -97,6 +97,10 @@
 .black {
   background-color: black;
 }
+.cross {
+  background-image: url("/assets/icons/cross.svg");
+  background-size: cover;
+}
 .horHintsPanel {
   grid-column: 1;
   grid-row: 2;
