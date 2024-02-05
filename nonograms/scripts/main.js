@@ -4,7 +4,7 @@ import {openModal, modalText, modalTime, modalButton, isOpen, closeModal} from '
 const body = document.body;
 const wrap = generateElement("div", "page-wrap", body, "wrap");
 const header = generateElement("header", "header", wrap, "header");
-const restartButton = generateElement("button", "restart-button", header, "restart");
+const resetButton = generateElement("button", "reset-button", header, "Reset");
 const solutionButton = generateElement("button", "solution-button", header, "Solution");
 const themeContainer = generateElement("div", "theme-container", header, "theme");
 const themeInput = generateElement("input", "theme-input", themeContainer, "",'theme-mode', "checkbox");
@@ -224,17 +224,17 @@ function startGame(a) {
 startGame(u);
 
 
-//restart button
-restartButton.addEventListener('click', () => {
+//reset button
+resetButton.addEventListener('click', () => {
   clearInterval(swInterval);
-  if (u <= 2){
-  startGame(u);
-  u += 1;
-  } else {
-    u = 0;
-    startGame(u);
-  }
-  console.log("restart",u);
+  seconds = 0;
+  stopWatch.textContent = "00:00";
+  isSWTimerStarted = false;
+  const grams = document.querySelectorAll(".gram");
+  grams.forEach((gram) => {
+    gram.classList.remove("black");
+    gram.classList.remove("cross");
+  });
 });
 
 
