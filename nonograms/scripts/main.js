@@ -5,6 +5,8 @@ const body = document.body;
 const wrap = generateElement("div", "page-wrap", body, "wrap");
 const header = generateElement("header", "header", wrap, "header");
 const resetButton = generateElement("button", "reset-button", header, "Reset");
+const resumeButton = generateElement("button", "resume-button", header, "Resume Game");
+const saveButton = generateElement("button", "save-button", header, "Save Game");
 const solutionButton = generateElement("button", "solution-button", header, "Solution");
 const themeContainer = generateElement("div", "theme-container", header, "theme");
 const themeInput = generateElement("input", "theme-input", themeContainer, "",'theme-mode', "checkbox");
@@ -39,6 +41,8 @@ themeContainer.addEventListener("click", () => {
 //example matrix
 const picture2 = [[1,0,0,1,1], [1,0,1,0,1], [0,1,1,0,0], [0,1,1,1,1], [0,1,1,0,1]];
 let u = 0;
+let checkArray;
+let crossArray;
 // console.log('import', data[u].id);
 
 function dataToPicture(y) {
@@ -62,10 +66,13 @@ createPicturePanel();
 
 //create stop-watch timer 
 let seconds = 0;
+function formatTime (sec) {
+  const minutes = Math.floor(sec / 60); 
+  stopWatch.textContent = `${minutes.toString().padStart(2, "0")}:${(sec % 60).toString().padStart(2, "0")}`;
+}
 function swTimer () {
   seconds += 1;
-  const minutes = Math.floor(seconds / 60);
-  stopWatch.textContent = `${minutes.toString().padStart(2, "0")}:${(seconds % 60).toString().padStart(2, "0")}`;
+  formatTime(seconds);
   // console.log('seconds', seconds);
 }
 
@@ -85,7 +92,8 @@ function createCells(y){
   // console.log('prepic cells',y, picture[0][0])
   let count = 0;
   const len = picture.reduce((count, row) => count + row.length, 0);
-  let checkArray = Array.from({ length: len }, (item) => 0);
+  checkArray = Array.from({ length: len }, (item) => 0);
+  crossArray = Array.from({ length: len }, (item) => 0);
   for (let i = 0; i < picture.length; i += 1) {
     const row = generateElement("div", "row", matrix);
     for (let j = 0; j < picture[i].length; j += 1) {
@@ -93,12 +101,16 @@ function createCells(y){
       count += 1;
       cell.addEventListener('click', () => {
         checkCell(cell, checkArray, picture, Number(cell.id));
+        console.log("black", Number(cell.id), checkArray);
+        
         startSWTimer();
         console.log(isSWTimerStarted, 'seconds',seconds);
       })
       cell.addEventListener("contextmenu", () => {
-        setCross(cell);
-        console.log('cross');
+        setCross(cell, crossArray, Number(cell.id));
+        console.log('cross', Number(cell.id), crossArray);
+        
+        
       });
     }
   }
@@ -106,19 +118,24 @@ function createCells(y){
 
 //set up a cross 
 
-function setCross (cell) {
+function setCross (cell, arr0, id) {
+  console.log('crossid',id);
   event.preventDefault();
   startSWTimer();
   if (!cell.classList.contains('black') && !cell.classList.contains('cross')) {
+    arr0[id] = 1;
     cell.classList.add('cross');
     sound4.play();
   } else if (cell.classList.contains('cross')) {
     cell.classList.remove('cross');
+    arr0[id] = 0;
   } else {
     cell.classList.remove('black');
     cell.classList.add('cross');
+    arr0[id] = 1;
     sound4.play();
   }
+  // console.log(arr0);
 }
 
 
@@ -156,7 +173,7 @@ function checkWin(arr1, arr2) {
   console.log('matrix', equal, arr1.flat());
 }
 
-
+//create clues
 function createClues (y) {
   let picture = dataToPicture(y);
   console.log('prepic clues', y, picture[0][0])
@@ -224,6 +241,7 @@ function createClues (y) {
 function startGame(a) {
   clearInterval(swInterval);
   stopWatch.textContent = "00:00";
+  isSWTimerStarted = false;
   closeModal();
   cleanCells();
   cleanMatrix();
@@ -239,6 +257,10 @@ startGame(u);
 
 //reset button
 resetButton.addEventListener('click', () => {
+  console.log('c',checkArray);
+  console.log('x',crossArray);
+  checkArray = [];
+  crossArray = [];
   clearInterval(swInterval);
   seconds = 0;
   stopWatch.textContent = "00:00";
@@ -251,6 +273,40 @@ resetButton.addEventListener('click', () => {
   });
 });
 
+
+//save button 
+saveButton.addEventListener('click', () => {
+  localStorage.setItem("ksarisePictureId", u);
+  localStorage.setItem("ksariseTime", seconds);
+  localStorage.setItem("ksariseCheckArray", checkArray);
+  localStorage.setItem("ksariseCrossArray", crossArray);
+});
+
+
+//resume button
+resumeButton.addEventListener('click', () => {
+  startGame(localStorage.getItem("ksarisePictureId"));
+  checkArray = Array.from(localStorage.getItem("ksariseCheckArray").split(',').map(Number));
+  crossArray = Array.from(localStorage.getItem("ksariseCrossArray").split(',').map(Number));
+  seconds = Number(localStorage.getItem("ksariseTime"));
+  formatTime(seconds);
+  isSWTimerStarted = false;
+  const grams = document.querySelectorAll(".gram");
+  console.log('blackpic', checkArray);
+  console.log('crosspic', crossArray);
+  grams.forEach((gram) => {
+    checkArray.forEach((value, index) => {
+      if (value == 1 && Number(gram.id) === index) {
+        gram.classList.add("black");
+      }
+    });
+    crossArray.forEach((value, index) => {
+      if (value == 1 && Number(gram.id) === index) {
+        gram.classList.add("cross");
+      }
+    });
+  });
+})
 
 //solution button 
 solutionButton.addEventListener('click', () => addSolution(u));
@@ -271,6 +327,7 @@ function addSolution (currIndex)  {
   });
   
 }
+
 //modal close
 modalButton.addEventListener('click', () => startGame(u));
 
