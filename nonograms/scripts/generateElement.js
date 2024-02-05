@@ -2,7 +2,10 @@ export function generateElement(
   tag,
   className,
   parent,
-  text
+  text,
+  id,
+  type,
+  labelFor
 ) {
   const element = document.createElement(tag);
 
@@ -18,6 +21,18 @@ export function generateElement(
     if (typeof text === "string") {
       element.appendChild(document.createTextNode(text));
     }
+  }
+
+  if (id) {
+    element.setAttribute('id', id);
+  }
+
+  if (type) {
+    element.setAttribute('type', type);
+  }
+  
+  if (labelFor) {
+    element.setAttribute('for', labelFor);
   }
   return element;
 }

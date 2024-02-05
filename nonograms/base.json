@@ -1,0 +1,27 @@
+[
+  { "id" : 1,
+    "matrix" : [[1,0,0,1,1], [1,0,1,0,1], [0,1,1,0,0], [0,1,1,1,1], [0,1,1,0,1]],
+    "img" : "./assets/images/Car.webp",
+    "name" : "Car"
+  },
+  { "id" : 2,
+    "matrix" : [[2,1,1,1,1], [1,1,1,1,1], [0,1,1,0,0], [0,1,1,1,1], [0,1,1,1,1]],
+    "img" : "./assets/images/Dog.webp",
+    "name" : "Dog"
+  },
+  { "id" : 3,
+    "matrix" : [[3,0,1,1,1], [1,0,1,0,1], [0,1,1,0,0], [0,1,1,1,1], [0,1,1,0,1]],
+    "img" : "./assets/images/Stairs.webp",
+    "name" : "Stairs"
+  },
+  { "id" : 4,
+    "matrix" : [[4,0,0,1,1], [1,0,1,0,1], [0,1,1,0,0], [0,1,1,1,1], [0,1,1,0,1]],
+    "img" : "./assets/images/Hourglass.webp",
+    "name" : "Hourglass"
+  },
+  { "id" : 5,
+    "matrix" : [[5,0,0,0,1], [1,1,1,0,1], [0,1,1,0,0], [1,1,1,1,1], [0,1,1,0,1]],
+    "img" : "./assets/images/Window.webp",
+    "name" : "Window"
+  }
+]

@@ -1,0 +1,139 @@
+/* * {
+  border: 1px solid red;
+} */
+.page-wrap {
+  margin: auto;
+  max-width: 1080px;
+  background-color: whitesmoke;
+  transition: 0.3s;
+
+}
+.dark-theme {
+  background-color: gray;
+  transition: 0.3s;
+  z-index: -1;
+}
+.header {
+  display: flex;
+  justify-content: space-between;
+  max-width: 1080px;
+}
+.theme-container {
+
+}
+.theme-input {
+  width: 0;
+  height: 0;
+  visibility: hidden;
+}
+.theme-input:checked + .theme-label {
+  background-color: #1f1e1ed3;
+}
+.theme-input:checked + .theme-label:after {
+  left:50px;
+  transform: translateX(-100%);
+  background: linear-gradient(180deg,rgb(109, 108, 108),#464545ee);
+}
+
+.theme-label {
+  width:50px;
+  height:20px;
+  position: relative;
+  display: block;
+  background: #ece6e6;
+  border-radius: 20px;
+  box-shadow: inset 0px 5px 15px rgba(0,0,0,0.4), inset 0px -5px 15px rgba(255, 255, 255, 0.63);
+  cursor: pointer;
+  transition: 0.3s
+}
+.theme-label:after {
+  content: "";
+  width:18px;
+  height: 18px;
+  position: absolute;
+  top:1px;
+  left:1px;
+  background: linear-gradient(180deg,#f1b86c,#eb920d);
+  border-radius: 18px;
+  box-shadow: 0px 5px 10px rgba(0,0,0,0.1);
+  transition: 0.3s
+}
+.theme-label:active:after {
+  width: 26px;
+}
+
+.matrix-container {
+  display: grid;
+  justify-content: center;
+}
+.pictures-panel {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+.picture-block {
+
+}
+.picture-img {
+  width: 100px;
+  height: 100px;
+}
+.matrix {
+  display: flex;
+  grid-column: 2;
+  grid-row: 2;
+  border: 1px solid black;
+  max-width: fit-content;
+  max-height: fit-content;
+}
+.gram {
+  width: 3rem;
+  height: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid grey;
+}
+.black {
+  background-color: black;
+}
+.cross {
+  background-image: url("/assets/icons/cross.svg");
+  background-size: cover;
+}
+.horHintsPanel {
+  grid-column: 1;
+  grid-row: 2;
+  max-width: fit-content;
+  max-height: fit-content;
+  border: 1px solid black;
+  border-right: none;
+}
+.vertHintsPanel {
+  display: flex;
+  grid-column: 2;
+  grid-row:1;
+  max-width: fit-content;
+  max-height: fit-content;
+  border: 1px solid black;
+  border-bottom: none;
+}
+.hHintRow {
+  display: flex;
+  justify-content: flex-end;
+  border: 1px solid grey;
+}
+.vHintRow {
+  display: flex;
+  flex-direction: column-reverse;
+  border: 1px solid grey;
+}
+
+.hHint , 
+.vHint {
+  width: 3rem;
+  height: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
