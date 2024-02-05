@@ -62,7 +62,7 @@
   width: 26px;
 }
 
-.main-container {
+.matrix-container {
   display: grid;
   justify-content: center;
 }

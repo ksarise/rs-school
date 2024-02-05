@@ -1,6 +1,6 @@
 import { generateElement } from "./generateElement.js";
 import data from "../base.json" assert { type: "json" };
-import {openModal, modalText, modalButton, isOpen, closeModal} from './modal.js';
+import {openModal, modalText, modalTime, modalButton, isOpen, closeModal} from './modal.js';
 const body = document.body;
 const wrap = generateElement("div", "page-wrap", body, "wrap");
 const header = generateElement("header", "header", wrap, "header");
@@ -9,11 +9,14 @@ const themeContainer = generateElement("div", "theme-container", header, "theme"
 const themeInput = generateElement("input", "theme-input", themeContainer, "",'theme-mode', "checkbox");
 const themeLabel = generateElement("label", "theme-label", themeContainer, "", false, false, 'theme-mode');
 const main = generateElement("main", "main", wrap, "main");
-const picturesPanel = generateElement("div", "pictures-panel", main)
 const mainContainer = generateElement("section","main-container", main);
-const matrix = generateElement("div", "matrix", mainContainer);
-const horHintsPanel = generateElement("div", "horHintsPanel", mainContainer);
-const vertHintsPanel = generateElement("div", "vertHintsPanel", mainContainer);
+const picturesPanel = generateElement("div", "pictures-panel", mainContainer);
+const stopWatchContainer = generateElement("div", "stop-watch-container", mainContainer);
+const stopWatch = generateElement("div", "stop-watch", stopWatchContainer, "00:00");
+const matrixContainer = generateElement("section","matrix-container", main);
+const matrix = generateElement("div", "matrix", matrixContainer);
+const horHintsPanel = generateElement("div", "horHintsPanel", matrixContainer);
+const vertHintsPanel = generateElement("div", "vertHintsPanel", matrixContainer);
 
 //switch theme mode
 themeContainer.addEventListener("click", () => {
@@ -27,7 +30,7 @@ themeContainer.addEventListener("click", () => {
 //example matrix
 const picture2 = [[1,0,0,1,1], [1,0,1,0,1], [0,1,1,0,0], [0,1,1,1,1], [0,1,1,0,1]];
 let u = 0;
-console.log('import', data[u].id);
+// console.log('import', data[u].id);
 
 function dataToPicture(y) {
   console.log('u', y, data[y].matrix);
@@ -47,10 +50,30 @@ function createPicturePanel () {
 }
 
 createPicturePanel();
+
+//create stop-watch timer 
+let seconds = 0;
+function swTimer () {
+  seconds += 1;
+  const minutes = Math.floor(seconds / 60);
+  stopWatch.textContent = `${minutes.toString().padStart(2, "0")}:${(seconds % 60).toString().padStart(2, "0")}`;
+  console.log('seconds', seconds);
+}
+
+let swInterval;
+let isSWTimerStarted = false;
+function startSWTimer () {
+  if (!isSWTimerStarted) {
+    isSWTimerStarted = true;
+    swInterval= setInterval(swTimer, 1000);
+  }
+}
+
+
 //create cells
 function createCells(y){
   let picture = dataToPicture(y);
-  console.log('prepic cells',y, picture[0][0])
+  // console.log('prepic cells',y, picture[0][0])
   let count = 0;
   const len = picture.reduce((count, row) => count + row.length, 0);
   let checkArray = Array.from({ length: len }, (item) => 0);
@@ -61,11 +84,13 @@ function createCells(y){
       count += 1;
       cell.addEventListener('click', () => {
         checkCell(cell, checkArray, picture, Number(cell.id));
-        // checkWin(picture, checkArray);
+        startSWTimer();
+        console.log(isSWTimerStarted, 'seconds',seconds);
       })
     }
   }
 }
+
 
 //check identity to picture
 function checkCell (cell, arr1, arr2, id) {
@@ -80,18 +105,22 @@ function checkCell (cell, arr1, arr2, id) {
   console.log('check', arr1);
 }
 
+
 //check condition for win
 function checkWin(arr1, arr2) {
   let equal = (arr1.flat().every((value, index) => value == arr2[index]));
   if (equal) {
+    clearInterval(swInterval);
     openModal();
     modalText.textContent = "WIN";
+    modalTime.textContent = `Great! You have solved the nonogram in ${seconds} seconds!`;
   } else {
     console.log('more');
 
   }
   console.log('matrix', equal, arr1.flat());
 }
+
 
 function createClues (y) {
   let picture = dataToPicture(y);
@@ -153,9 +182,13 @@ function createClues (y) {
     })
   }
 }
+
+
 //game state controls
 
 function startGame(u) {
+  clearInterval(swInterval);
+  stopWatch.textContent = "00:00";
   closeModal();
   cleanCells();
   cleanMatrix();
@@ -169,6 +202,7 @@ startGame(u);
 
 //restart button
 restartButton.addEventListener('click', () => {
+  clearInterval(swInterval);
   if (u <= 2){
   startGame(u);
   u += 1;
