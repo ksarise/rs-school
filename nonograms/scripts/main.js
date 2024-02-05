@@ -1,5 +1,6 @@
 import { generateElement } from "./generateElement.js";
 import data from "../base.json" assert { type: "json" };
+import {openModal, modalText, modalButton, isOpen, closeModal} from './modal.js';
 const body = document.body;
 const wrap = generateElement("div", "page-wrap", body, "wrap");
 const header = generateElement("header", "header", wrap, "header");
@@ -83,9 +84,11 @@ function checkCell (cell, arr1, arr2, id) {
 function checkWin(arr1, arr2) {
   let equal = (arr1.flat().every((value, index) => value == arr2[index]));
   if (equal) {
-    console.log("win!");
+    openModal();
+    modalText.textContent = "WIN";
   } else {
     console.log('more');
+
   }
   console.log('matrix', equal, arr1.flat());
 }
@@ -153,6 +156,7 @@ function createClues (y) {
 //game state controls
 
 function startGame(u) {
+  closeModal();
   cleanCells();
   cleanMatrix();
   console.log('start',u);
@@ -174,6 +178,7 @@ restartButton.addEventListener('click', () => {
   }
   console.log("restart",u);
 });
+modalButton.addEventListener('click', () => startGame(u));
 //clean matrix
 function cleanMatrix () {
   matrix.replaceChildren();
