@@ -8,6 +8,7 @@ const resetButton = generateElement("button", "reset-button", header, "Reset");
 const resumeButton = generateElement("button", "resume-button", header, "Resume Game");
 const saveButton = generateElement("button", "save-button", header, "Save Game");
 const solutionButton = generateElement("button", "solution-button", header, "Solution");
+const winnersButton = generateElement("button", "winners-button", header, "Winners");
 const themeContainer = generateElement("div", "theme-container", header, "theme");
 const themeInput = generateElement("input", "theme-input", themeContainer, "",'theme-mode', "checkbox");
 const themeLabel = generateElement("label", "theme-label", themeContainer, "", false, false, 'theme-mode');
@@ -43,6 +44,7 @@ const picture2 = [[1,0,0,1,1], [1,0,1,0,1], [0,1,1,0,0], [0,1,1,1,1], [0,1,1,0,1
 let u = 0;
 let checkArray;
 let crossArray;
+let winList;
 // console.log('import', data[u].id);
 
 function dataToPicture(y) {
@@ -163,15 +165,51 @@ function checkWin(arr1, arr2) {
   if (equal) {
     clearInterval(swInterval);
     openModal();
+    saveWin ();
     modalText.textContent = "WIN";
     modalTime.textContent = `Great! You have solved the nonogram in ${seconds} seconds!`;
     sound3.play();
   } else {
-    console.log('more');
+    
 
   }
   console.log('matrix', equal, arr1.flat());
 }
+
+
+//save win game to results
+function saveWin () {
+  console.log('param', data[u].name, seconds, winList);
+  const isWinList = localStorage.getItem("ksariseWinList");
+  console.log(isWinList, typeof isWinList);
+  if (isWinList) {
+    const newWinList = JSON.parse(isWinList);
+    newWinList.push({pic: data[u].name, time: seconds});
+    console.log('parse push', newWinList);
+    newWinList.slice(-5);
+    newWinList.sort((a, b) => a.time - b.time);
+    localStorage.setItem("ksariseWinList", JSON.stringify(newWinList));
+  } else {
+    winList = [{pic: data[u].name, time: seconds},];
+    localStorage.setItem("ksariseWinList", JSON.stringify(winList));
+  }
+}
+
+
+//high-score list
+winnersButton.addEventListener('click', winnersList);
+function winnersList () {
+  const stringSavedWinList = localStorage.getItem("ksariseWinList");
+  const savedWinList = JSON.parse(stringSavedWinList);
+  console.log(savedWinList);
+  const highscore = generateElement("div", "hs", header);
+  savedWinList.forEach((list, index) => {
+    const highscoreItem = generateElement("div", "hsItem", highscore, list.pic+list.time);
+    console.log(highscoreItem, list.pic);
+  })
+  console.log(JSON.parse(stringSavedWinList),  typeof savedWinList);
+}
+
 
 //create clues
 function createClues (y) {
