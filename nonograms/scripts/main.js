@@ -19,6 +19,14 @@ const matrix = generateElement("div", "matrix", matrixContainer);
 const horHintsPanel = generateElement("div", "horHintsPanel", matrixContainer);
 const vertHintsPanel = generateElement("div", "vertHintsPanel", matrixContainer);
 
+//sound effects and music
+const sound0 =  new Audio("../assets/sounds/nani.mp3");
+const sound1 =  new Audio("../assets/sounds/flute-alto.mp3");
+const sound2 =  new Audio("../assets/sounds/gong-hit.mp3");
+const sound3 =  new Audio("../assets/sounds/noti-3.mp3");
+const sound4 =  new Audio("../assets/sounds/swing-bells.mp3");
+const sound5 =  new Audio("../assets/sounds/temple-kyoto.mp3");
+const sound6 =  new Audio("../assets/sounds/tower.mp3");
 //switch theme mode
 themeContainer.addEventListener("click", () => {
   if (themeInput.checked) {
@@ -58,7 +66,7 @@ function swTimer () {
   seconds += 1;
   const minutes = Math.floor(seconds / 60);
   stopWatch.textContent = `${minutes.toString().padStart(2, "0")}:${(seconds % 60).toString().padStart(2, "0")}`;
-  console.log('seconds', seconds);
+  // console.log('seconds', seconds);
 }
 
 let swInterval;
@@ -103,11 +111,13 @@ function setCross (cell) {
   startSWTimer();
   if (!cell.classList.contains('black') && !cell.classList.contains('cross')) {
     cell.classList.add('cross');
+    sound4.play();
   } else if (cell.classList.contains('cross')) {
     cell.classList.remove('cross');
   } else {
     cell.classList.remove('black');
     cell.classList.add('cross');
+    sound4.play();
   }
 }
 
@@ -117,12 +127,14 @@ function checkCell (cell, arr1, arr2, id) {
   if (!cell.classList.contains('black') && !cell.classList.contains('cross')) {
     arr1[id] = 1;
     cell.classList.add('black');
+    sound5.play();
     checkWin(arr2, arr1);
   } else if (cell.classList.contains('cross')) {
     cell.classList.remove('cross');
   } else {
     arr1[id] = 0;
     cell.classList.remove('black');
+    sound0.play();
   }
   console.log('check', arr1);
 }
@@ -136,6 +148,7 @@ function checkWin(arr1, arr2) {
     openModal();
     modalText.textContent = "WIN";
     modalTime.textContent = `Great! You have solved the nonogram in ${seconds} seconds!`;
+    sound3.play();
   } else {
     console.log('more');
 
@@ -231,6 +244,7 @@ resetButton.addEventListener('click', () => {
   stopWatch.textContent = "00:00";
   isSWTimerStarted = false;
   const grams = document.querySelectorAll(".gram");
+  sound2.play();
   grams.forEach((gram) => {
     gram.classList.remove("black");
     gram.classList.remove("cross");
@@ -245,7 +259,7 @@ function addSolution (currIndex)  {
   clearInterval(swInterval);
   let picture = dataToPicture(currIndex);
   const grams = document.querySelectorAll(".gram");
-
+  sound1.play();
   grams.forEach((gram) => {
     gram.classList.remove("black");
     picture.flat().forEach((value, index) => {
