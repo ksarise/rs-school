@@ -2,14 +2,12 @@ import { generateElement } from "./generateElement.js";
 import data from "../base.json" assert { type: "json" };
 import {openModal, modalText, modalTime, modalButton, isOpen, closeModal} from './modal.js';
 const body = document.body;
-const wrap = generateElement("div", "page-wrap", body, "wrap");
-const header = generateElement("header", "header", wrap, "header");
-const resetButton = generateElement("button", "reset-button", header, "Reset");
-const randomButton = generateElement("button", "random-button", header, "Random");
-const resumeButton = generateElement("button", "resume-button", header, "Resume Game");
-const saveButton = generateElement("button", "save-button", header, "Save Game");
-const solutionButton = generateElement("button", "solution-button", header, "Solution");
-const winnersButton = generateElement("button", "winners-button", header, "Winners");
+const wrap = generateElement("div", "page-wrap", body);
+const header = generateElement("header", "header", wrap);
+const GITLINK = generateElement("a", "git-link", header)
+const GITLOGO = generateElement("img", "github", GITLINK);
+const HEADING = generateElement("h1", "title", header, "NONOGRAMS");
+const winnersButton = generateElement("div", "winners-button", header, "Winners");
 const themeContainer = generateElement("div", "theme-container", header, "theme");
 const themeInput = generateElement("input", "theme-input", themeContainer, "",'theme-mode', "checkbox");
 const themeLabel = generateElement("label", "theme-label", themeContainer, "", false, false, 'theme-mode');
@@ -19,6 +17,12 @@ const picturesPanel = generateElement("div", "pictures-panel", mainContainer);
 const stopWatchContainer = generateElement("div", "stop-watch-container", mainContainer);
 const stopWatch = generateElement("div", "stop-watch", stopWatchContainer, "00:00");
 const matrixContainer = generateElement("section","matrix-container", main);
+const SETTINGS_CONTAINER = generateElement("div", "settings-container", matrixContainer);
+const resetButton = generateElement("div", "reset-button", SETTINGS_CONTAINER, "Reset");
+const randomButton = generateElement("div", "random-button", SETTINGS_CONTAINER, "Random");
+const resumeButton = generateElement("div", "resume-button", SETTINGS_CONTAINER, "Resume Game");
+const saveButton = generateElement("div", "save-button", SETTINGS_CONTAINER, "Save Game");
+const solutionButton = generateElement("div", "solution-button", SETTINGS_CONTAINER, "Solution");
 const matrix = generateElement("div", "matrix", matrixContainer);
 const horHintsPanel = generateElement("div", "horHintsPanel", matrixContainer);
 const vertHintsPanel = generateElement("div", "vertHintsPanel", matrixContainer);
@@ -57,11 +61,18 @@ function dataToPicture(picId) {
 }
 //create panel for game choose
 function createPicturePanel () {
-  for (let i = 0; i < data.length; i += 1) {
-    const pictureBlock = generateElement("div", "picture-block", picturesPanel,data[i].name);
-    const pictureImg = generateElement("img", "picture-img", pictureBlock );
-    pictureImg.src = data[i].img;
-    pictureImg.addEventListener('click', () => startGame(i));
+  for (let l = 1; l <= 3; l += 1) {
+    const pictureLevelPanel = generateElement("div", "picture-level-panel", picturesPanel);
+    const pictureLevelId = generateElement("div", "picture-level-id", pictureLevelPanel, l.toString());
+    for (let i = 0; i < data.length; i += 1) {
+      if (data[i].level === l) {
+        const pictureBlock = generateElement("div", "picture-block", pictureLevelPanel);
+        const pictureName = generateElement("div", "picture-name", pictureBlock, data[i].name);
+        const pictureImg = generateElement("img", "picture-img", pictureBlock );
+        pictureImg.src = data[i].img;
+        pictureImg.addEventListener('click', () => startGame(i));
+      }
+    }
   }
 }
 
