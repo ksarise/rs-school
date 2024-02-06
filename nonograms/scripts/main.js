@@ -1,28 +1,36 @@
 import { generateElement } from "./generateElement.js";
 import data from "../base.json" assert { type: "json" };
-import {openModal, modalText, modalTime, modalButton, isOpen, closeModal} from './modal.js';
+import {openModal, modalText, modalTime, modalButton, modalContent, closeModal} from './modal.js';
 const body = document.body;
+
+// const highscoreItem = generateElement("div", "highscore-item", highscore);
+// const highscoreId = generateElement("div", "highscore-id", highscoreItem );
+// const highscoreItemName = generateElement("div", "highscore-name", highscoreItem);
+// const highscoreTime = generateElement("div", "highscore-time", highscoreItem);
 const wrap = generateElement("div", "page-wrap", body);
 const header = generateElement("header", "header", wrap);
-const GITLINK = generateElement("a", "git-link", header)
-const GITLOGO = generateElement("img", "github", GITLINK);
+const GITLINK = generateElement("a", "git-link", header);
+const GITLOGO = generateElement("img", "github-mark", GITLINK);
+GITLOGO.src = "./assets/icons/github-mark.svg"
 const HEADING = generateElement("h1", "title", header, "NONOGRAMS");
-const winnersButton = generateElement("div", "winners-button", header, "Winners");
-const themeContainer = generateElement("div", "theme-container", header, "theme");
+const themeContainer = generateElement("div", "theme-container", header);
 const themeInput = generateElement("input", "theme-input", themeContainer, "",'theme-mode', "checkbox");
 const themeLabel = generateElement("label", "theme-label", themeContainer, "", false, false, 'theme-mode');
-const main = generateElement("main", "main", wrap, "main");
+const main = generateElement("main", "main", wrap);
 const mainContainer = generateElement("section","main-container", main);
 const picturesPanel = generateElement("div", "pictures-panel", mainContainer);
-const stopWatchContainer = generateElement("div", "stop-watch-container", mainContainer);
+const SETTINGS_CONTAINER = generateElement("section", "settings-container", main);
+const GAME_CONTAINER = generateElement("section", "game-container", main);
+const MATRIX_NAME = generateElement("p", "matrix-name", GAME_CONTAINER);
+const stopWatchContainer = generateElement("div", "stop-watch-container", GAME_CONTAINER);
 const stopWatch = generateElement("div", "stop-watch", stopWatchContainer, "00:00");
 const matrixContainer = generateElement("section","matrix-container", main);
-const SETTINGS_CONTAINER = generateElement("div", "settings-container", matrixContainer);
 const resetButton = generateElement("div", "reset-button", SETTINGS_CONTAINER, "Reset");
 const randomButton = generateElement("div", "random-button", SETTINGS_CONTAINER, "Random");
 const resumeButton = generateElement("div", "resume-button", SETTINGS_CONTAINER, "Resume Game");
 const saveButton = generateElement("div", "save-button", SETTINGS_CONTAINER, "Save Game");
 const solutionButton = generateElement("div", "solution-button", SETTINGS_CONTAINER, "Solution");
+const winnersButton = generateElement("div", "winners-button", SETTINGS_CONTAINER, "Winners");
 const matrix = generateElement("div", "matrix", matrixContainer);
 const horHintsPanel = generateElement("div", "horHintsPanel", matrixContainer);
 const vertHintsPanel = generateElement("div", "vertHintsPanel", matrixContainer);
@@ -38,9 +46,7 @@ const sound6 =  new Audio("../assets/sounds/tower.mp3");
 //switch theme mode
 themeContainer.addEventListener("click", () => {
   if (themeInput.checked) {
-    wrap.classList.add("dark-theme");
-  } else {
-    wrap.classList.remove("dark-theme");
+    body.classList.toggle("dark");
   }
 })
 
@@ -63,7 +69,7 @@ function dataToPicture(picId) {
 function createPicturePanel () {
   for (let l = 1; l <= 3; l += 1) {
     const pictureLevelPanel = generateElement("div", "picture-level-panel", picturesPanel);
-    const pictureLevelId = generateElement("div", "picture-level-id", pictureLevelPanel, l.toString());
+    const pictureLevelId = generateElement("div", "picture-level-id", pictureLevelPanel, `level ${l.toString()}`);
     for (let i = 0; i < data.length; i += 1) {
       if (data[i].level === l) {
         const pictureBlock = generateElement("div", "picture-block", pictureLevelPanel);
@@ -102,6 +108,7 @@ function startSWTimer () {
 
 //create cells
 function createCells(picId){
+  MATRIX_NAME.textContent = data[picId].name;
   let picture = dataToPicture(picId);
   // console.log('prepic cells',y, picture[0][0])
   let count = 0;
@@ -111,7 +118,7 @@ function createCells(picId){
   for (let i = 0; i < picture.length; i += 1) {
     const row = generateElement("div", "row", matrix);
     for (let j = 0; j < picture[i].length; j += 1) {
-      const cell = generateElement("div", "gram", row, picture[i][j].toString(), count.toString());
+      const cell = generateElement("div", "gram", row, null, count.toString());
       count += 1;
       cell.addEventListener('click', () => {
         checkCell(cell, checkArray, picture, Number(cell.id));
@@ -198,9 +205,9 @@ function saveWin () {
     const newWinList = JSON.parse(isWinList);
     newWinList.push({pic: data[currentPictureIndex].name, time: seconds});
     console.log('parse push', newWinList);
-    newWinList.slice(-5);
-    newWinList.sort((a, b) => a.time - b.time);
-    localStorage.setItem("ksariseWinList", JSON.stringify(newWinList));
+    const slicedWinList = newWinList.slice(-5);
+    const newSortedWinList = slicedWinList.sort((a, b) => a.time - b.time);
+    localStorage.setItem("ksariseWinList", JSON.stringify(newSortedWinList));
   } else {
     winList = [{pic: data[currentPictureIndex].name, time: seconds},];
     localStorage.setItem("ksariseWinList", JSON.stringify(winList));
@@ -214,10 +221,14 @@ function winnersList () {
   const stringSavedWinList = localStorage.getItem("ksariseWinList");
   const savedWinList = JSON.parse(stringSavedWinList);
   console.log(savedWinList);
-  const highscore = generateElement("div", "hs", header);
+  openModal();
+  const highscore = generateElement("div", "highscore", modalContent);
   savedWinList.forEach((list, index) => {
-    const highscoreItem = generateElement("div", "hsItem", highscore, list.pic+list.time);
-    console.log(highscoreItem, list.pic);
+    const highscoreItem = generateElement("div", "highscore-item", highscore);
+    const highscoreId = generateElement("div", "highscore-id", highscoreItem , index.toString())
+    const highscoreItemName = generateElement("div", "highscore-name", highscoreItem , list.pic);
+    const highscoreTime = generateElement("div", "highscore-time", highscoreItem , (list.time).toString());
+    
   })
   console.log(JSON.parse(stringSavedWinList),  typeof savedWinList);
 }
