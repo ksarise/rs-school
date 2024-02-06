@@ -115,10 +115,6 @@ body {
   left: 30px;
 	transition: 0.3s;
 }
-.theme-input:checked + .theme-img:after {
-  left:50px;
-  transform: translateX(-100%);
-}
 .theme-label:after {
   content: "";
   width:18px;
