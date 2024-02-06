@@ -346,6 +346,7 @@ body {
   background-color: var(--matrix-back);
   border-radius: 50px;
 }
+.mute-button,
 .reset-button,
 .resume-button,
 .save-button,
@@ -358,10 +359,12 @@ body {
   background-color: var(--btn-back);
   border-radius: 40px;
   padding: 5px;
-  width: 7rem;
+  width: 6rem;
   font-weight: 800;
   color:var(--p);
+  transition: all 0.5s ease-in-out;
 }
+.mute-button:hover,
 .reset-button:hover,
 .resume-button:hover,
 .save-button:hover,
@@ -372,7 +375,11 @@ body {
   transition: all 0.5s ease-in-out;
   transform: scale(93%);
 }
-
+.muted {
+  background: radial-gradient(var(--btn-back), var(--clue));
+  transform: scale(93%);
+  transition: all 0.5s ease-in-out;
+}
 .modal-over {
   opacity: 0;
   visibility: hidden;

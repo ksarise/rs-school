@@ -1,6 +1,7 @@
 import { generateElement } from "./generateElement.js";
 import data from "../base.json" assert { type: "json" };
 import {openModal, modalText, modalTime, modalButton, modalContent, closeModal} from './modal.js';
+
 const BODY = document.body;
 const wrap = generateElement("div", "page-wrap", BODY);
 const header = generateElement("header", "header", wrap);
@@ -24,9 +25,10 @@ const MATRIX_NAME = generateElement("p", "matrix-name", GAME_CONTAINER);
 const stopWatchContainer = generateElement("div", "stop-watch-container", GAME_CONTAINER);
 const stopWatch = generateElement("div", "stop-watch", stopWatchContainer, "00:00");
 const matrixContainer = generateElement("section","matrix-container", main);
+const MUTE_BUTTON = generateElement("div", "mute-button", SETTINGS_CONTAINER, "mute");
 const resetButton = generateElement("div", "reset-button", SETTINGS_CONTAINER, "Reset");
 const randomButton = generateElement("div", "random-button", SETTINGS_CONTAINER, "Random");
-const resumeButton = generateElement("div", "resume-button", SETTINGS_CONTAINER, "Resume Game");
+const resumeButton = generateElement("div", "resume-button", SETTINGS_CONTAINER, "Resume");
 const saveButton = generateElement("div", "save-button", SETTINGS_CONTAINER, "Save Game");
 const solutionButton = generateElement("div", "solution-button", SETTINGS_CONTAINER, "Solution");
 const winnersButton = generateElement("div", "winners-button", SETTINGS_CONTAINER, "Winners");
@@ -35,13 +37,30 @@ const horHintsPanel = generateElement("div", "horHintsPanel", matrixContainer);
 const vertHintsPanel = generateElement("div", "vertHintsPanel", matrixContainer);
 
 //sound effects and music
-const sound0 =  new Audio("assets/sounds/nani.mp3");
-const sound1 =  new Audio("assets/sounds/flute-alto.mp3");
-const sound2 =  new Audio("assets/sounds/gong-hit.mp3");
-const sound3 =  new Audio("assets/sounds/noti-3.mp3");
-const sound4 =  new Audio("assets/sounds/swing-bells.mp3");
-const sound5 =  new Audio("assets/sounds/temple-kyoto.mp3");
-const sound6 =  new Audio("assets/sounds/tower.mp3");
+const SOUNDS = [
+  new Audio("assets/sounds/nani.mp3"),
+  new Audio("assets/sounds/flute-alto.mp3"),
+  new Audio("assets/sounds/gong-hit.mp3"),
+  new Audio("assets/sounds/noti-3.mp3"),
+  new Audio("assets/sounds/swing-bells.mp3"),
+  new Audio("assets/sounds/temple-kyoto.mp3")
+];
+
+let isMuted = false;
+//mute all audio
+MUTE_BUTTON.addEventListener('click', () => {
+  if (!isMuted) {
+    isMuted = true;
+    SOUNDS.forEach((sound) => sound.muted = true)
+    MUTE_BUTTON.classList.add("muted");
+  } else {
+    isMuted = false;
+    SOUNDS.forEach((sound) => sound.muted = false)
+    MUTE_BUTTON.classList.remove("muted");
+  }
+})
+
+
 //switch theme mode
 BODY.classList.add("light");
 themeContainer.addEventListener("click", () => {
@@ -150,15 +169,19 @@ function setCross (cell, crossArr, id) {
   if (!cell.classList.contains('black') && !cell.classList.contains('cross')) {
     crossArr[id] = 1;
     cell.classList.add('cross');
-    sound4.play();
+    SOUNDS[4].playbackRate = 6;
+    SOUNDS[4].play();
   } else if (cell.classList.contains('cross')) {
     cell.classList.remove('cross');
+    SOUNDS[0].playbackRate = 3;
+    SOUNDS[0].play();
     crossArr[id] = 0;
   } else {
     cell.classList.remove('black');
     cell.classList.add('cross');
     crossArr[id] = 1;
-    sound4.play();
+    SOUNDS[4].playbackRate = 6;
+    SOUNDS[4].play();
   }
   // console.log(arr0);
 }
@@ -169,14 +192,16 @@ function checkCell (cell, checkArr, initArr, id) {
   if (!cell.classList.contains('black') && !cell.classList.contains('cross')) {
     checkArr[id] = 1;
     cell.classList.add('black');
-    sound5.play();
+    SOUNDS[5].playbackRate = 6;
+    SOUNDS[5].play();
     checkWin(initArr, checkArr);
   } else if (cell.classList.contains('cross')) {
     cell.classList.remove('cross');
   } else {
     checkArr[id] = 0;
     cell.classList.remove('black');
-    sound0.play();
+    SOUNDS[0].playbackRate = 3;
+    SOUNDS[0].play();
   }
   console.log('check', checkArr);
 }
@@ -191,7 +216,7 @@ function checkWin(initArr, checkArr) {
     saveWin ();
     modalText.textContent = "WIN";
     modalTime.textContent = `Great! You have solved the nonogram in ${seconds} seconds!`;
-    sound3.play();
+    SOUNDS[3].play();
   } else {
     
 
@@ -333,7 +358,7 @@ resetButton.addEventListener('click', () => {
   stopWatch.textContent = "00:00";
   isSWTimerStarted = false;
   const grams = document.querySelectorAll(".gram");
-  sound2.play();
+  SOUNDS[2].play();
   grams.forEach((gram) => {
     gram.classList.remove("black");
     gram.classList.remove("cross");
@@ -390,7 +415,7 @@ function addSolution (currIndex)  {
   clearInterval(swInterval);
   let picture = dataToPicture(currIndex);
   const grams = document.querySelectorAll(".gram");
-  sound1.play();
+  SOUNDS[1].play();
   grams.forEach((gram) => {
     gram.classList.remove("black");
     picture.flat().forEach((value, index) => {
