@@ -1,7 +1,12 @@
 import { generateElement } from "./generateElement.js";
 import data from "../base.json" assert { type: "json" };
-import {openModal, modalText, modalTime, modalButton, isOpen, closeModal} from './modal.js';
+import {openModal, modalText, modalTime, modalButton, modalContent, closeModal} from './modal.js';
 const body = document.body;
+
+// const highscoreItem = generateElement("div", "highscore-item", highscore);
+// const highscoreId = generateElement("div", "highscore-id", highscoreItem );
+// const highscoreItemName = generateElement("div", "highscore-name", highscoreItem);
+// const highscoreTime = generateElement("div", "highscore-time", highscoreItem);
 const wrap = generateElement("div", "page-wrap", body);
 const header = generateElement("header", "header", wrap);
 const GITLINK = generateElement("a", "git-link", header)
@@ -17,6 +22,7 @@ const picturesPanel = generateElement("div", "pictures-panel", mainContainer);
 const stopWatchContainer = generateElement("div", "stop-watch-container", mainContainer);
 const stopWatch = generateElement("div", "stop-watch", stopWatchContainer, "00:00");
 const matrixContainer = generateElement("section","matrix-container", main);
+const MATRIX_PICTURE = generateElement("img", "matrix-picture", matrixContainer);
 const SETTINGS_CONTAINER = generateElement("div", "settings-container", matrixContainer);
 const resetButton = generateElement("div", "reset-button", SETTINGS_CONTAINER, "Reset");
 const randomButton = generateElement("div", "random-button", SETTINGS_CONTAINER, "Random");
@@ -102,6 +108,7 @@ function startSWTimer () {
 
 //create cells
 function createCells(picId){
+  MATRIX_PICTURE.src = data[picId].img;
   let picture = dataToPicture(picId);
   // console.log('prepic cells',y, picture[0][0])
   let count = 0;
@@ -198,9 +205,9 @@ function saveWin () {
     const newWinList = JSON.parse(isWinList);
     newWinList.push({pic: data[currentPictureIndex].name, time: seconds});
     console.log('parse push', newWinList);
-    newWinList.slice(-5);
-    newWinList.sort((a, b) => a.time - b.time);
-    localStorage.setItem("ksariseWinList", JSON.stringify(newWinList));
+    const slicedWinList = newWinList.slice(-5);
+    const newSortedWinList = slicedWinList.sort((a, b) => a.time - b.time);
+    localStorage.setItem("ksariseWinList", JSON.stringify(newSortedWinList));
   } else {
     winList = [{pic: data[currentPictureIndex].name, time: seconds},];
     localStorage.setItem("ksariseWinList", JSON.stringify(winList));
@@ -214,10 +221,14 @@ function winnersList () {
   const stringSavedWinList = localStorage.getItem("ksariseWinList");
   const savedWinList = JSON.parse(stringSavedWinList);
   console.log(savedWinList);
-  const highscore = generateElement("div", "hs", header);
+  openModal();
+  const highscore = generateElement("div", "highscore", modalContent);
   savedWinList.forEach((list, index) => {
-    const highscoreItem = generateElement("div", "hsItem", highscore, list.pic+list.time);
-    console.log(highscoreItem, list.pic);
+    const highscoreItem = generateElement("div", "highscore-item", highscore);
+    const highscoreId = generateElement("div", "highscore-id", highscoreItem , index.toString())
+    const highscoreItemName = generateElement("div", "highscore-name", highscoreItem , list.pic);
+    const highscoreTime = generateElement("div", "highscore-time", highscoreItem , (list.time).toString());
+    
   })
   console.log(JSON.parse(stringSavedWinList),  typeof savedWinList);
 }

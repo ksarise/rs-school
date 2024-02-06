@@ -103,6 +103,15 @@
   display: grid;
   justify-content: center;
 }
+.matrix-picture {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 5rem;
+  height: 5rem;
+  grid-column: 1;
+  grid-row: 1;
+}
 .matrix {
   display: grid;
   grid-column: 2;
