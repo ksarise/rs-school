@@ -2,13 +2,12 @@ import { generateElement } from "./generateElement.js";
 import data from "../base.json" assert { type: "json" };
 import {openModal, modalText, modalTime, modalButton, isOpen, closeModal} from './modal.js';
 const body = document.body;
-const wrap = generateElement("div", "page-wrap", body, "wrap");
-const header = generateElement("header", "header", wrap, "header");
-const resetButton = generateElement("button", "reset-button", header, "Reset");
-const resumeButton = generateElement("button", "resume-button", header, "Resume Game");
-const saveButton = generateElement("button", "save-button", header, "Save Game");
-const solutionButton = generateElement("button", "solution-button", header, "Solution");
-const winnersButton = generateElement("button", "winners-button", header, "Winners");
+const wrap = generateElement("div", "page-wrap", body);
+const header = generateElement("header", "header", wrap);
+const GITLINK = generateElement("a", "git-link", header)
+const GITLOGO = generateElement("img", "github", GITLINK);
+const HEADING = generateElement("h1", "title", header, "NONOGRAMS");
+const winnersButton = generateElement("div", "winners-button", header, "Winners");
 const themeContainer = generateElement("div", "theme-container", header, "theme");
 const themeInput = generateElement("input", "theme-input", themeContainer, "",'theme-mode', "checkbox");
 const themeLabel = generateElement("label", "theme-label", themeContainer, "", false, false, 'theme-mode');
@@ -18,6 +17,12 @@ const picturesPanel = generateElement("div", "pictures-panel", mainContainer);
 const stopWatchContainer = generateElement("div", "stop-watch-container", mainContainer);
 const stopWatch = generateElement("div", "stop-watch", stopWatchContainer, "00:00");
 const matrixContainer = generateElement("section","matrix-container", main);
+const SETTINGS_CONTAINER = generateElement("div", "settings-container", matrixContainer);
+const resetButton = generateElement("div", "reset-button", SETTINGS_CONTAINER, "Reset");
+const randomButton = generateElement("div", "random-button", SETTINGS_CONTAINER, "Random");
+const resumeButton = generateElement("div", "resume-button", SETTINGS_CONTAINER, "Resume Game");
+const saveButton = generateElement("div", "save-button", SETTINGS_CONTAINER, "Save Game");
+const solutionButton = generateElement("div", "solution-button", SETTINGS_CONTAINER, "Solution");
 const matrix = generateElement("div", "matrix", matrixContainer);
 const horHintsPanel = generateElement("div", "horHintsPanel", matrixContainer);
 const vertHintsPanel = generateElement("div", "vertHintsPanel", matrixContainer);
@@ -41,26 +46,33 @@ themeContainer.addEventListener("click", () => {
 
 //example matrix
 const picture2 = [[1,0,0,1,1], [1,0,1,0,1], [0,1,1,0,0], [0,1,1,1,1], [0,1,1,0,1]];
-let u = 0;
+let currentPictureIndex = 0;
 let checkArray;
 let crossArray;
 let winList;
-// console.log('import', data[u].id);
+// console.log('import', data[currentPictureIndex].id);
 
-function dataToPicture(y) {
+function dataToPicture(picId) {
   // console.log('datatopicture', y, data[y].matrix);
   // const id2 =  data[y].id;
-  const picture =  data[y].matrix;
+  const picture =  data[picId].matrix;
   // console.log('picture',picture, 'id');
   return picture;
 }
 //create panel for game choose
 function createPicturePanel () {
-  for (let i = 0; i < data.length; i += 1) {
-    const pictureBlock = generateElement("div", "picture-block", picturesPanel,data[i].name);
-    const pictureImg = generateElement("img", "picture-img", pictureBlock );
-    pictureImg.src = data[i].img;
-    pictureImg.addEventListener('click', () => startGame(i));
+  for (let l = 1; l <= 3; l += 1) {
+    const pictureLevelPanel = generateElement("div", "picture-level-panel", picturesPanel);
+    const pictureLevelId = generateElement("div", "picture-level-id", pictureLevelPanel, l.toString());
+    for (let i = 0; i < data.length; i += 1) {
+      if (data[i].level === l) {
+        const pictureBlock = generateElement("div", "picture-block", pictureLevelPanel);
+        const pictureName = generateElement("div", "picture-name", pictureBlock, data[i].name);
+        const pictureImg = generateElement("img", "picture-img", pictureBlock );
+        pictureImg.src = data[i].img;
+        pictureImg.addEventListener('click', () => startGame(i));
+      }
+    }
   }
 }
 
@@ -89,8 +101,8 @@ function startSWTimer () {
 
 
 //create cells
-function createCells(y){
-  let picture = dataToPicture(y);
+function createCells(picId){
+  let picture = dataToPicture(picId);
   // console.log('prepic cells',y, picture[0][0])
   let count = 0;
   const len = picture.reduce((count, row) => count + row.length, 0);
@@ -120,21 +132,21 @@ function createCells(y){
 
 //set up a cross 
 
-function setCross (cell, arr0, id) {
+function setCross (cell, crossArr, id) {
   console.log('crossid',id);
   event.preventDefault();
   startSWTimer();
   if (!cell.classList.contains('black') && !cell.classList.contains('cross')) {
-    arr0[id] = 1;
+    crossArr[id] = 1;
     cell.classList.add('cross');
     sound4.play();
   } else if (cell.classList.contains('cross')) {
     cell.classList.remove('cross');
-    arr0[id] = 0;
+    crossArr[id] = 0;
   } else {
     cell.classList.remove('black');
     cell.classList.add('cross');
-    arr0[id] = 1;
+    crossArr[id] = 1;
     sound4.play();
   }
   // console.log(arr0);
@@ -142,26 +154,26 @@ function setCross (cell, arr0, id) {
 
 
 //check identity to picture
-function checkCell (cell, arr1, arr2, id) {
+function checkCell (cell, checkArr, initArr, id) {
   if (!cell.classList.contains('black') && !cell.classList.contains('cross')) {
-    arr1[id] = 1;
+    checkArr[id] = 1;
     cell.classList.add('black');
     sound5.play();
-    checkWin(arr2, arr1);
+    checkWin(initArr, checkArr);
   } else if (cell.classList.contains('cross')) {
     cell.classList.remove('cross');
   } else {
-    arr1[id] = 0;
+    checkArr[id] = 0;
     cell.classList.remove('black');
     sound0.play();
   }
-  console.log('check', arr1);
+  console.log('check', checkArr);
 }
 
 
 //check condition for win
-function checkWin(arr1, arr2) {
-  let equal = (arr1.flat().every((value, index) => value == arr2[index]));
+function checkWin(initArr, checkArr) {
+  let equal = (initArr.flat().every((value, index) => value == checkArr[index]));
   if (equal) {
     clearInterval(swInterval);
     openModal();
@@ -173,24 +185,24 @@ function checkWin(arr1, arr2) {
     
 
   }
-  console.log('matrix', equal, arr1.flat());
+  console.log('matrix', equal, initArr.flat());
 }
 
 
 //save win game to results
 function saveWin () {
-  console.log('param', data[u].name, seconds, winList);
+  console.log('param', data[currentPictureIndex].name, seconds, winList);
   const isWinList = localStorage.getItem("ksariseWinList");
   console.log(isWinList, typeof isWinList);
   if (isWinList) {
     const newWinList = JSON.parse(isWinList);
-    newWinList.push({pic: data[u].name, time: seconds});
+    newWinList.push({pic: data[currentPictureIndex].name, time: seconds});
     console.log('parse push', newWinList);
     newWinList.slice(-5);
     newWinList.sort((a, b) => a.time - b.time);
     localStorage.setItem("ksariseWinList", JSON.stringify(newWinList));
   } else {
-    winList = [{pic: data[u].name, time: seconds},];
+    winList = [{pic: data[currentPictureIndex].name, time: seconds},];
     localStorage.setItem("ksariseWinList", JSON.stringify(winList));
   }
 }
@@ -212,16 +224,16 @@ function winnersList () {
 
 
 //create clues
-function createClues (y) {
-  let picture = dataToPicture(y);
-  console.log('prepic clues', y, picture[0][0])
+function createClues (picId) {
+  let picture = dataToPicture(picId);
+  console.log('prepic clues', picId, picture[0][0])
   //compute values for vertical clues
   const vertHints = [];
   for (let i = 0; i < picture.length; i += 1) {
     const temp = []
     let accI = 0;
     for (let j = 0; j < picture[i].length; j += 1) {
-        if (picture[i][j] === 1) {
+        if (picture[j][i] === 1) {
             accI += 1;
         } else if ( accI >0) {
             temp.push(accI);
@@ -240,7 +252,7 @@ function createClues (y) {
     const temp = []
     let accJ = 0;
     for (let i = 0; i < picture[j].length; i += 1) {
-        if (picture[i][j] === 1) {
+        if (picture[j][i] === 1) {
             accJ += 1;
         } else if ( accJ >0) {
             temp.push(accJ);
@@ -276,21 +288,21 @@ function createClues (y) {
 
 //game state controls
 
-function startGame(a) {
+function startGame(picId) {
   clearInterval(swInterval);
   stopWatch.textContent = "00:00";
   isSWTimerStarted = false;
   closeModal();
   cleanCells();
   cleanMatrix();
-  console.log('start',a);
-  dataToPicture(a);
-  createCells(a);
-  createClues(a);
-  u = a;
+  console.log('start',picId);
+  dataToPicture(picId);
+  createCells(picId);
+  createClues(picId);
+  currentPictureIndex = picId;
 }
 
-startGame(u);
+startGame(currentPictureIndex);
 
 
 //reset button
@@ -309,6 +321,14 @@ resetButton.addEventListener('click', () => {
     gram.classList.remove("black");
     gram.classList.remove("cross");
   });
+});
+
+
+//random button 
+randomButton.addEventListener('click', () => {
+  let indexRandom = Math.floor(Math.random() * data.length);
+  startGame(indexRandom);
+
 });
 
 
@@ -347,7 +367,7 @@ resumeButton.addEventListener('click', () => {
 })
 
 //solution button 
-solutionButton.addEventListener('click', () => addSolution(u));
+solutionButton.addEventListener('click', () => addSolution(currentPictureIndex));
 function addSolution (currIndex)  {
   console.log('curr', currIndex);
   clearInterval(swInterval);
@@ -367,7 +387,7 @@ function addSolution (currIndex)  {
 }
 
 //modal close
-modalButton.addEventListener('click', () => startGame(u));
+modalButton.addEventListener('click', () => startGame(currentPictureIndex));
 
 
 //clean matrix
