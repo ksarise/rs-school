@@ -11,11 +11,15 @@ const wrap = generateElement("div", "page-wrap", body);
 const header = generateElement("header", "header", wrap);
 const GITLINK = generateElement("a", "git-link", header);
 const GITLOGO = generateElement("img", "github-mark", GITLINK);
-GITLOGO.src = "./assets/icons/github-mark.svg"
+GITLOGO.src = "assets/icons/github-mark.svg"
 const HEADING = generateElement("h1", "title", header, "NONOGRAMS");
 const themeContainer = generateElement("div", "theme-container", header);
 const themeInput = generateElement("input", "theme-input", themeContainer, "",'theme-mode', "checkbox");
 const themeLabel = generateElement("label", "theme-label", themeContainer, "", false, false, 'theme-mode');
+const THEME_LIGHT = generateElement("img", "theme-light", themeLabel);
+THEME_LIGHT.src = "assets/icons/power.svg";
+const THEME_DARK = generateElement("img", "theme-dark", themeLabel);
+THEME_DARK.src = "assets/icons/moon.svg";
 const main = generateElement("main", "main", wrap);
 const mainContainer = generateElement("section","main-container", main);
 const picturesPanel = generateElement("div", "pictures-panel", mainContainer);
@@ -36,17 +40,21 @@ const horHintsPanel = generateElement("div", "horHintsPanel", matrixContainer);
 const vertHintsPanel = generateElement("div", "vertHintsPanel", matrixContainer);
 
 //sound effects and music
-const sound0 =  new Audio("../assets/sounds/nani.mp3");
-const sound1 =  new Audio("../assets/sounds/flute-alto.mp3");
-const sound2 =  new Audio("../assets/sounds/gong-hit.mp3");
-const sound3 =  new Audio("../assets/sounds/noti-3.mp3");
-const sound4 =  new Audio("../assets/sounds/swing-bells.mp3");
-const sound5 =  new Audio("../assets/sounds/temple-kyoto.mp3");
-const sound6 =  new Audio("../assets/sounds/tower.mp3");
+const sound0 =  new Audio("assets/sounds/nani.mp3");
+const sound1 =  new Audio("assets/sounds/flute-alto.mp3");
+const sound2 =  new Audio("assets/sounds/gong-hit.mp3");
+const sound3 =  new Audio("assets/sounds/noti-3.mp3");
+const sound4 =  new Audio("assets/sounds/swing-bells.mp3");
+const sound5 =  new Audio("assets/sounds/temple-kyoto.mp3");
+const sound6 =  new Audio("assets/sounds/tower.mp3");
 //switch theme mode
 themeContainer.addEventListener("click", () => {
   if (themeInput.checked) {
-    body.classList.toggle("dark");
+    body.classList.remove("light");
+    body.classList.add("dark");
+  } else {
+    body.classList.remove("dark");
+    body.classList.add("light");
   }
 })
 
