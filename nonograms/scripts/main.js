@@ -16,6 +16,10 @@ const HEADING = generateElement("h1", "title", header, "NONOGRAMS");
 const themeContainer = generateElement("div", "theme-container", header);
 const themeInput = generateElement("input", "theme-input", themeContainer, "",'theme-mode', "checkbox");
 const themeLabel = generateElement("label", "theme-label", themeContainer, "", false, false, 'theme-mode');
+const THEME_LIGHT = generateElement("img", "theme-light", themeLabel);
+THEME_LIGHT.src = "./assets/icons/power.svg";
+const THEME_DARK = generateElement("img", "theme-dark", themeLabel);
+THEME_DARK.src = "./assets/icons/moon.svg";
 const main = generateElement("main", "main", wrap);
 const mainContainer = generateElement("section","main-container", main);
 const picturesPanel = generateElement("div", "pictures-panel", mainContainer);
@@ -46,7 +50,11 @@ const sound6 =  new Audio("../assets/sounds/tower.mp3");
 //switch theme mode
 themeContainer.addEventListener("click", () => {
   if (themeInput.checked) {
-    body.classList.toggle("dark");
+    body.classList.remove("light");
+    body.classList.add("dark");
+  } else {
+    body.classList.remove("dark");
+    body.classList.add("light");
   }
 })
 

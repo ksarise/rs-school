@@ -3,26 +3,38 @@
   margin: 0;
 }
 :root body.light {
-
+  --theme-back: #99e08b;
+  --color-primary-200: #55b294;
+  --btn-back: #337543;
+  --color-primary-400: #83c5ad;
+  --p: #d9d9d8;
+  --color-primary-600: #add9c8;
+  --gram-border: #0c0606f3;
+  --body-back: #ecf9e8;
+  --wrap-back: #dcf4d5;
+  --clues-back: #f0faec;
+  --matrix-back: #f0faec;
+  --cell-back: #f0faec;
+  --clue: #1c1b1b;
 }
 :root body.dark {
-  /** CSS DARK THEME PRIMARY COLORS */
 --theme-back: #39a887;
 --color-primary-200: #55b294;
 --btn-back: #6dbca0;
 --color-primary-400: #83c5ad;
---p: #98cfbb;
+
 --color-primary-600: #add9c8;
-/** CSS DARK THEME SURFACE COLORS */
---gram-border: rgba(12, 6, 6, 0.952);
+--gram-border: #0c0606f3;
+--p: #262525;
 --body-back: #3b3939;
 --wrap-back: #4e4c4c;
 --clues-back: #626060;
 --matrix-back: #777575;
---500: #8c8b8b;
 --cell-back: #b6b3b3;
+--clue: #d9d9d8;
 }
 body {
+  font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   background-color: var(--body-back);
 }
 .page-wrap {
@@ -32,17 +44,12 @@ body {
   transition: 0.3s;
 
 }
-/* .dark-theme {
-  background-color: gray;
-  transition: 0.3s;
-  z-index: -1;
-} */
 .header {
-  margin-bottom: 20px;
+  margin-bottom: 10px;
+  padding: 5px;
   display: flex;
   justify-content: space-between;
   max-width: 1080px;
-  border: 2px solid black;
 }
 .github-mark {
   width: 50px;
@@ -92,6 +99,25 @@ body {
   box-shadow: inset 0px 5px 15px rgba(0,0,0,0.4), inset 0px -5px 15px rgba(255, 255, 255, 0.63);
   cursor: pointer;
   transition: 0.3s
+}
+.theme-light {
+  position: absolute;
+	width: 20px;
+  height: 20px;
+	fill:#fff;
+	transition: 0.3s;
+}
+.theme-dark {
+  position: absolute;
+	width: 20px;
+  height: 20px;
+	fill:#fff;
+  left: 30px;
+	transition: 0.3s;
+}
+.theme-input:checked + .theme-img:after {
+  left:50px;
+  transform: translateX(-100%);
 }
 .theme-label:after {
   content: "";
@@ -145,6 +171,7 @@ body {
   justify-content: center;
   background-color: var(--btn-back);
   border-radius: 50px;
+  color: var(--p);
 }
 .picture-name {
   padding: 2px;
@@ -193,7 +220,7 @@ body {
   justify-content: center;
   font-style: bold;
   font-size: 2rem;
-  color: var(--cell-back);
+  color: var(--clue);
 }
 .matrix-container {
   display: grid;
@@ -294,7 +321,7 @@ body {
   justify-content: center;
   font-style: bold;
   font-weight: 600;
-  color:var(--cell-back);
+  color:var(--clue);
 }
 .settings-container {
   margin: 1rem 0 0.5rem;
@@ -322,5 +349,15 @@ body {
   padding: 5px;
   width: 7rem;
   font-weight: 800;
-  color:var(--wrap-back);
+  color:var(--p);
+}
+.reset-button:hover,
+.resume-button:hover,
+.save-button:hover,
+.random-button:hover,
+.solution-button:hover,
+.winners-button:hover {
+  box-shadow: 0 5px 0px 0px rgba(0, 0, 0, 0.3);
+  transition: all 0.5s ease-in-out;
+  transform: scale(93%);
 }
