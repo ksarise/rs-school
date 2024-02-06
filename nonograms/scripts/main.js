@@ -1,13 +1,8 @@
 import { generateElement } from "./generateElement.js";
 import data from "../base.json" assert { type: "json" };
 import {openModal, modalText, modalTime, modalButton, modalContent, closeModal} from './modal.js';
-const body = document.body;
-
-// const highscoreItem = generateElement("div", "highscore-item", highscore);
-// const highscoreId = generateElement("div", "highscore-id", highscoreItem );
-// const highscoreItemName = generateElement("div", "highscore-name", highscoreItem);
-// const highscoreTime = generateElement("div", "highscore-time", highscoreItem);
-const wrap = generateElement("div", "page-wrap", body);
+const BODY = document.body;
+const wrap = generateElement("div", "page-wrap", BODY);
 const header = generateElement("header", "header", wrap);
 const GITLINK = generateElement("a", "git-link", header);
 const GITLOGO = generateElement("img", "github-mark", GITLINK);
@@ -48,13 +43,14 @@ const sound4 =  new Audio("assets/sounds/swing-bells.mp3");
 const sound5 =  new Audio("assets/sounds/temple-kyoto.mp3");
 const sound6 =  new Audio("assets/sounds/tower.mp3");
 //switch theme mode
+BODY.classList.add("light");
 themeContainer.addEventListener("click", () => {
   if (themeInput.checked) {
-    body.classList.remove("light");
-    body.classList.add("dark");
+    BODY.classList.remove("light");
+    BODY.classList.add("dark");
   } else {
-    body.classList.remove("dark");
-    body.classList.add("light");
+    BODY.classList.remove("dark");
+    BODY.classList.add("light");
   }
 })
 
@@ -211,13 +207,13 @@ function saveWin () {
   console.log(isWinList, typeof isWinList);
   if (isWinList) {
     const newWinList = JSON.parse(isWinList);
-    newWinList.push({pic: data[currentPictureIndex].name, time: seconds});
+    newWinList.push({pic: data[currentPictureIndex].name, level: data[currentPictureIndex].level, time: seconds});
     console.log('parse push', newWinList);
     const slicedWinList = newWinList.slice(-5);
     const newSortedWinList = slicedWinList.sort((a, b) => a.time - b.time);
     localStorage.setItem("ksariseWinList", JSON.stringify(newSortedWinList));
   } else {
-    winList = [{pic: data[currentPictureIndex].name, time: seconds},];
+    winList = [{pic: data[currentPictureIndex].name, level: data[currentPictureIndex].level, time: seconds},];
     localStorage.setItem("ksariseWinList", JSON.stringify(winList));
   }
 }
@@ -230,14 +226,16 @@ function winnersList () {
   const savedWinList = JSON.parse(stringSavedWinList);
   console.log(savedWinList);
   openModal();
-  const highscore = generateElement("div", "highscore", modalContent);
-  savedWinList.forEach((list, index) => {
-    const highscoreItem = generateElement("div", "highscore-item", highscore);
-    const highscoreId = generateElement("div", "highscore-id", highscoreItem , index.toString())
-    const highscoreItemName = generateElement("div", "highscore-name", highscoreItem , list.pic);
-    const highscoreTime = generateElement("div", "highscore-time", highscoreItem , (list.time).toString());
-    
-  })
+  const highscore = generateElement("div", "highscore", modalContent,"Last 5 Wins:");
+  if(stringSavedWinList) {
+    savedWinList.forEach((list, index) => {
+      const highscoreItem = generateElement("div", "highscore-item", highscore);
+      const highscoreId = generateElement("div", "highscore-id", highscoreItem , index.toString())
+      const highscoreLevel = generateElement("div", "highscore-level", highscoreItem , `level ${(list.level).toString()}`);
+      const highscoreItemName = generateElement("div", "highscore-name", highscoreItem , list.pic);
+      const highscoreTime = generateElement("div", "highscore-time", highscoreItem , `${(list.time).toString()}sec`);
+    });
+  }
   console.log(JSON.parse(stringSavedWinList),  typeof savedWinList);
 }
 
