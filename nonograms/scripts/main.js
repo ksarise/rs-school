@@ -29,7 +29,7 @@ const MUTE_BUTTON = generateElement("div", "mute-button", SETTINGS_CONTAINER, "m
 const resetButton = generateElement("div", "reset-button", SETTINGS_CONTAINER, "Reset");
 const randomButton = generateElement("div", "random-button", SETTINGS_CONTAINER, "Random");
 const resumeButton = generateElement("div", "resume-button", SETTINGS_CONTAINER, "Resume");
-const saveButton = generateElement("div", "save-button", SETTINGS_CONTAINER, "Save Game");
+const saveButton = generateElement("div", "save-button", SETTINGS_CONTAINER, "Save");
 const solutionButton = generateElement("div", "solution-button", SETTINGS_CONTAINER, "Solution");
 const winnersButton = generateElement("div", "winners-button", SETTINGS_CONTAINER, "Winners");
 const matrix = generateElement("div", "matrix", matrixContainer);
@@ -79,6 +79,7 @@ let currentPictureIndex = 0;
 let checkArray;
 let crossArray;
 let winList;
+let isSaved = false;
 // console.log('import', data[currentPictureIndex].id);
 
 function dataToPicture(picId) {
@@ -376,6 +377,7 @@ randomButton.addEventListener('click', () => {
 
 //save button 
 saveButton.addEventListener('click', () => {
+  isSaved = true;
   localStorage.setItem("ksarisePictureId", u);
   localStorage.setItem("ksariseTime", seconds);
   localStorage.setItem("ksariseCheckArray", checkArray);
@@ -385,27 +387,29 @@ saveButton.addEventListener('click', () => {
 
 //resume button
 resumeButton.addEventListener('click', () => {
-  startGame(localStorage.getItem("ksarisePictureId"));
-  checkArray = Array.from(localStorage.getItem("ksariseCheckArray").split(',').map(Number));
-  crossArray = Array.from(localStorage.getItem("ksariseCrossArray").split(',').map(Number));
-  seconds = Number(localStorage.getItem("ksariseTime"));
-  formatTime(seconds);
-  isSWTimerStarted = false;
-  const grams = document.querySelectorAll(".gram");
-  console.log('blackpic', checkArray);
-  console.log('crosspic', crossArray);
-  grams.forEach((gram) => {
-    checkArray.forEach((value, index) => {
-      if (value == 1 && Number(gram.id) === index) {
-        gram.classList.add("black");
-      }
+  if (localStorage.getItem("ksarisePictureId")) {
+    startGame(localStorage.getItem("ksarisePictureId"));
+    checkArray = Array.from(localStorage.getItem("ksariseCheckArray").split(',').map(Number));
+    crossArray = Array.from(localStorage.getItem("ksariseCrossArray").split(',').map(Number));
+    seconds = Number(localStorage.getItem("ksariseTime"));
+    formatTime(seconds);
+    isSWTimerStarted = false;
+    const grams = document.querySelectorAll(".gram");
+    console.log('blackpic', checkArray);
+    console.log('crosspic', crossArray);
+    grams.forEach((gram) => {
+      checkArray.forEach((value, index) => {
+        if (value == 1 && Number(gram.id) === index) {
+          gram.classList.add("black");
+        }
+      });
+      crossArray.forEach((value, index) => {
+        if (value == 1 && Number(gram.id) === index) {
+          gram.classList.add("cross");
+        }
+      });
     });
-    crossArray.forEach((value, index) => {
-      if (value == 1 && Number(gram.id) === index) {
-        gram.classList.add("cross");
-      }
-    });
-  });
+  }
 })
 
 //solution button 
