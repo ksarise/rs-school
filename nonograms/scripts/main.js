@@ -63,6 +63,7 @@ MUTE_BUTTON.addEventListener('click', () => {
 
 //switch theme mode
 BODY.classList.add("light");
+themeInput.checked = false;
 themeContainer.addEventListener("click", () => {
   if (themeInput.checked) {
     BODY.classList.remove("light");
@@ -79,7 +80,7 @@ let currentPictureIndex = 0;
 let checkArray;
 let crossArray;
 let winList;
-let isSaved = false;
+let isSaved = false;;
 // console.log('import', data[currentPictureIndex].id);
 
 function dataToPicture(picId) {
@@ -378,7 +379,7 @@ randomButton.addEventListener('click', () => {
 //save button 
 saveButton.addEventListener('click', () => {
   isSaved = true;
-  localStorage.setItem("ksarisePictureId", u);
+  localStorage.setItem("ksarisePictureId", currentPictureIndex);
   localStorage.setItem("ksariseTime", seconds);
   localStorage.setItem("ksariseCheckArray", checkArray);
   localStorage.setItem("ksariseCrossArray", crossArray);
