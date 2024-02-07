@@ -17,8 +17,10 @@ THEME_LIGHT.src = "assets/icons/power.svg";
 const THEME_DARK = generateElement("img", "theme-dark", themeLabel);
 THEME_DARK.src = "assets/icons/moon.svg";
 const main = generateElement("main", "main", wrap);
+const levelPanel = generateElement("div", "level-panel", main);
 const mainContainer = generateElement("section","main-container", main);
 const picturesPanel = generateElement("div", "pictures-panel", mainContainer);
+picturesPanel.classList.add("hide");
 const SETTINGS_CONTAINER = generateElement("section", "settings-container", main);
 const GAME_CONTAINER = generateElement("section", "game-container", main);
 const MATRIX_NAME = generateElement("p", "matrix-name", GAME_CONTAINER);
@@ -94,16 +96,47 @@ function dataToPicture(picId) {
 function createPicturePanel () {
   for (let l = 1; l <= 3; l += 1) {
     const pictureLevelPanel = generateElement("div", "picture-level-panel", picturesPanel);
-    const pictureLevelId = generateElement("div", "picture-level-id", pictureLevelPanel, `level ${l.toString()}`);
+    pictureLevelPanel.classList.add("hide-panel");
+    pictureLevelPanel.classList.add("hide-level");
+    const pictureLevelId = generateElement("div", "picture-level-id", pictureLevelPanel, (l * 5).toString(),l.toString());
     for (let i = 0; i < data.length; i += 1) {
       if (data[i].level === l) {
         const pictureBlock = generateElement("div", "picture-block", pictureLevelPanel);
+        pictureBlock.classList.add(`block${l.toString()}`);
+        pictureBlock.classList.add("hide-block");
         const pictureName = generateElement("div", "picture-name", pictureBlock, data[i].name);
-        const pictureImg = generateElement("img", "picture-img", pictureBlock );
+        const pictureImg = generateElement("img", "picture-img", pictureBlock,"", l.toString());
         pictureImg.src = data[i].img;
-        pictureImg.addEventListener('click', () => startGame(i));
+        pictureImg.addEventListener('click', (e) => {
+          startGame(i);
+          togglePanel();
+          console.log(e.target);
+          togglePanelContent(e.target);
+        });
       }
     }
+  }
+  const pictureLevelIds = document.querySelectorAll(".picture-level-id");
+  console.log(pictureLevelIds);
+  pictureLevelIds.forEach((element) =>
+    element.addEventListener('click', () => togglePanelContent(element))
+  );
+  function togglePanelContent(element) {
+    const levelPanels = document.querySelectorAll(".picture-level-panel");
+    levelPanels[Number(element.id)-1].classList.toggle("hide-panel");
+    const pictureBlocks = document.querySelectorAll(`.block${element.id}`);
+    console.log(pictureBlocks);
+    pictureBlocks.forEach((block) => block.classList.toggle("hide-block"));
+    }
+  //panel open button
+  levelPanel.addEventListener('click', togglePanel);
+
+  function togglePanel() {
+    picturesPanel.classList.toggle("hide");
+    const levelPanels = document.querySelectorAll(".picture-level-panel");
+    levelPanels.forEach((panel) => panel.classList.toggle("hide-level"));
+    levelPanel.classList.toggle("open");
+    
   }
 }
 
