@@ -394,10 +394,10 @@ body {
   font-weight: 600;
   color:var(--clue);
 }
-.vHint:nth-child(5n+5) {
+.vHint:nth-child(5n+5):not(:last-child) {
   border-top: 2px solid var(--gram-border);
 }
-.hHint:nth-last-of-type(5n+5) {
+.hHint:nth-last-of-type(5n+5):not(:first-child) {
   border-left: 2px solid var(--gram-border);
 }
 .settings-container {
