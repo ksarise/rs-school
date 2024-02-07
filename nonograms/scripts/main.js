@@ -351,8 +351,9 @@ function createClues (picId) {
       temp.push(accI);
     }
     vertHints.push(temp);
+    ;
   }
-
+  console.log(vertHints)
   //compute values for horizontal clues
   const horHints = [];
   for (let j = 0; j < picture.length; j += 1) {
