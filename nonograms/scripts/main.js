@@ -18,6 +18,8 @@ const THEME_DARK = generateElement("img", "theme-dark", themeLabel);
 THEME_DARK.src = "assets/icons/moon.svg";
 const main = generateElement("main", "main", wrap);
 const levelPanel = generateElement("div", "level-panel", main);
+const levelPanelImg = generateElement("img", "level-panel-img", levelPanel);
+levelPanelImg.src = "assets/icons/matrix.svg";
 const winnersButton = generateElement("div", "winners-button", main);
 const winnersButtonImg = generateElement("img", "winners-button-img", winnersButton);
 winnersButtonImg.src = "assets/icons/podium.svg";
@@ -48,12 +50,16 @@ const SOUNDS = [
   new Audio("assets/sounds/gong-hit.mp3"),
   new Audio("assets/sounds/noti-3.mp3"),
   new Audio("assets/sounds/swing-bells.mp3"),
-  new Audio("assets/sounds/temple-kyoto.mp3")
+  new Audio("assets/sounds/temple-kyoto.mp3"),
+  new Audio("assets/sounds/click.mp3"),
+  new Audio("assets/sounds/shuffle.mp3")
 ];
 
 let isMuted = false;
 //mute all audio
 MUTE_BUTTON.addEventListener('click', () => {
+  SOUNDS[6].playbackRate = 1.5;
+  SOUNDS[6].play();
   if (!isMuted) {
     isMuted = true;
     SOUNDS.forEach((sound) => sound.muted = true)
@@ -70,6 +76,8 @@ MUTE_BUTTON.addEventListener('click', () => {
 BODY.classList.add("light");
 themeInput.checked = false;
 themeContainer.addEventListener("click", () => {
+  SOUNDS[6].playbackRate = 1.5;
+  SOUNDS[6].play();
   if (themeInput.checked) {
     BODY.classList.remove("light");
     BODY.classList.add("dark");
@@ -112,6 +120,8 @@ function createPicturePanel () {
         const pictureImg = generateElement("img", "picture-img", pictureBlock,"", l.toString());
         pictureImg.src = data[i].img;
         pictureImg.addEventListener('click', (e) => {
+          SOUNDS[6].playbackRate = 1.5;
+          SOUNDS[6].play();
           startGame(i);
           togglePanel();
           console.log(e.target);
@@ -123,9 +133,10 @@ function createPicturePanel () {
   const pictureLevelIds = document.querySelectorAll(".picture-level-id");
   console.log(pictureLevelIds);
   pictureLevelIds.forEach((element) =>
-    element.addEventListener('click', () => togglePanelContent(element))
-  );
+    element.addEventListener('click', () => togglePanelContent(element)));
   function togglePanelContent(element) {
+    SOUNDS[6].playbackRate = 1.5;
+    SOUNDS[6].play();
     const levelPanels = document.querySelectorAll(".picture-level-panel");
     levelPanels[Number(element.id)-1].classList.toggle("hide-panel");
     const pictureBlocks = document.querySelectorAll(`.block${element.id}`);
@@ -136,6 +147,8 @@ function createPicturePanel () {
   levelPanel.addEventListener('click', togglePanel);
 
   function togglePanel() {
+    SOUNDS[6].playbackRate = 1.5;
+    SOUNDS[6].play();
     picturesPanel.classList.toggle("hide");
     const levelPanels = document.querySelectorAll(".picture-level-panel");
     levelPanels.forEach((panel) => panel.classList.toggle("hide-level"));
@@ -183,6 +196,7 @@ function createCells(picId){
       const cell = generateElement("div", "gram", row, null, count.toString());
       count += 1;
       cell.addEventListener('click', () => {
+
         checkCell(cell, checkArray, picture, Number(cell.id));
         console.log("black", Number(cell.id), checkArray);
         
@@ -426,6 +440,7 @@ resetButton.addEventListener('click', () => {
 
 //random button 
 randomButton.addEventListener('click', () => {
+  SOUNDS[7].play();
   let indexRandom = Math.floor(Math.random() * data.length);
   startGame(indexRandom);
 
@@ -434,6 +449,8 @@ randomButton.addEventListener('click', () => {
 
 //save button 
 saveButton.addEventListener('click', () => {
+  SOUNDS[6].playbackRate = 1.5;
+  SOUNDS[6].play();
   isSaved = true;
   localStorage.setItem("ksarisePictureId", currentPictureIndex);
   localStorage.setItem("ksariseTime", seconds);
@@ -444,6 +461,8 @@ saveButton.addEventListener('click', () => {
 
 //resume button
 resumeButton.addEventListener('click', () => {
+  SOUNDS[6].playbackRate = 1.5;
+  SOUNDS[6].play();
   if (localStorage.getItem("ksarisePictureId")) {
     startGame(localStorage.getItem("ksarisePictureId"));
     checkArray = Array.from(localStorage.getItem("ksariseCheckArray").split(',').map(Number));
@@ -490,11 +509,16 @@ function addSolution (currIndex)  {
 }
 
 //modal close
-if (isWin) {
-  modalButton.addEventListener('click', () => startGame(currentPictureIndex));
-} else {
-  modalButton.addEventListener('click', () => closeModal());
-}
+
+modalButton.addEventListener('click', () => {
+  SOUNDS[6].playbackRate = 1.5;
+  SOUNDS[6].play();
+  if (isWin) {
+    startGame(currentPictureIndex);
+  } else {
+    closeModal();
+  }
+});
 
 
 

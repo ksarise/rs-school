@@ -159,8 +159,8 @@ body {
   transition: all 0.5s ease-in-out;
 }
 .winners-button-img {
-  width: 1.5rem;
-  height: 1.5rem;
+  width: 2rem;
+  height: 2rem;
 }
 .pictures-panel {
   position:absolute;
@@ -175,10 +175,25 @@ body {
 }
 .level-panel {
   z-index: 3;
-  width: 2rem;
-  height: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   background-color: var(--btn-back);
   border-radius: 100%;
+  transition: all 1s ease-in-out;
+  padding: 5px;
+}
+.level-panel-img {
+  z-index: 3;
+  width: 2rem;
+  height: 2rem;
+  background-color: var(--p);
+  border-radius: 100%;
+  
+}
+.level-panel:hover {
+  box-shadow: 0 5px 0px 0px rgba(0, 0, 0, 0.3);
+  transform: scale(110%);
   transition: all 1s ease-in-out;
 }
 .open {
@@ -227,6 +242,7 @@ body {
   box-shadow: 0 5px 0px 0px rgba(0, 0, 0, 0.3);
   transition: all 0.5s ease-in-out;
 }
+
 .picture-name {
   padding: 2px;
   margin: 0.2rem;
