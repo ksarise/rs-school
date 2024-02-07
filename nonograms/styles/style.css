@@ -541,10 +541,25 @@ body {
   gap: 0.5rem;
 }
 .modal-text {
+  opacity: 0;
+  visibility: hidden;
+  display: flex;
+  padding: 0.5rem;
+  background-color: var(--color-primary-600);
+  border-radius: 50px;
+  border: 4px gold solid;
   font-size: 3rem;
-  color: rgb(85, 9, 9);
+  color: rgb(131, 31, 31);
+  
 }
 .modal-time {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.5rem;
+  background-color: var(--p);
+  border-radius: 30px;
+  color: var(--clue);
   font-size: 2rem;
   font-style: italic;
   text-decoration: underline;
