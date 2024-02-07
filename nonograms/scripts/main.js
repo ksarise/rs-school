@@ -6,6 +6,8 @@ const BODY = document.body;
 const wrap = generateElement("div", "page-wrap", BODY);
 const header = generateElement("header", "header", wrap);
 const GITLINK = generateElement("a", "git-link", header);
+GITLINK.href = "https://github.com/ksarise";
+GITLINK.target = "_blank";
 const GITLOGO = generateElement("img", "github-mark", GITLINK);
 GITLOGO.src = "assets/icons/github-mark.svg"
 const HEADING = generateElement("h1", "title", header, "NONOGRAMS");
@@ -168,7 +170,7 @@ function formatTime (sec) {
 function swTimer () {
   seconds += 1;
   formatTime(seconds);
-  // console.log('seconds', seconds);
+  console.log('seconds', seconds);
 }
 
 let swInterval;
@@ -294,8 +296,8 @@ function saveWin () {
     newWinList.push({pic: data[currentPictureIndex].name, level: data[currentPictureIndex].level, time: seconds});
     console.log('parse push', newWinList);
     const slicedWinList = newWinList.slice(-5);
-    const newSortedWinList = slicedWinList.sort((a, b) => a.time - b.time);
-    localStorage.setItem("ksariseWinList", JSON.stringify(newSortedWinList));
+    
+    localStorage.setItem("ksariseWinList", JSON.stringify(slicedWinList));
   } else {
     winList = [{pic: data[currentPictureIndex].name, level: data[currentPictureIndex].level, time: seconds},];
     localStorage.setItem("ksariseWinList", JSON.stringify(winList));
@@ -309,20 +311,22 @@ function winnersList () {
   SOUNDS[5].playbackRate = 7;
   SOUNDS[5].play();
   const stringSavedWinList = localStorage.getItem("ksariseWinList");
-  const savedWinList = JSON.parse(stringSavedWinList);
-  console.log(savedWinList);
   openModal();
   const highscore = generateElement("div", "highscore", modalContent,"Last 5 Wins:");
   if(stringSavedWinList) {
-    savedWinList.forEach((list, index) => {
+    const savedWinList = JSON.parse(stringSavedWinList);
+    const newSortedWinList = savedWinList.sort((a, b) => a.time - b.time);
+    console.log(savedWinList);
+    
+    
+    newSortedWinList.forEach((list, index) => {
       const highscoreItem = generateElement("div", "highscore-item", highscore);
-      const highscoreId = generateElement("div", "highscore-id", highscoreItem , index.toString())
+      const highscoreId = generateElement("div", "highscore-id", highscoreItem , (index + 1).toString())
       const highscoreLevel = generateElement("div", "highscore-level", highscoreItem , `level ${(list.level).toString()}`);
       const highscoreItemName = generateElement("div", "highscore-name", highscoreItem , list.pic);
       const highscoreTime = generateElement("div", "highscore-time", highscoreItem , `${(list.time).toString()}sec`);
     });
-  }
-  console.log(JSON.parse(stringSavedWinList),  typeof savedWinList);
+  } 
 }
 
 
@@ -403,6 +407,7 @@ function createClues (picId) {
 
 function startGame(picId) {
   clearInterval(swInterval);
+  seconds = 0;
   stopWatch.textContent = "00:00";
   isSWTimerStarted = false;
   isWin = false;

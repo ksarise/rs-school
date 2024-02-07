@@ -12,11 +12,16 @@ export function openModal() {
   modalOver.classList.add("visible");
   modalBlock.classList.add("visible");
   modalContent.classList.add("visible");
+  modalText.classList.add("visible");
+  modalTime.classList.add("visible");
   isOpen = true;
 }
 export function closeModal() {
   modalOver.classList.remove("visible");
   modalBlock.classList.remove("visible");
+  modalContent.classList.remove("visible");
+  modalText.classList.remove("visible");
+  modalTime.classList.remove("visible");
   modalText.innerHTML = "";
   modalTime.innerHTML = "";
   modalContent.innerHTML = "";
