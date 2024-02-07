@@ -170,7 +170,7 @@ function formatTime (sec) {
 function swTimer () {
   seconds += 1;
   formatTime(seconds);
-  console.log('seconds', seconds);
+  // console.log('seconds', seconds);
 }
 
 let swInterval;
@@ -428,8 +428,8 @@ startGame(currentPictureIndex);
 resetButton.addEventListener('click', () => {
   console.log('c',checkArray);
   console.log('x',crossArray);
-  checkArray = [];
-  crossArray = [];
+  checkArray.fill(0);
+  crossArray.fill(0);
   clearInterval(swInterval);
   seconds = 0;
   stopWatch.textContent = "00:00";
@@ -437,6 +437,7 @@ resetButton.addEventListener('click', () => {
   const grams = document.querySelectorAll(".gram");
   SOUNDS[2].play();
   grams.forEach((gram) => {
+    gram.style.pointerEvents = "auto";
     gram.classList.remove("black");
     gram.classList.remove("cross");
   });
@@ -498,6 +499,7 @@ solutionButton.addEventListener('click', () => addSolution(currentPictureIndex))
 function addSolution (currIndex)  {
   console.log('curr', currIndex);
   clearInterval(swInterval);
+  seconds = 0;
   let picture = dataToPicture(currIndex);
   const grams = document.querySelectorAll(".gram");
   SOUNDS[1].play();
