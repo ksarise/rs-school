@@ -18,6 +18,9 @@ const THEME_DARK = generateElement("img", "theme-dark", themeLabel);
 THEME_DARK.src = "assets/icons/moon.svg";
 const main = generateElement("main", "main", wrap);
 const levelPanel = generateElement("div", "level-panel", main);
+const winnersButton = generateElement("div", "winners-button", main);
+const winnersButtonImg = generateElement("img", "winners-button-img", winnersButton);
+winnersButtonImg.src = "assets/icons/podium.svg";
 const mainContainer = generateElement("section","main-container", main);
 const picturesPanel = generateElement("div", "pictures-panel", mainContainer);
 picturesPanel.classList.add("hide");
@@ -33,7 +36,7 @@ const randomButton = generateElement("div", "random-button", SETTINGS_CONTAINER,
 const resumeButton = generateElement("div", "resume-button", SETTINGS_CONTAINER, "Resume");
 const saveButton = generateElement("div", "save-button", SETTINGS_CONTAINER, "Save");
 const solutionButton = generateElement("div", "solution-button", SETTINGS_CONTAINER, "Solution");
-const winnersButton = generateElement("div", "winners-button", SETTINGS_CONTAINER, "Winners");
+
 const matrix = generateElement("div", "matrix", matrixContainer);
 const horHintsPanel = generateElement("div", "horHintsPanel", matrixContainer);
 const vertHintsPanel = generateElement("div", "vertHintsPanel", matrixContainer);
@@ -82,6 +85,7 @@ let currentPictureIndex = 0;
 let checkArray;
 let crossArray;
 let winList;
+let isWin = false;
 let isSaved = false;;
 // console.log('import', data[currentPictureIndex].id);
 
@@ -227,7 +231,7 @@ function checkCell (cell, checkArr, initArr, id) {
   if (!cell.classList.contains('black') && !cell.classList.contains('cross')) {
     checkArr[id] = 1;
     cell.classList.add('black');
-    SOUNDS[5].playbackRate = 6;
+    SOUNDS[5].playbackRate = 7;
     SOUNDS[5].play();
     checkWin(initArr, checkArr);
   } else if (cell.classList.contains('cross')) {
@@ -246,9 +250,15 @@ function checkCell (cell, checkArr, initArr, id) {
 function checkWin(initArr, checkArr) {
   let equal = (initArr.flat().every((value, index) => value == checkArr[index]));
   if (equal) {
+    isWin = true;
+    const grams = document.querySelectorAll(".gram");
+    grams.forEach((gram) => {
+      gram.style.pointerEvents = "none";
+    });
     clearInterval(swInterval);
     openModal();
     saveWin ();
+    
     modalText.textContent = "WIN";
     modalTime.textContent = `Great! You have solved the nonogram in ${seconds} seconds!`;
     SOUNDS[3].play();
@@ -282,6 +292,8 @@ function saveWin () {
 //high-score list
 winnersButton.addEventListener('click', winnersList);
 function winnersList () {
+  SOUNDS[5].playbackRate = 7;
+  SOUNDS[5].play();
   const stringSavedWinList = localStorage.getItem("ksariseWinList");
   const savedWinList = JSON.parse(stringSavedWinList);
   console.log(savedWinList);
@@ -349,6 +361,11 @@ function createClues (picId) {
     const hHintRow = generateElement("div", "hHintRow", horHintsPanel);
     horHints[i].forEach((element) => {
       const hHint = generateElement("div", "hHint", hHintRow, element.toString());
+      if (data[picId].level === 2) {
+        hHint.classList.add("medium");
+      } else if (data[picId].level === 3) {
+        hHint.classList.add("small");
+      }
     })
   }
 
@@ -358,6 +375,11 @@ function createClues (picId) {
     const vHintRow = generateElement("div", "vHintRow", vertHintsPanel);
     vertHints[i].forEach((element) => {
       const vHint = generateElement("div", "vHint", vHintRow, element.toString());
+      if (data[picId].level === 2) {
+        vHint.classList.add("medium");
+      } else if (data[picId].level === 3) {
+        vHint.classList.add("small");
+      }
     })
   }
 }
@@ -369,6 +391,7 @@ function startGame(picId) {
   clearInterval(swInterval);
   stopWatch.textContent = "00:00";
   isSWTimerStarted = false;
+  isWin = false;
   closeModal();
   cleanCells();
   cleanMatrix();
@@ -467,7 +490,12 @@ function addSolution (currIndex)  {
 }
 
 //modal close
-modalButton.addEventListener('click', () => startGame(currentPictureIndex));
+if (isWin) {
+  modalButton.addEventListener('click', () => startGame(currentPictureIndex));
+} else {
+  modalButton.addEventListener('click', () => closeModal());
+}
+
 
 
 //clean matrix
