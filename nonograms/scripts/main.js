@@ -244,16 +244,16 @@ function setCross (cell, crossArr, id) {
 
 //check identity to picture
 function checkCell (cell, checkArr, initArr, id) {
-  if (!cell.classList.contains('black') && !cell.classList.contains('cross')) {
+  if (!cell.classList.contains('black') || cell.classList.contains('cross')) {
+    cell.classList.remove('cross');
     checkArr[id] = 1;
     cell.classList.add('black');
     SOUNDS[5].playbackRate = 7;
     SOUNDS[5].play();
     checkWin(initArr, checkArr);
-  } else if (cell.classList.contains('cross')) {
-    cell.classList.remove('cross');
   } else {
     checkArr[id] = 0;
+    checkWin(initArr, checkArr);
     cell.classList.remove('black');
     SOUNDS[0].playbackRate = 3;
     SOUNDS[0].play();

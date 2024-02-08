@@ -57,8 +57,10 @@ body {
   max-width: 1080px;
 }
 .git-link {
+  z-index: 6;
 }
 .github-mark {
+  z-index: 6;
   width: 50px;
   height: 50px;
   fill: var(--clue);
