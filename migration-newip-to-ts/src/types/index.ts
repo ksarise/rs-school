@@ -1,14 +1,21 @@
 export interface Source {
-  id: string;
+  id: string | null;
   name: string;
 }
 
-export interface News {
+export interface NewsItem {
   urlToImage: string;
   author: string;
-  source: Source;
+  source: Source[];
   publishedAt: string;
   title: string;
   description: string;
   url: string;
+  content: string;
+}
+
+export interface NewsResponse {
+  status: string;
+  totalResults: number;
+  articles: NewsItem[];
 }
