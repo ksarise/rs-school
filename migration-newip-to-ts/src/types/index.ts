@@ -6,7 +6,7 @@ export interface Source {
 export interface NewsItem {
   urlToImage: string;
   author: string;
-  source: Source[];
+  source: Source;
   publishedAt: string;
   title: string;
   description: string;
