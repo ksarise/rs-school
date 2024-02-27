@@ -19,3 +19,9 @@ export interface NewsResponse {
   totalResults: number;
   articles: NewsItem[];
 }
+
+export interface SourceResponse {
+  status: string;
+  totalResults: number;
+  sources: Source[];
+}
