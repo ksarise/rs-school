@@ -1,6 +1,6 @@
 import AppLoader from './appLoader';
-import { NewsResponse, NewsItem } from '../../types/index';
-import { SourceResponse, Source } from '../../types/index';
+import { NewsResponse } from '../../types/index';
+import { SourceResponse } from '../../types/index';
 
 class AppController extends AppLoader {
     getSources(callback: (data: SourceResponse) => void): void {
@@ -13,10 +13,9 @@ class AppController extends AppLoader {
     }
 
     getNews(e: Event, callback: (data: NewsResponse) => void): void {
-        if ((e.target instanceof HTMLElement) && (e.currentTarget instanceof HTMLElement)) {
+        if (e.target instanceof HTMLElement && e.currentTarget instanceof HTMLElement) {
             let target: HTMLElement = e.target;
             const newsContainer: HTMLElement = e.currentTarget;
-            
             while (target !== newsContainer && target) {
                 if (target.classList.contains('source__item')) {
                     const sourceId: string | null = target.getAttribute('data-source-id');
@@ -38,8 +37,8 @@ class AppController extends AppLoader {
                     }
                     return;
                 }
-                if (target.parentNode){
-                    target = target.parentNode as HTMLElement ;
+                if (target.parentNode) {
+                    target = target.parentNode as HTMLElement;
                 }
             }
         }

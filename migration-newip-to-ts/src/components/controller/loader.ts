@@ -3,7 +3,7 @@ enum HTTPMethods {
 }
 
 interface Options {
-    [key: string]: string
+    [key: string]: string;
 }
 
 type Callback<T> = (data: T) => void;
@@ -18,7 +18,7 @@ class Loader {
     }
 
     public getResp<T>(
-        { endpoint, options = {} }: { endpoint: string, options?: Options},
+        { endpoint, options = {} }: { endpoint: string; options?: Options },
         callback: Callback<T> = () => {
             console.error('No callback for GET response');
         }
@@ -47,7 +47,7 @@ class Loader {
         return url.slice(0, -1);
     }
 
-    public load<T>(method: HTTPMethods, endpoint: string, callback: Callback<T> , options = {}) {
+    public load<T>(method: HTTPMethods, endpoint: string, callback: Callback<T>, options = {}) {
         fetch(this.makeUrl(options, endpoint), { method })
             .then(this.errorHandler)
             .then((res) => res.json())
