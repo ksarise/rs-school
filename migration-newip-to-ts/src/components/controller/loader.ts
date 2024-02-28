@@ -6,7 +6,7 @@ interface Options {
     [key: string]: string
 }
 
-type Callback<T> = (data?: T) => void;
+type Callback<T> = (data: T) => void;
 
 class Loader {
     private baseLink: string;
@@ -18,7 +18,7 @@ class Loader {
     }
 
     public getResp<T>(
-        { endpoint, options = {} }: { endpoint: string, options: Options},
+        { endpoint, options = {} }: { endpoint: string, options?: Options},
         callback: Callback<T> = () => {
             console.error('No callback for GET response');
         }
