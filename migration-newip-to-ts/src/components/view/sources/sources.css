@@ -11,9 +11,9 @@
 }
 .sources {
     display: flex;
-
+    justify-content: center;
     flex-wrap: wrap;
-    width: 100%;
+    max-width: 70%;
     max-height: 120px;
     overflow-y: scroll;
     overflow-x: hidden;

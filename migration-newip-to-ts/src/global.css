@@ -19,7 +19,12 @@ header h1 {
     -webkit-text-stroke-width: 1px;
     -webkit-text-stroke-color: gold;
 }
-
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
 .footer {
     height: 100px;
     display: flex;
