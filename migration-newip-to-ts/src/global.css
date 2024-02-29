@@ -13,23 +13,25 @@ header h1 {
     font-weight: 800;
 }
 
-footer {
+.footer {
     height: 100px;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
 }
-footer .copyright {
-    font-size: 14px;
-    color: #333;
-    text-align: center;
+.footer__git {
+    width: 50px;
+    height: 50px;
+    background: url(../public/img/git.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
 }
-footer .copyright a {
-    color: #444;
-}
-footer .copyright a:hover {
-    color: #555;
-}
-footer .copyright:before {
-    content: '©';
+.footer__rss {
+    width: 150px;
+    height: 100px;
+    background: url(../public/img/RS.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
 }
