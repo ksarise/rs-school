@@ -18,6 +18,10 @@ const baseConfig = {
                 test: /\.ts$/i,
                 use: 'ts-loader'
             },
+            {
+                test: /\.png/,
+                type: 'asset/resource'
+            },
         ],
     },
     resolve: {
@@ -26,6 +30,7 @@ const baseConfig = {
     output: {
         filename: 'index.js',
         path: path.resolve(__dirname, './dist'),
+        assetModuleFilename: 'public/img/[hash][ext]',
     },
     plugins: [
         new DotenvWebpackPlugin(),
