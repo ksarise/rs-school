@@ -30,7 +30,9 @@
     background-position: center;
     transition: transform 0.2s;
 }
-
+.place {
+    background-image: url('../../../../public/img/news_placeholder.png');
+}
 .news__item .news__meta-details,
 .news__item .news__meta-details ul {
     margin: auto;
