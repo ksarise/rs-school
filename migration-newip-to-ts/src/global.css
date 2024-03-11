@@ -3,6 +3,9 @@ body {
     background: #222222;
     font-family: sans-serif;
     margin: 20px;
+    display: flex;
+    flex-direction: column;
+    min-height: 95vh;
 }
 
 header {
@@ -24,6 +27,8 @@ main {
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    flex: 1 0 auto;
+    margin-bottom: 100px;
 }
 .footer {
     height: 100px;

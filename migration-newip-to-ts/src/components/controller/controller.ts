@@ -20,8 +20,7 @@ class AppController extends AppLoader {
                 if (target.classList.contains('source__item')) {
                     const sourceId: string | null = target.getAttribute('data-source-id');
                     if (!sourceId) {
-                        console.error('sourceid is null!');
-                        return;
+                        throw new Error('Sourceid is null!');
                     }
                     if (newsContainer.getAttribute('data-source') !== sourceId) {
                         newsContainer.setAttribute('data-source', sourceId);
@@ -37,8 +36,8 @@ class AppController extends AppLoader {
                     }
                     return;
                 }
-                if (target.parentNode) {
-                    target = target.parentNode as HTMLElement;
+                if (target.parentNode && target.parentNode instanceof HTMLElement) {
+                    target = target.parentNode;
                 }
             }
         }
