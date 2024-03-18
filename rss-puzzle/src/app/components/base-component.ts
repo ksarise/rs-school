@@ -29,11 +29,12 @@ export default class BaseComponentGenerator {
     attributes,
   }: ElementProps): HTMLElement {
     const element = document.createElement(tag);
+    this.element = element;
     if (className) {
-      this.element.classList.add(className);
+      element.classList.add(className);
     }
     if (content) {
-      this.element.textContent = content;
+      element.textContent = content;
     }
     if (attributes) {
       Object.keys(attributes).forEach((key) => {
