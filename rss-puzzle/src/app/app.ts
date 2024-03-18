@@ -1,12 +1,12 @@
 import PageWrap from './page-wrap';
-import loginForm from './components/login-form';
+import LoginForm from './components/login-form/form';
 
 const BODY = document.body;
 const pageWrapper = new PageWrap();
-const form = loginForm();
+const form = new LoginForm();
 console.log(pageWrapper);
 export default function app() {
   pageWrapper.cleanWrap();
   BODY.appendChild(pageWrapper.getWrap());
-  pageWrapper.getWrap().appendChild(form);
+  pageWrapper.getWrap().appendChild(form.getForm());
 }

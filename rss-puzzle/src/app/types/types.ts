@@ -3,4 +3,6 @@ export interface ElementProps {
   className?: string | undefined;
   content?: string;
   attributes?: { [key: string]: string };
+  event?: string;
+  eventCallback?: () => void;
 }

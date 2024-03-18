@@ -22,11 +22,21 @@ export default class BaseComponentGenerator {
     if (child) this.element.append(child);
   }
 
+  public appendChildren(
+    children: (HTMLElement | BaseComponentGenerator)[]
+  ): void {
+    children.forEach((child) => {
+      this.appendElement(child);
+    });
+  }
+
   private generateElement({
     tag,
     className,
     content,
     attributes,
+    event,
+    eventCallback,
   }: ElementProps): HTMLElement {
     const element = document.createElement(tag);
     this.element = element;
@@ -40,6 +50,9 @@ export default class BaseComponentGenerator {
       Object.keys(attributes).forEach((key) => {
         element.setAttribute(key, attributes[key]);
       });
+    }
+    if (event && eventCallback) {
+      element.addEventListener(event, eventCallback);
     }
     return element;
   }
