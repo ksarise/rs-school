@@ -1,6 +1,7 @@
 import BaseComponentGenerator from '../base-component';
 import NameBlock from './name-blocks';
 import ButtonElement from '../button';
+import FormSubmit from './form-submit';
 
 export default class LoginForm {
   private form: HTMLFormElement;
@@ -25,11 +26,19 @@ export default class LoginForm {
     );
 
     this.loginBtn = new ButtonElement('loginBtn', 'Login', () => {});
+    console.log(this.loginBtn);
     formGen.appendChildren([
       this.firstNameBlock.getBlock(),
       this.lastNameBlock.getBlock(),
       this.loginBtn.getButton(),
     ]);
+    this.form.addEventListener('submit', (event: Event) =>
+      FormSubmit(
+        event,
+        this.firstNameBlock.NameInput.getElement().value,
+        this.lastNameBlock.NameInput.getElement().value
+      )
+    );
   }
 
   public getForm(): HTMLElement {

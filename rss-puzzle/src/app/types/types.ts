@@ -4,6 +4,6 @@ export interface ElementProps {
   content?: string;
   attributes?: { [key: string]: string };
   event?: string;
-  eventCallback?: () => void;
+  eventCallback?: (event: Event) => void;
   nameLength?: number;
 }
