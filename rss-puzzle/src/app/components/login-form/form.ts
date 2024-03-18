@@ -5,6 +5,10 @@ import ButtonElement from '../button';
 export default class LoginForm {
   private form: HTMLFormElement;
 
+  private firstNameBlock: NameBlock;
+
+  private lastNameBlock: NameBlock;
+
   private loginBtn: ButtonElement;
 
   constructor() {
@@ -13,20 +17,29 @@ export default class LoginForm {
       className: 'loginForm',
     });
     this.form = formGen.getElement() as HTMLFormElement;
-    const firstNameBlock = new NameBlock('firstName', 'First Name');
-    const lastNameBlock = new NameBlock('lastName', 'Last Name');
-    this.loginBtn = new ButtonElement('loginBtn', 'Login', () => {
-      console.log('Button click');
-    });
+    this.firstNameBlock = new NameBlock('firstName', 'First Name', 3, () =>
+      this.unblockButton()
+    );
+    this.lastNameBlock = new NameBlock('lastName', 'Last Name', 4, () =>
+      this.unblockButton()
+    );
 
+    this.loginBtn = new ButtonElement('loginBtn', 'Login', () => {});
     formGen.appendChildren([
-      firstNameBlock.getBlock(),
-      lastNameBlock.getBlock(),
+      this.firstNameBlock.getBlock(),
+      this.lastNameBlock.getBlock(),
       this.loginBtn.getButton(),
     ]);
   }
 
   public getForm(): HTMLElement {
     return this.form;
+  }
+
+  public unblockButton() {
+    this.loginBtn.getButton().disabled = !(
+      this.firstNameBlock.getBlock().classList.contains('valid') &&
+      this.lastNameBlock.getBlock().classList.contains('valid')
+    );
   }
 }

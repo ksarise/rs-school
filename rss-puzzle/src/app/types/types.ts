@@ -5,4 +5,5 @@ export interface ElementProps {
   attributes?: { [key: string]: string };
   event?: string;
   eventCallback?: () => void;
+  nameLength?: number;
 }
