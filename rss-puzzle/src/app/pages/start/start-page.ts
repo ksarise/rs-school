@@ -1,7 +1,8 @@
-import BaseComponentGenerator from '../../base-component';
-import ButtonElement from '../../button';
+/* eslint-disable import/no-cycle */
+import BaseComponentGenerator from '../../components/base-component';
 import descText from './description';
 import getGreeting from './greeting';
+import startBtn from './start-btn';
 
 export default class StartPage {
   private start: HTMLElement;
@@ -31,12 +32,7 @@ export default class StartPage {
       className: 'start-description',
       content: descText,
     });
-    const startBtn = new ButtonElement(
-      'start-btn',
-      'Start',
-      { type: 'button' },
-      () => {}
-    );
+
     startGen.appendChildren([
       startGreeting.getElement(),
       startWelcome.getElement(),

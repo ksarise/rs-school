@@ -1,4 +1,4 @@
-import BaseComponentGenerator from '../../base-component';
+import BaseComponentGenerator from '../../components/base-component';
 import InputField from './input-field';
 import LabelElement from './label';
 import Validator from './validation';

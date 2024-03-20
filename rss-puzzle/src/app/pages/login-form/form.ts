@@ -1,7 +1,7 @@
 /* eslint-disable import/no-cycle */
-import BaseComponentGenerator from '../../base-component';
+import BaseComponentGenerator from '../../components/base-component';
 import NameBlock from './name-blocks';
-import ButtonElement from '../../button';
+import ButtonElement from '../../components/button';
 import FormSubmit from './submitHandler';
 
 export default class LoginForm {

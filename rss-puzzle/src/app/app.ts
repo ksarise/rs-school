@@ -1,15 +1,15 @@
 /* eslint-disable import/no-cycle */
 import PageWrap from './page-wrap';
-import LoginForm from './components/pages/login-form/form';
+import LoginForm from './pages/login-form/form';
 import Header from './components/header';
-import StartPage from './components/pages/start/start-page';
+import StartPage from './pages/start/start-page';
 
 const BODY = document.body;
-const pageWrapper = new PageWrap();
+export const pageWrapper = new PageWrap();
+BODY.appendChild(pageWrapper.getWrap());
 
 export default function app() {
   pageWrapper.cleanWrap();
-  BODY.appendChild(pageWrapper.getWrap());
   if (localStorage.getItem('ksarisePuzzleSession')) {
     pageWrapper.cleanWrap();
     const header = new Header();

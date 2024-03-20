@@ -1,4 +1,4 @@
-import BaseComponentGenerator from '../../base-component';
+import BaseComponentGenerator from '../../components/base-component';
 
 export default class LabelElement {
   private label: HTMLLabelElement;
