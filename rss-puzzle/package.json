@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
+    "deploy": "npm run build && npx gh-pages -d dist -e rss-puzzle",
     "preview": "vite preview",
     "lint": "npx eslint src",
     "lint:fix": "npx eslint src --fix --max-warnings 0",
@@ -44,6 +45,7 @@
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [
+      "npm run format",
       "npm run lint:fix",
       "git add"
     ]
