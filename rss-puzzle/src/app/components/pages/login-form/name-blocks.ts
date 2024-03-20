@@ -1,4 +1,4 @@
-import BaseComponentGenerator from '../base-component';
+import BaseComponentGenerator from '../../base-component';
 import InputField from './input-field';
 import LabelElement from './label';
 import Validator from './validation';
@@ -31,7 +31,10 @@ export default class NameBlock {
     this.NameInput = new InputField(`${className.trim()}Input`, () =>
       this.validateForm(this.NameInput.getElement().value, nameLength)
     );
-    this.errorInput = new BaseComponentGenerator({ tag: 'span' }).getElement();
+    this.errorInput = new BaseComponentGenerator({
+      tag: 'span',
+      className: 'inputError',
+    }).getElement();
     blockGen.appendChildren([
       this.NameLabel.getLabel(),
       this.NameInput.getElement(),

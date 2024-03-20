@@ -1,4 +1,4 @@
-import BaseComponentGenerator from '../base-component';
+import BaseComponentGenerator from '../../base-component';
 
 export default class InputField {
   private inputField: HTMLInputElement;

@@ -4,3 +4,5 @@ dist
 coverage
 public
 node_modules
+tsconfig.json
+.eslintrc.cjs
