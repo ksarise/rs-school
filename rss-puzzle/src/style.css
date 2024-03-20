@@ -79,11 +79,19 @@ button {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 30px;
+  gap: 20px;
   max-width: 40rem;
   background-color: rgba(193, 200, 206, 0.853);
   border-radius: 20px;
   padding: 2rem;
+}
+.start-greeting {
+  border-bottom: 3px solid rgba(223, 111, 144, 0.767);
+  font-style: italic;
+}
+.start-welcome {
+  font-size: 1.5rem;
+  font-weight: 700;
 }
 .start-description {
   font-size: 1.1rem;
