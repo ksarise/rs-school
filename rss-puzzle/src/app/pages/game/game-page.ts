@@ -1,11 +1,12 @@
 import BaseComponentGenerator from '../../components/base-component';
+import Words from './word-cards';
 
 export default class GamePage {
   private gamePage: HTMLElement;
 
   constructor() {
     const gamePageGen = new BaseComponentGenerator({
-      tag: 'div',
+      tag: 'main',
       className: 'game-page',
     });
     const gamePageTitle = new BaseComponentGenerator({
@@ -13,7 +14,23 @@ export default class GamePage {
       className: 'game-title',
       content: 'Main Game Page',
     });
-    gamePageGen.appendElement(gamePageTitle);
+    const playgroundBlock = new BaseComponentGenerator({
+      tag: 'div',
+      className: 'playground-block',
+    });
+    const sourceBlock = new BaseComponentGenerator({
+      tag: 'div',
+      className: 'source-block',
+    });
+    const wordsGen = new Words(
+      'Design Main Game Page with',
+      sourceBlock.getElement()
+    );
+    wordsGen.renderWords(
+      sourceBlock.getElement(),
+      playgroundBlock.getElement()
+    );
+    gamePageGen.appendChildren([gamePageTitle, playgroundBlock, sourceBlock]);
     this.gamePage = gamePageGen.getElement() as HTMLElement;
   }
 
