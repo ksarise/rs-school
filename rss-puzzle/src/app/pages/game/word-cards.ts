@@ -1,5 +1,6 @@
 import BaseComponentGenerator from '../../components/base-component';
 import shuffle from '../../utils/shuffle';
+import dynamicPropSize from './CardSize';
 
 function ClickCard(
   element: HTMLElement,
@@ -29,6 +30,7 @@ export default class Words {
         className: `word`,
         content: item,
       }).getElement();
+      word.style.width = dynamicPropSize(words, item);
       ClickCard(word, source, target);
       this.wordContainer.appendChild(word);
     });

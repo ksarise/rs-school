@@ -23,7 +23,7 @@ export default class GamePage {
       className: 'source-block',
     });
     const wordsGen = new Words(
-      'Design Main Game Page with',
+      'The students agree they have too much homework',
       sourceBlock.getElement()
     );
     wordsGen.renderWords(
