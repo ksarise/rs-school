@@ -125,8 +125,6 @@ button {
   height: 300px;
   width: inherit;
   background-color: aliceblue;
-  padding: 1rem;
-  gap: 1rem;
 }
 .source-block {
   display: flex;
@@ -136,6 +134,14 @@ button {
   width: inherit;
   background-color: aliceblue;
 }
+@keyframes wordDissapear {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
 .word {
   display: flex;
   justify-content: center;
@@ -143,4 +149,11 @@ button {
   height: 2rem;
   border: 1px solid black;
   padding: 1rem;
+  transition: 0.5s ease-in-out;
+  animation: wordDissapear 0.4s linear;
+}
+.word:hover {
+  transition: 0.3s ease-in-out;
+  transform: scale(102%);
+  border: 4px dotted rgba(223, 111, 144, 0.767);
 }

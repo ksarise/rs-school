@@ -1,17 +1,8 @@
 import BaseComponentGenerator from '../../components/base-component';
 import shuffle from '../../utils/shuffle';
 import dynamicPropSize from './CardSize';
+import ClickCard from './WordCardController';
 
-function ClickCard(
-  element: HTMLElement,
-  source: HTMLElement,
-  target: HTMLElement
-) {
-  element.addEventListener('click', () => {
-    source.removeChild(element);
-    target.appendChild(element);
-  });
-}
 export default class Words {
   private sentence: string;
 
