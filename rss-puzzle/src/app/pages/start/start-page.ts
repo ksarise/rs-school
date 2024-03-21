@@ -15,7 +15,7 @@ export default class StartPage {
     const startGreeting = new BaseComponentGenerator({
       tag: 'h2',
       className: 'start-greeting',
-      content: getGreeting,
+      content: getGreeting(),
     });
     const startWelcome = new BaseComponentGenerator({
       tag: 'p',
