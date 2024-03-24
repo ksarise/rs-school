@@ -25,3 +25,5 @@ export interface SourceResponse {
   totalResults: number;
   sources: Source[];
 }
+
+export type Callback = (data: SourceResponse | NewsResponse) => void;

@@ -1,3 +1,5 @@
+import { Callback, NewsResponse, SourceResponse } from '../../types/index';
+
 enum HTTPMethods {
     GET = 'GET',
 }
@@ -5,8 +7,6 @@ enum HTTPMethods {
 interface Options {
     [key: string]: string;
 }
-
-type Callback<T> = (data: T) => void;
 
 class Loader {
     private baseLink: string;
@@ -17,13 +17,13 @@ class Loader {
         this.options = options;
     }
 
-    public getResp<T>(
+    public getResp(
         { endpoint, options = {} }: { endpoint: string; options?: Options },
-        callback: Callback<T> = () => {
+        callback: Callback = () => {
             console.error('No callback for GET response');
         }
     ) {
-        this.load<T>(HTTPMethods.GET, endpoint, callback, options);
+        this.load(HTTPMethods.GET, endpoint, callback, options);
     }
 
     private errorHandler(res: Response) {
@@ -47,11 +47,19 @@ class Loader {
         return url.slice(0, -1);
     }
 
-    public load<T>(method: HTTPMethods, endpoint: string, callback: Callback<T>, options = {}) {
+    public load(method: HTTPMethods, endpoint: string, callback: Callback, options = {}) {
         fetch(this.makeUrl(options, endpoint), { method })
             .then(this.errorHandler)
             .then((res) => res.json())
-            .then((data) => callback(data))
+            .then((data) => {
+                if ('articles' in data) {
+                    callback(data as NewsResponse);
+                } else if ('sources' in data) {
+                    callback(data as SourceResponse);
+                } else {
+                    throw new Error('Invalid response data');
+                }
+            })
             .catch((err) => console.error(err));
     }
 }

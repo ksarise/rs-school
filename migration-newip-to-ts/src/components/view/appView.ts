@@ -11,14 +11,24 @@ export class AppView {
         this.sources = new Sources();
     }
 
-    drawNews(data: NewsResponse) {
-        // const values = data?.articles ? data?.articles : [];
-        this.news.draw(data);
+    drawNews(data: NewsResponse | SourceResponse): void {
+        if ('articles' in data) {
+            this.news.draw(data as NewsResponse);
+        } else if ('sources' in data) {
+            this.sources.draw(data as SourceResponse);
+        } else {
+            throw new Error('Invalid response data');
+        }
     }
 
-    drawSources(data: SourceResponse) {
-        // const values = data?.sources ? data?.sources : [];
-        this.sources.draw(data);
+    drawSources(data: NewsResponse | SourceResponse): void {
+        if ('articles' in data) {
+            this.news.draw(data as NewsResponse);
+        } else if ('sources' in data) {
+            this.sources.draw(data as SourceResponse);
+        } else {
+            throw new Error('Invalid response data');
+        }
     }
 }
 
