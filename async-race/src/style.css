@@ -1,1 +1,37 @@
 @import './../node_modules/modern-normalize/modern-normalize.css';
+
+.nav_list {
+  display: flex;
+  list-style: none;
+  gap: 20px;
+}
+.nav_link {
+  border: 1px solid black;
+  border-radius: 20px;
+  padding: 5px;
+  text-decoration: none;
+}
+.hidden {
+  display: none;
+}
+.garage_toolbox > * {
+  display: flex;
+}
+.garage_toolbox_btns {
+  gap: 1rem;
+}
+.winners_title {
+}
+table,
+th,
+td {
+  border: 1px solid;
+}
+.winners_table_th {
+  padding: 5px;
+  min-width: 100px;
+  background-color: coral;
+}
+.pageBtns {
+  margin-top: 5rem;
+}

@@ -28,11 +28,16 @@ module.exports = {
     sourceType: "module",
     project: "./tsconfig.json",
     "@typescript-eslint/no-explicit-any": 2,
-    "no-console": "off",
-    "no-cycle": "off",
   },
   plugins: ["prettier", "import", "@typescript-eslint"],
-  rules: { "no-console": 0 },
+  rules: { 
+    "no-console": 0 ,
+    "prettier/prettier": [
+    "error",
+    {
+      "endOfLine": "auto"
+    }
+  ]},
   settings: {
     "import/resolver": {
       typescript: true,
