@@ -1,1 +1,71 @@
 @import './../node_modules/modern-normalize/modern-normalize.css';
+@import url('https://fonts.googleapis.com/css2?family=Gudea:ital,wght@0,400;0,700;1,400&family=Lexend+Peta:wght@100..900&display=swap');
+
+html {
+  font-family: 'Gudea', sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+button {
+  cursor: pointer;
+}
+.page-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background-color: lightblue;
+  background-attachment: fixed;
+  background-origin: border-box;
+  background-position: center;
+  background-size: cover;
+}
+.loginForm {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  background-color: rgba(193, 200, 206, 0.853);
+  border-radius: 20px;
+}
+.firstName,
+.password {
+  display: flex;
+  flex-direction: column;
+  width: 250px;
+  height: 50px;
+  margin: 20px;
+}
+.firstNameLabel,
+.passwordLabel {
+  font-size: 1.2rem;
+  margin-bottom: 5px;
+}
+.firstNameInput,
+.passwordInput {
+  border-radius: 10px;
+  min-width: 12rem;
+  height: 3em;
+  padding: 0 1rem;
+}
+.inputError {
+  margin-top: 0.1rem;
+  font-size: small;
+  font-weight: 800;
+  color: red;
+}
+.loginBtn,
+.aboutBtn,
+.backBtn {
+  margin-top: 20px;
+  width: 100px;
+  height: 40px;
+  border-radius: 20px;
+  transition: 0.5s ease-in-out;
+}
+.loginBtn:enabled {
+  transition: 0.5s ease-in-out;
+  transform: scale(105%);
+}
