@@ -1,5 +1,6 @@
 import BaseComponentGenerator from '../../components/base-component';
 import ButtonElement from '../../components/button';
+import LogoutHandler from './logoutHandler';
 
 export default class MainPage {
   private main: HTMLElement;
@@ -10,7 +11,10 @@ export default class MainPage {
 
   private username: string = '';
 
-  constructor() {
+  socket: WebSocket;
+
+  constructor(socket: WebSocket) {
+    this.socket = socket;
     const mainGen = new BaseComponentGenerator({
       tag: 'div',
       className: 'main',
@@ -42,6 +46,11 @@ export default class MainPage {
       { type: 'button' },
       () => {}
     );
+    this.logoutBtn
+      .getButton()
+      .addEventListener('click', (event: Event) =>
+        LogoutHandler(event, this.socket)
+      );
     const footerGen = new BaseComponentGenerator({
       tag: 'footer',
       className: 'footer',

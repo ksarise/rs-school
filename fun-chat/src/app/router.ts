@@ -56,10 +56,7 @@ export default class Router {
         case 'backBtn':
           this.changeUrl(this.prevUrl);
           break;
-        case 'logoutBtn':
-          sessionStorage.clear();
-          this.changeUrl('/');
-          break;
+
         default:
           break;
       }
@@ -98,7 +95,7 @@ export default class Router {
 
   renderMain() {
     this.pageWrap.cleanWrap();
-    const mainPage = new MainPage();
+    const mainPage = new MainPage(this.socket);
     this.pageWrap.getWrap().appendChild(mainPage.getMain());
     this.root.appendChild(this.pageWrap.getWrap());
   }
@@ -123,10 +120,7 @@ export default class Router {
     switch (data.type) {
       case RequestTypes.USER_LOGIN:
         if (data.payload.user && data.payload.user.isLogined) {
-          sessionStorage.setItem(
-            'ksariseUser',
-            JSON.stringify(data.payload.user)
-          );
+          console.log(data.payload.user);
           console.log('Authentication successful');
           this.changeUrl('/main');
         }
@@ -138,6 +132,10 @@ export default class Router {
           document.querySelectorAll('.inputError')[0].textContent =
             data.payload.error;
         }
+        break;
+      case RequestTypes.USER_LOGOUT:
+        sessionStorage.clear();
+        this.changeUrl('/');
         break;
       default:
         break;
