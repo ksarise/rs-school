@@ -1,0 +1,13 @@
+.about {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid;
+  border-radius: 5px;
+  min-width: 300px;
+  position: relative;
+  background-color: aliceblue;
+  width: 50%;
+  padding: 0.5rem;
+  gap: 10px;
+}
