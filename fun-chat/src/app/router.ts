@@ -49,6 +49,10 @@ export default class Router {
           this.prevUrl = this.url;
           this.changeUrl('/main');
           break;
+        case 'logoutBtn':
+          sessionStorage.clear();
+          this.changeUrl('/');
+          break;
         default:
           break;
       }
