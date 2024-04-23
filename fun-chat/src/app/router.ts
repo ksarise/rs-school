@@ -1,4 +1,5 @@
 import AboutPage from './pages/about/about';
+import MainPage from './pages/main/main';
 import LoginForm from './pages/login-form/form';
 import PageWrap from './page-wrap';
 import { Routes } from './types/types';
@@ -26,6 +27,7 @@ export default class Router {
     this.routes = {
       '/': () => this.renderLogin(),
       '/about': () => this.renderAbout(),
+      '/main': () => this.renderMain(),
     };
     this.routeButtons();
     window.addEventListener('popstate', () => this.render());
@@ -43,6 +45,10 @@ export default class Router {
         case 'backBtn':
           this.changeUrl(this.prevUrl);
           break;
+        case 'loginBtn':
+          this.prevUrl = this.url;
+          this.changeUrl('/main');
+          break;
         default:
           break;
       }
@@ -58,7 +64,11 @@ export default class Router {
   render() {
     const path = window.location.pathname;
     this.url = path;
-    this.routes[path]();
+    if (path === '/main' && !sessionStorage.getItem('ksariseUser')) {
+      this.changeUrl('/');
+    } else {
+      this.routes[path]();
+    }
   }
 
   renderLogin() {
@@ -72,6 +82,13 @@ export default class Router {
     this.pageWrap.cleanWrap();
     const aboutPage = new AboutPage();
     this.pageWrap.getWrap().appendChild(aboutPage.getAbout());
+    this.root.appendChild(this.pageWrap.getWrap());
+  }
+
+  renderMain() {
+    this.pageWrap.cleanWrap();
+    const mainPage = new MainPage();
+    this.pageWrap.getWrap().appendChild(mainPage.getMain());
     this.root.appendChild(this.pageWrap.getWrap());
   }
 }

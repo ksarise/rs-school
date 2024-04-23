@@ -15,6 +15,8 @@ export default function Validator(value: string, validType: string): string {
       message = `Minimum 4 letters`;
     } else if (!/^(?=.*[a-z])(?=.*[A-Z])/.test(value)) {
       message = 'You must use at least one lowercase and one uppercase letter';
+    } else {
+      message = 'ok';
     }
   }
   return message;

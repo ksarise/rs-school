@@ -8,7 +8,7 @@ export default class LoginForm {
 
   private firstNameBlock: NameBlock;
 
-  private lastNameBlock: NameBlock;
+  private passwordBlock: NameBlock;
 
   private loginBtn: ButtonElement;
 
@@ -23,14 +23,14 @@ export default class LoginForm {
     this.firstNameBlock = new NameBlock('firstName', 'Name', 'text', () =>
       this.unblockButton()
     );
-    this.lastNameBlock = new NameBlock('password', 'Password', 'password', () =>
+    this.passwordBlock = new NameBlock('password', 'Password', 'password', () =>
       this.unblockButton()
     );
 
     this.loginBtn = new ButtonElement(
       'loginBtn',
       'Login',
-      { disabled: 'true', type: 'submit' },
+      { disabled: 'true', type: 'button' },
       () => {}
     );
     this.aboutBtn = new ButtonElement(
@@ -42,7 +42,7 @@ export default class LoginForm {
     console.log(this.loginBtn);
     formGen.appendChildren([
       this.firstNameBlock.getBlock(),
-      this.lastNameBlock.getBlock(),
+      this.passwordBlock.getBlock(),
       this.loginBtn.getButton(),
       this.aboutBtn.getButton(),
     ]);
@@ -51,10 +51,10 @@ export default class LoginForm {
       FormSubmit(
         event,
         this.firstNameBlock.NameInput.getElement().value,
-        this.lastNameBlock.NameInput.getElement().value
+        this.passwordBlock.NameInput.getElement().value
       );
     };
-    this.form.addEventListener('submit', handleFormSubmission);
+    this.form.addEventListener('click', handleFormSubmission);
     this.form.addEventListener('keypress', (event) => {
       if (event.key === 'Enter') {
         handleFormSubmission(event);
@@ -69,7 +69,7 @@ export default class LoginForm {
   public unblockButton() {
     this.loginBtn.getButton().disabled = !(
       this.firstNameBlock.getBlock().classList.contains('valid') &&
-      this.lastNameBlock.getBlock().classList.contains('valid')
+      this.passwordBlock.getBlock().classList.contains('valid')
     );
   }
 }
