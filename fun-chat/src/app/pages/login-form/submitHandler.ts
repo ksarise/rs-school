@@ -1,10 +1,22 @@
+import RequestTypes from '../../types/requests';
+
 export default function FormSubmit(
   event: Event,
   firstName: string,
-  password: string
+  password: string,
+  socket: WebSocket
 ) {
   event.preventDefault();
-  const data = { name: firstName, surname: password };
-  sessionStorage.setItem('ksariseUser', JSON.stringify(data));
-  console.log('suc');
+  const authPayload = {
+    user: {
+      login: firstName,
+      password,
+    },
+  };
+  const message = {
+    id: Math.random().toString(),
+    type: RequestTypes.USER_LOGIN,
+    payload: authPayload,
+  };
+  socket.send(JSON.stringify(message));
 }

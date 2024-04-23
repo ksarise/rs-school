@@ -2,7 +2,10 @@ import AboutPage from './pages/about/about';
 import MainPage from './pages/main/main';
 import LoginForm from './pages/login-form/form';
 import PageWrap from './page-wrap';
-import { Routes } from './types/types';
+import { Routes, ResponseData } from './types/types';
+import RequestTypes from './types/requests';
+
+const WEBSOCKET_URL = 'ws://127.0.0.1:4000';
 
 export default class Router {
   private routes: Routes;
@@ -11,32 +14,40 @@ export default class Router {
 
   private pageWrap: PageWrap;
 
-  prevUrl: string;
+  private prevUrl: string;
 
-  url: string;
+  private url: string;
+
+  private socket: WebSocket;
 
   constructor(root: HTMLElement) {
     this.root = root;
     this.pageWrap = new PageWrap();
     this.routes = {};
+    this.socket = new WebSocket(WEBSOCKET_URL);
     this.url = '';
     this.prevUrl = '';
   }
 
   initialize() {
+    this.setupRoutes();
+    this.routeButtons();
+    window.addEventListener('popstate', () => this.render());
+    this.render();
+    this.setupWebSocket();
+  }
+
+  private setupRoutes() {
     this.routes = {
       '/': () => this.renderLogin(),
       '/about': () => this.renderAbout(),
       '/main': () => this.renderMain(),
     };
-    this.routeButtons();
-    window.addEventListener('popstate', () => this.render());
-    this.render();
   }
 
-  routeButtons() {
+  private routeButtons() {
     document.addEventListener('click', (e) => {
-      const routeButton = e.target as HTMLButtonElement;
+      const routeButton = e.target as HTMLElement;
       switch (routeButton.className) {
         case 'aboutBtn':
           this.prevUrl = this.url;
@@ -44,10 +55,6 @@ export default class Router {
           break;
         case 'backBtn':
           this.changeUrl(this.prevUrl);
-          break;
-        case 'loginBtn':
-          this.prevUrl = this.url;
-          this.changeUrl('/main');
           break;
         case 'logoutBtn':
           sessionStorage.clear();
@@ -59,13 +66,13 @@ export default class Router {
     });
   }
 
-  changeUrl(newUrl: string) {
+  private changeUrl(newUrl: string) {
     this.url = newUrl;
     window.history.pushState({ path: this.url }, '', this.url);
     this.render();
   }
 
-  render() {
+  private render() {
     const path = window.location.pathname;
     this.url = path;
     if (path === '/main' && !sessionStorage.getItem('ksariseUser')) {
@@ -77,7 +84,7 @@ export default class Router {
 
   renderLogin() {
     this.pageWrap.cleanWrap();
-    const loginForm = new LoginForm();
+    const loginForm = new LoginForm(this.socket);
     this.pageWrap.getWrap().appendChild(loginForm.getForm());
     this.root.appendChild(this.pageWrap.getWrap());
   }
@@ -94,5 +101,46 @@ export default class Router {
     const mainPage = new MainPage();
     this.pageWrap.getWrap().appendChild(mainPage.getMain());
     this.root.appendChild(this.pageWrap.getWrap());
+  }
+
+  private setupWebSocket() {
+    this.socket.addEventListener('message', (event) => {
+      try {
+        const data = JSON.parse(event.data);
+        console.log(data);
+        this.handleWebSocketMessage(data);
+      } catch (error) {
+        console.error('Error parsing WebSocket message:', error);
+      }
+    });
+
+    this.socket.addEventListener('error', (error) => {
+      console.error('WebSocket error:', error);
+    });
+  }
+
+  private handleWebSocketMessage(data: ResponseData) {
+    switch (data.type) {
+      case RequestTypes.USER_LOGIN:
+        if (data.payload.user && data.payload.user.isLogined) {
+          sessionStorage.setItem(
+            'ksariseUser',
+            JSON.stringify(data.payload.user)
+          );
+          console.log('Authentication successful');
+          this.changeUrl('/main');
+        }
+        break;
+      case RequestTypes.ERROR:
+        console.log(data.payload.error);
+        document.querySelectorAll('.inputError');
+        if (document.querySelectorAll('.inputError') && data.payload.error) {
+          document.querySelectorAll('.inputError')[0].textContent =
+            data.payload.error;
+        }
+        break;
+      default:
+        break;
+    }
   }
 }

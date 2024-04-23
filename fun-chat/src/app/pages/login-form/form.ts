@@ -14,7 +14,10 @@ export default class LoginForm {
 
   private aboutBtn: ButtonElement;
 
-  constructor() {
+  socket: WebSocket;
+
+  constructor(socket: WebSocket) {
+    this.socket = socket;
     const formGen = new BaseComponentGenerator({
       tag: 'form',
       className: 'loginForm',
@@ -39,25 +42,18 @@ export default class LoginForm {
       { type: 'button' },
       () => {}
     );
-    console.log(this.loginBtn);
     formGen.appendChildren([
       this.firstNameBlock.getBlock(),
       this.passwordBlock.getBlock(),
       this.loginBtn.getButton(),
       this.aboutBtn.getButton(),
     ]);
-    const handleFormSubmission = (event: Event) => {
-      event.preventDefault();
-      FormSubmit(
-        event,
-        this.firstNameBlock.NameInput.getElement().value,
-        this.passwordBlock.NameInput.getElement().value
-      );
-    };
-    this.form.addEventListener('click', handleFormSubmission);
+    this.loginBtn
+      .getButton()
+      .addEventListener('click', this.handleFormSubmission.bind(this));
     this.form.addEventListener('keypress', (event) => {
       if (event.key === 'Enter') {
-        handleFormSubmission(event);
+        this.handleFormSubmission(event);
       }
     });
   }
@@ -71,5 +67,23 @@ export default class LoginForm {
       this.firstNameBlock.getBlock().classList.contains('valid') &&
       this.passwordBlock.getBlock().classList.contains('valid')
     );
+  }
+
+  private handleFormSubmission(event: Event) {
+    event.preventDefault();
+    const firstNameValid = this.firstNameBlock
+      .getBlock()
+      .classList.contains('valid');
+    const passwordValid = this.passwordBlock
+      .getBlock()
+      .classList.contains('valid');
+    if (firstNameValid && passwordValid) {
+      FormSubmit(
+        event,
+        this.firstNameBlock.NameInput.getElement().value,
+        this.passwordBlock.NameInput.getElement().value,
+        this.socket
+      );
+    }
   }
 }

@@ -7,7 +7,7 @@ export default class InputField {
     const inputGen = new BaseComponentGenerator({
       tag: 'input',
       className,
-      attributes: { required: '' },
+      attributes: { required: '', autocomplete: 'on' },
       event: 'input',
       type,
       eventCallback,

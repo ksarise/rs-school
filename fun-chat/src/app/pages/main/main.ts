@@ -78,7 +78,7 @@ export default class MainPage {
     const data = sessionStorage.getItem('ksariseUser');
     if (data) {
       const sessionData = JSON.parse(data);
-      this.username = sessionData.name;
+      this.username = sessionData.login;
     }
   }
 
