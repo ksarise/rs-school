@@ -42,13 +42,34 @@ export default class MainPage {
       { type: 'button' },
       () => {}
     );
+    const footerGen = new BaseComponentGenerator({
+      tag: 'footer',
+      className: 'footer',
+    });
+    const rssLogoGen = new BaseComponentGenerator({
+      tag: 'h3',
+      className: 'rss-logo',
+      content: 'RSSchool',
+    });
+    const githubGen = new BaseComponentGenerator({
+      tag: 'a',
+      className: 'github',
+      content: 'Ksarise',
+    });
+    githubGen.getElement().setAttribute('href', 'https://github.com/ksarise');
+    const yearGen = new BaseComponentGenerator({
+      tag: 'p',
+      className: 'year',
+      content: '2024',
+    });
+    footerGen.appendChildren([rssLogoGen, githubGen, yearGen]);
     headerGen.appendChildren([
       usernameGen,
       titleGen,
       this.aboutBtn.getButton(),
       this.logoutBtn.getButton(),
     ]);
-    mainGen.appendChildren([headerGen]);
+    mainGen.appendChildren([headerGen, footerGen]);
 
     this.main = mainGen.getElement() as HTMLElement;
   }
