@@ -20,24 +20,27 @@ export default class LoginForm {
     this.socket = socket;
     const formGen = new BaseComponentGenerator({
       tag: 'form',
-      className: 'loginForm',
+      classNames: ['loginForm'],
     });
     this.form = formGen.getElement() as HTMLFormElement;
-    this.firstNameBlock = new NameBlock('firstName', 'Name', 'text', () =>
+    this.firstNameBlock = new NameBlock(['firstName'], 'Name', 'text', () =>
       this.unblockButton()
     );
-    this.passwordBlock = new NameBlock('password', 'Password', 'password', () =>
-      this.unblockButton()
+    this.passwordBlock = new NameBlock(
+      ['password'],
+      'Password',
+      'password',
+      () => this.unblockButton()
     );
 
     this.loginBtn = new ButtonElement(
-      'loginBtn',
+      ['loginBtn'],
       'Login',
       { disabled: 'true', type: 'button' },
       () => {}
     );
     this.aboutBtn = new ButtonElement(
-      'aboutBtn',
+      ['aboutBtn'],
       'About',
       { type: 'button' },
       () => {}

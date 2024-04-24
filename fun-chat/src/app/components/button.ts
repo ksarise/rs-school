@@ -4,14 +4,14 @@ export default class ButtonElement {
   private button: HTMLButtonElement;
 
   constructor(
-    className: string,
+    classNames: string[],
     content: string,
     attributes: { [key: string]: string },
     eventCallback: (event: Event) => void
   ) {
     const buttonGen = new BaseComponentGenerator({
       tag: 'button',
-      className,
+      classNames,
       content,
       attributes,
       event: 'click',

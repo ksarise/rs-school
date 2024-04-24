@@ -70,6 +70,11 @@ button {
   transition: 0.5s ease-in-out;
   transform: scale(105%);
 }
+.main {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
 .header,
 .footer {
   display: flex;
@@ -77,8 +82,45 @@ button {
   align-items: center;
   box-sizing: border-box;
   border: 1px solid black;
-  border-radius: 10px;
+  border-radius: 5px;
   background-color: aliceblue;
   justify-content: space-around;
   min-width: 500px;
+}
+.userlist {
+  display: flex;
+  box-sizing: border-box;
+  flex-direction: column;
+  min-height: 350px;
+  justify-content: flex-start;
+  padding: 0.5rem;
+  width: 40%;
+  border: 1px solid black;
+  border-radius: 5px;
+  background-color: aliceblue;
+  overflow-y: scroll;
+  height: 300px;
+}
+.user {
+  margin-left: 20px;
+  position: relative;
+}
+
+.user::before {
+  content: '';
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  position: absolute;
+  left: -20px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.user.active::before {
+  background-color: green;
+}
+
+.user.inactive::before {
+  background-color: red;
 }

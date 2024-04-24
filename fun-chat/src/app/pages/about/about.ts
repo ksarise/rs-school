@@ -12,26 +12,26 @@ export default class AboutPage {
   constructor() {
     const aboutGen = new BaseComponentGenerator({
       tag: 'div',
-      className: 'about',
+      classNames: ['about'],
     });
     const aboutTitleGen = new BaseComponentGenerator({
       tag: 'h2',
-      className: 'about__title',
+      classNames: ['about__title'],
       content: 'Fun-chat',
     });
     const aboutInfoGen = new BaseComponentGenerator({
       tag: 'p',
-      className: 'about__info',
+      classNames: ['about__info'],
       content: aboutInfo,
     });
     const aboutAuthorGen = new BaseComponentGenerator({
       tag: 'a',
-      className: 'about__author',
+      classNames: ['about__author'],
       content: 'Sergey Kravchenko',
       attributes: { href: 'https://github.com/ksarise' },
     });
     this.backBtn = new ButtonElement(
-      'backBtn',
+      ['backBtn'],
       'Back',
       { type: 'button' },
       () => {}

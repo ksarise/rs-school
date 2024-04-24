@@ -32,7 +32,7 @@ export default class BaseComponentGenerator {
 
   private generateElement({
     tag,
-    className,
+    classNames,
     content,
     attributes,
     event,
@@ -41,8 +41,10 @@ export default class BaseComponentGenerator {
   }: ElementProps): HTMLElement {
     const element = document.createElement(tag);
     this.element = element;
-    if (className) {
-      element.classList.add(className);
+    if (classNames) {
+      classNames.forEach((className) => {
+        element.classList.add(className);
+      });
     }
     if (content) {
       element.textContent = content;

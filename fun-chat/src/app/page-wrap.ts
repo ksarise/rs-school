@@ -6,7 +6,7 @@ export default class PageWrap {
   constructor() {
     const wrapGen = new BaseComponentGenerator({
       tag: 'div',
-      className: 'page-wrap',
+      classNames: ['page-wrap'],
     });
     this.wrap = wrapGen.getElement() as HTMLElement;
   }

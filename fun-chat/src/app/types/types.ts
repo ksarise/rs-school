@@ -2,7 +2,7 @@ import RequestTypes from './requests';
 
 export interface ElementProps {
   tag: keyof HTMLElementTagNameMap;
-  className?: string | undefined;
+  classNames?: string[] | undefined;
   content?: string;
   attributes?: { [key: string]: string };
   event?: string;

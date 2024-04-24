@@ -96,6 +96,7 @@ export default class Router {
   renderMain() {
     this.pageWrap.cleanWrap();
     const mainPage = new MainPage(this.socket);
+    mainPage.initialize();
     this.pageWrap.getWrap().appendChild(mainPage.getMain());
     this.root.appendChild(this.pageWrap.getWrap());
   }
@@ -120,7 +121,6 @@ export default class Router {
     switch (data.type) {
       case RequestTypes.USER_LOGIN:
         if (data.payload.user && data.payload.user.isLogined) {
-          console.log(data.payload.user);
           console.log('Authentication successful');
           this.changeUrl('/main');
         }

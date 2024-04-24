@@ -19,3 +19,14 @@ enum RequestTypes {
   ERROR = 'ERROR',
 }
 export default RequestTypes;
+export interface User {
+  login: string;
+  isLogined: boolean;
+}
+export interface UsersResponse {
+  id: string;
+  type: RequestTypes;
+  payload: {
+    users: User[];
+  };
+}

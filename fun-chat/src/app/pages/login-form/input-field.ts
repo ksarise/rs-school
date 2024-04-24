@@ -3,10 +3,10 @@ import BaseComponentGenerator from '../../components/base-component';
 export default class InputField {
   private inputField: HTMLInputElement;
 
-  constructor(className: string, type: string, eventCallback: () => void) {
+  constructor(classNames: string[], type: string, eventCallback: () => void) {
     const inputGen = new BaseComponentGenerator({
       tag: 'input',
-      className,
+      classNames,
       attributes: { required: '', autocomplete: 'on' },
       event: 'input',
       type,
