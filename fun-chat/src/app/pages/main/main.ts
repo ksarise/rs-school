@@ -5,6 +5,7 @@ import {
   MessageRead,
   ResponseData,
 } from '@/app/types/types';
+import UserContainerElement from '../../components/userContainer';
 import MessageContainerElement from '../../components/messageContainer';
 import RequestTypes, { User, UsersResponse } from '../../types/requests';
 import BaseComponentGenerator from '../../components/base-component';
@@ -213,12 +214,14 @@ export default class MainPage {
     const searchChar = value.toLowerCase();
     const items = this.userList
       .getElement()
-      .querySelectorAll<HTMLDivElement>('.user');
+      .querySelectorAll<HTMLDivElement>('.user-name');
     items.forEach((item) => {
       const text = item.textContent?.toLowerCase() || '';
-      const displayStyle = text.includes(searchChar) ? 'block' : 'none';
-      const searchItem = item;
-      searchItem.style.display = displayStyle;
+      const displayStyle = text.includes(searchChar) ? 'flex' : 'none';
+      const searchItem = item.parentElement;
+      if (searchItem) {
+        searchItem.style.display = displayStyle;
+      }
     });
   }
 
@@ -343,16 +346,25 @@ export default class MainPage {
   }
 
   private displayUsers(allUsers: User[], status: string) {
-    console.log('');
     allUsers.forEach((user) => {
+      // if (this.username !== user.login) {
+      //   const userGen = new BaseComponentGenerator({
+      //     tag: 'div',
+      //     classNames: ['user', `${status}`],
+      //     content: `${user.login}`,
+      //   }).getElement();
+      //   userGen.addEventListener('click', (e) => this.chooseUser(e));
+      //   this.userContacts.appendElement(userGen);
+      // }
       if (this.username !== user.login) {
-        const userGen = new BaseComponentGenerator({
-          tag: 'div',
-          classNames: ['user', `${status}`],
-          content: `${user.login}`,
-        }).getElement();
-        userGen.addEventListener('click', (e) => this.chooseUser(e));
-        this.userContacts.appendElement(userGen);
+        const userGen = new UserContainerElement();
+        userGen.userStatus.classList.add(`${status}`);
+        userGen.userName.textContent = `${user.login}`;
+        userGen.userMessages.textContent = '';
+        userGen.userContainer.addEventListener('click', (e) =>
+          this.chooseUser(e)
+        );
+        this.userContacts.appendElement(userGen.userContainer);
       }
     });
   }
@@ -362,11 +374,13 @@ export default class MainPage {
     if (
       e.target &&
       e.target instanceof HTMLElement &&
-      e.target.textContent !== null
+      e.target.textContent !== null &&
+      e.target.parentElement &&
+      e.target.parentElement.classList[0] === 'userContainer'
     ) {
       this.chosenUser = e.target.textContent;
       this.isUserScrolling = false;
-      this.userDialogue.getElement().children[0].textContent = `${this.chosenUser} ${e.target.classList[1]}`;
+      this.userDialogue.getElement().children[0].textContent = `${this.chosenUser} ${e.target.parentElement.children[0].classList[1]}`;
       this.userDialogueInputField.getElement().disabled = false;
       this.getMessage(this.chosenUser);
     }

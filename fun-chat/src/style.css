@@ -91,6 +91,7 @@ button {
 .chatwindow {
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
 }
 .userlist {
   display: flex;
@@ -106,27 +107,12 @@ button {
   overflow-y: scroll;
   height: 300px;
 }
-.user {
-  margin-left: 20px;
-  position: relative;
-}
 
-.user::before {
-  content: '';
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  position: absolute;
-  left: -20px;
-  top: 50%;
-  transform: translateY(-50%);
-}
-
-.user.online::before {
+.online {
   background-color: green;
 }
 
-.user.offline::before {
+.offline {
   background-color: red;
 }
 .userdialogue {
@@ -242,4 +228,20 @@ button {
 
 .context-menu ul li:hover {
   background-color: #f0f0f0;
+}
+.userContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  border-radius: 2px;
+  box-sizing: border-box;
+  padding: 5px;
+  width: 100%;
+  gap: 15px;
+}
+.user-status {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
 }
