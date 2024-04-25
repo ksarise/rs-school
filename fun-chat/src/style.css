@@ -9,6 +9,21 @@ html {
 button {
   cursor: pointer;
 }
+a {
+  font-size: medium;
+  font-weight: 800;
+  transition: 0.5s ease-in-out;
+}
+a:link,
+a:visited {
+  color: dimgray;
+  text-decoration: none;
+}
+a:hover,
+a:active {
+  transition: 0.5s ease-in-out;
+  transform: scale(105%);
+}
 .page-wrap {
   z-index: 5;
   display: flex;
@@ -16,7 +31,7 @@ button {
   align-items: center;
   justify-content: center;
   min-height: 100vh;
-  background-color: lightblue;
+  background-color: azure;
   background-attachment: fixed;
   background-origin: border-box;
   background-position: center;
@@ -28,7 +43,7 @@ button {
   justify-content: center;
   align-items: center;
   padding: 1rem;
-  background-color: rgba(193, 200, 206, 0.853);
+  background-color: aliceblue;
   border-radius: 20px;
   gap: 1rem;
 }
@@ -57,6 +72,7 @@ button {
   font-size: small;
   font-weight: 800;
   color: red;
+  transition: ease-in-out 0.5s;
 }
 .loginBtn,
 .aboutBtn,
@@ -66,6 +82,14 @@ button {
   height: 40px;
   border-radius: 20px;
   transition: 0.5s ease-in-out;
+}
+.loginBtn:hover,
+.aboutBtn:hover,
+.backBtn:hover,
+.logoutBtn:hover {
+  background-color: #a0d4ecc5;
+  transition: 0.5s ease-in-out;
+  transform: scale(95%);
 }
 .loginBtn:enabled {
   transition: 0.5s ease-in-out;
@@ -106,6 +130,9 @@ button {
   background-color: aliceblue;
   overflow-y: scroll;
   height: 300px;
+}
+.userlist::-webkit-scrollbar {
+  display: none;
 }
 
 .online {
@@ -155,7 +182,7 @@ button {
   flex-direction: row;
   border-top: 1px solid;
   box-sizing: border-box;
-  justify-content: space-around;
+  justify-content: space-between;
   height: 10%;
   padding: 2px;
 }
@@ -164,6 +191,16 @@ button {
 }
 .userdialogue_input_btn {
   max-width: 100px;
+  transition: 0.5s ease-in-out;
+}
+.userdialogue_input_btn:disabled {
+  transform: scale(90%);
+}
+.userdialogue_input_btn:hover {
+  cursor: pointer;
+  background-color: #a0d4ecc5;
+  transition: 0.5s ease-in-out;
+  transform: scale(95%);
 }
 
 .messageContainer {
@@ -181,11 +218,22 @@ button {
   flex-direction: column;
   justify-content: flex-start;
   padding: 1%;
+  cursor: pointer;
+  width: 160px;
+  transition: 0.5s ease-in-out;
+}
+.sent:hover .message {
+  background-color: #a0d4ecc5;
+  transition: 0.5s ease-in-out;
+  transform: scale(95%);
 }
 .messageText {
   text-align: right;
   background-color: aliceblue;
   width: 100%;
+  max-width: 160px;
+  text-wrap: wrap;
+  overflow-wrap: break-word;
   border-radius: 5px;
   box-sizing: border-box;
   margin: 2% 0 0;
@@ -227,7 +275,9 @@ button {
 }
 
 .context-menu ul li:hover {
-  background-color: #f0f0f0;
+  background-color: #a0d4ecc5;
+  transition: 0.5s ease-in-out;
+  transform: scale(95%);
 }
 .userContainer {
   display: flex;
@@ -239,9 +289,25 @@ button {
   padding: 5px;
   width: 100%;
   gap: 15px;
+  transition: 0.5s ease-in-out;
+}
+.userContainer:hover {
+  cursor: pointer;
+  background-color: #a0d4ecc5;
+  transition: 0.5s ease-in-out;
+  transform: scale(95%);
 }
 .user-status {
   width: 10px;
   height: 10px;
   border-radius: 50%;
+}
+.rss {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.rss-logo {
+  width: 50px;
+  height: 50px;
 }

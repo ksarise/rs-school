@@ -169,11 +169,21 @@ export default class MainPage {
       tag: 'footer',
       classNames: ['footer'],
     });
+    const rssGen = new BaseComponentGenerator({
+      tag: 'div',
+      classNames: ['rss'],
+    });
     const rssLogoGen = new BaseComponentGenerator({
-      tag: 'h3',
+      tag: 'img',
       classNames: ['rss-logo'],
+      attributes: { src: '../../../rss-logo.svg' },
+    });
+    const rssTitleGen = new BaseComponentGenerator({
+      tag: 'h3',
+      classNames: ['rss-title'],
       content: 'RSSchool',
     });
+    rssGen.appendChildren([rssLogoGen, rssTitleGen]);
     const githubGen = new BaseComponentGenerator({
       tag: 'a',
       classNames: ['github'],
@@ -185,7 +195,7 @@ export default class MainPage {
       classNames: ['year'],
       content: '2024',
     });
-    footerGen.appendChildren([rssLogoGen, githubGen, yearGen]);
+    footerGen.appendChildren([rssGen, githubGen, yearGen]);
     headerGen.appendChildren([
       usernameGen,
       titleGen,
