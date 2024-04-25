@@ -33,18 +33,13 @@ export default class LoginForm {
       () => this.unblockButton()
     );
 
-    this.loginBtn = new ButtonElement(
-      ['loginBtn'],
-      'Login',
-      { disabled: 'true', type: 'button' },
-      () => {}
-    );
-    this.aboutBtn = new ButtonElement(
-      ['aboutBtn'],
-      'About',
-      { type: 'button' },
-      () => {}
-    );
+    this.loginBtn = new ButtonElement(['loginBtn'], 'Login', {
+      disabled: 'true',
+      type: 'button',
+    });
+    this.aboutBtn = new ButtonElement(['aboutBtn'], 'About', {
+      type: 'button',
+    });
     formGen.appendChildren([
       this.firstNameBlock.getBlock(),
       this.passwordBlock.getBlock(),

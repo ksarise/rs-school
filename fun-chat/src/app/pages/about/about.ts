@@ -30,12 +30,7 @@ export default class AboutPage {
       content: 'Sergey Kravchenko',
       attributes: { href: 'https://github.com/ksarise' },
     });
-    this.backBtn = new ButtonElement(
-      ['backBtn'],
-      'Back',
-      { type: 'button' },
-      () => {}
-    );
+    this.backBtn = new ButtonElement(['backBtn'], 'Back', { type: 'button' });
     aboutGen.appendChildren([
       aboutTitleGen,
       aboutInfoGen,

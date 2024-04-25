@@ -10,6 +10,7 @@ button {
   cursor: pointer;
 }
 .page-wrap {
+  z-index: 5;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -85,7 +86,11 @@ button {
   border-radius: 5px;
   background-color: aliceblue;
   justify-content: space-around;
-  min-width: 500px;
+  min-width: 700px;
+}
+.chatwindow {
+  display: flex;
+  flex-direction: row;
 }
 .userlist {
   display: flex;
@@ -94,7 +99,7 @@ button {
   min-height: 350px;
   justify-content: flex-start;
   padding: 0.5rem;
-  width: 40%;
+  width: 39%;
   border: 1px solid black;
   border-radius: 5px;
   background-color: aliceblue;
@@ -117,10 +122,124 @@ button {
   transform: translateY(-50%);
 }
 
-.user.active::before {
+.user.online::before {
   background-color: green;
 }
 
-.user.inactive::before {
+.user.offline::before {
   background-color: red;
+}
+.userdialogue {
+  display: flex;
+  box-sizing: border-box;
+  flex-direction: column;
+  min-height: 350px;
+  justify-content: flex-start;
+  padding: 0.5rem;
+  width: 59%;
+  border: 1px solid black;
+  border-radius: 5px;
+  background-color: aliceblue;
+  overflow-y: scroll;
+  height: 300px;
+}
+.userdialogue_header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  border-bottom: 1px solid;
+  box-sizing: border-box;
+  height: 15%;
+  justify-content: space-around;
+  max-height: 35px;
+  width: 100%;
+}
+.userdialogue_content {
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  justify-content: center;
+  align-items: center;
+  overflow-y: scroll;
+  height: 80%;
+  gap: 5px;
+}
+.userdialogue_input {
+  display: flex;
+  flex-direction: row;
+  border-top: 1px solid;
+  box-sizing: border-box;
+  justify-content: space-around;
+  height: 10%;
+  padding: 2px;
+}
+.userdialogue_input_field {
+  width: 90%;
+}
+.userdialogue_input_btn {
+  max-width: 100px;
+}
+
+.messageContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  width: 100%;
+}
+.message {
+  background-color: rgb(210 234 255 / 85%);
+  border-radius: 5px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding: 1%;
+}
+.messageText {
+  text-align: right;
+  background-color: aliceblue;
+  width: 100%;
+  border-radius: 5px;
+  box-sizing: border-box;
+  margin: 2% 0 0;
+  padding: 3%;
+}
+.messageStatus {
+  text-align: right;
+}
+.sent {
+  justify-content: flex-end;
+  align-items: flex-end;
+}
+.first-unread::before {
+  content: '';
+  display: flex;
+  border-top: 1px solid black;
+  margin: 5% 25%;
+  width: 50%;
+  transform: translateY(-50%);
+}
+.context-menu {
+  position: absolute;
+  z-index: 10;
+  background-color: white;
+  border: 1px solid #ccc;
+  padding: 5px 0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.context-menu ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.context-menu ul li {
+  padding: 8px 15px;
+  cursor: pointer;
+}
+
+.context-menu ul li:hover {
+  background-color: #f0f0f0;
 }

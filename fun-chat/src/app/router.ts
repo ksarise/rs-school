@@ -72,8 +72,8 @@ export default class Router {
   private render() {
     const path = window.location.pathname;
     this.url = path;
-    if (path === '/main' && !sessionStorage.getItem('ksariseUser')) {
-      this.changeUrl('/');
+    if (path === '/main' && sessionStorage.getItem('ksariseUser') !== null) {
+      this.renderMain();
     } else {
       this.routes[path]();
     }
@@ -102,10 +102,12 @@ export default class Router {
   }
 
   private setupWebSocket() {
+    this.socket.addEventListener('open', () => {
+      console.log('WebSocket connection opened.');
+    });
     this.socket.addEventListener('message', (event) => {
       try {
         const data = JSON.parse(event.data);
-        console.log(data);
         this.handleWebSocketMessage(data);
       } catch (error) {
         console.error('Error parsing WebSocket message:', error);
@@ -136,6 +138,7 @@ export default class Router {
       case RequestTypes.USER_LOGOUT:
         sessionStorage.clear();
         this.changeUrl('/');
+
         break;
       default:
         break;

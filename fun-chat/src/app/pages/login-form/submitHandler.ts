@@ -23,6 +23,9 @@ export default function FormSubmit(
     login: firstName,
     password,
   };
-  socket.send(JSON.stringify(message));
+  if (socket.readyState === 1) {
+    socket.send(JSON.stringify(message));
+  }
+
   sessionStorage.setItem('ksariseUser', JSON.stringify(sessionData));
 }
