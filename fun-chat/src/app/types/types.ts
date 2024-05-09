@@ -7,7 +7,7 @@ export interface ElementProps {
   attributes?: { [key: string]: string };
   event?: string;
   type?: string;
-  eventCallback?: (event: Event) => void;
+  eventCallback?: (event?: Event) => void;
   nameLength?: number;
 }
 export type Routes = { [key: string]: () => void };

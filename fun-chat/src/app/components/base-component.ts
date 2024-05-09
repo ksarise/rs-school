@@ -11,7 +11,7 @@ export default class BaseComponentGenerator {
     return this.element;
   }
 
-  public appendElement(element: HTMLElement | BaseComponentGenerator): void {
+  public appendChild(element: HTMLElement | BaseComponentGenerator): void {
     if (!this.element) return;
     let child;
     if (element instanceof BaseComponentGenerator) {
@@ -26,7 +26,7 @@ export default class BaseComponentGenerator {
     children: (HTMLElement | BaseComponentGenerator)[]
   ): void {
     children.forEach((child) => {
-      this.appendElement(child);
+      this.appendChild(child);
     });
   }
 

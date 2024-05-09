@@ -1,10 +1,11 @@
+import tags from '../../components/tags';
 import {
   Message,
   MessageHistory,
   MessageSend,
   MessageRead,
   ResponseData,
-} from '@/app/types/types';
+} from '../../types/types';
 import UserContainerElement from '../../components/userContainer';
 import MessageContainerElement from '../../components/messageContainer';
 import RequestTypes, { User, UsersResponse } from '../../types/requests';
@@ -58,66 +59,38 @@ export default class MainPage {
     this.isUserScrolling = false;
     this.socket = socket;
     this.getUsername();
-    const mainGen = new BaseComponentGenerator({
-      tag: 'div',
-      classNames: ['main'],
-    });
+    const mainGen = tags.div(['main']);
     const headerGen = new BaseComponentGenerator({
       tag: 'header',
       classNames: ['header'],
     });
-    const usernameGen = new BaseComponentGenerator({
-      tag: 'h2',
-      classNames: ['username'],
-      content: `User: ${this.username}`,
-    });
-    const titleGen = new BaseComponentGenerator({
-      tag: 'h1',
-      classNames: ['title'],
-      content: 'Fun Chat',
-    });
+    const usernameGen = tags.h2(['username'], `User: ${this.username}`);
+    const titleGen = tags.h1(['title'], 'Fun Chat');
+
     this.aboutBtn = new ButtonElement(['aboutBtn'], 'About', {
       type: 'button',
     });
-    this.logoutBtn = new ButtonElement(['logoutBtn'], 'Log Out', {
-      type: 'button',
-    });
-    this.logoutBtn
-      .getButton()
-      .addEventListener('click', (event: Event) =>
-        LogoutHandler(event, this.socket)
-      );
-    const chatWindowGen = new BaseComponentGenerator({
-      tag: 'div',
-      classNames: ['chatwindow'],
-    });
-    this.userList = new BaseComponentGenerator({
-      tag: 'div',
-      classNames: ['userlist'],
-    });
+    this.logoutBtn = new ButtonElement(
+      ['logoutBtn'],
+      'Log Out',
+      { type: 'button' },
+      'click',
+      (event?: Event) => LogoutHandler(event || new Event('click'), this.socket)
+    );
+    const chatWindowGen = tags.div(['chatwindow']);
+    this.userList = tags.div(['userlist']);
 
     this.userListSearch = new InputField(['userlist_search'], 'text', () =>
       this.searchUser(this.userListSearch.getElement().value)
     );
     this.userListSearch.getElement().setAttribute('placeholder', 'Search:');
-    this.userContacts = new BaseComponentGenerator({
-      tag: 'div',
-      classNames: ['contacts'],
-    });
-    this.userDialogue = new BaseComponentGenerator({
-      tag: 'div',
-      classNames: ['userdialogue'],
-    });
-
-    const userDialogueHeader = new BaseComponentGenerator({
-      tag: 'div',
-      classNames: ['userdialogue_header'],
-    });
-    this.userDialogueContent = new BaseComponentGenerator({
-      tag: 'div',
-      classNames: ['userdialogue_content'],
-      content: 'Choose user to send a message',
-    });
+    this.userContacts = tags.div(['contacts']);
+    this.userDialogue = tags.div(['userdialogue']);
+    const userDialogueHeader = tags.div(['userdialogue_header']);
+    this.userDialogueContent = tags.div(
+      ['userdialogue_content'],
+      'Choose user to send a message'
+    );
     this.userDialogueContent.getElement().addEventListener('click', () => {
       if (this.chosenUser) {
         this.getMessage(this.chosenUser);
@@ -126,10 +99,8 @@ export default class MainPage {
     // this.userDialogueContent
     //   .getElement()
     //   .addEventListener('scroll', () => this.handleScroll());
-    const userDialogueInput = new BaseComponentGenerator({
-      tag: 'div',
-      classNames: ['userdialogue_input'],
-    });
+    const userDialogueInput = tags.div(['userdialogue_input']);
+
     this.userDialogueInputField = new InputField(
       ['userdialogue_input_field'],
       'text',
@@ -142,11 +113,10 @@ export default class MainPage {
     this.userDialogueInputButton = new ButtonElement(
       ['userdialogue_input_btn'],
       'Send',
-      { disabled: 'true', type: 'button' }
+      { disabled: 'true', type: 'button' },
+      'click',
+      () => this.sendMessageHandler()
     );
-    this.userDialogueInputButton
-      .getButton()
-      .addEventListener('click', this.sendMessageHandler);
 
     window.addEventListener('keypress', (event) => {
       if (
@@ -169,32 +139,16 @@ export default class MainPage {
       tag: 'footer',
       classNames: ['footer'],
     });
-    const rssGen = new BaseComponentGenerator({
-      tag: 'div',
-      classNames: ['rss'],
-    });
-    const rssLogoGen = new BaseComponentGenerator({
-      tag: 'img',
-      classNames: ['rss-logo'],
-      attributes: { src: '../../../rss-logo.svg' },
-    });
-    const rssTitleGen = new BaseComponentGenerator({
-      tag: 'h3',
-      classNames: ['rss-title'],
-      content: 'RSSchool',
-    });
+    const rssGen = tags.div(['rss']);
+    const rssLogoGen = tags.img(['rss-logo'], { src: '../../../rss-logo.svg' });
+    const rssTitleGen = tags.h3(['rss-title'], 'RSSchool');
     rssGen.appendChildren([rssLogoGen, rssTitleGen]);
-    const githubGen = new BaseComponentGenerator({
-      tag: 'a',
-      classNames: ['github'],
-      content: 'Ksarise',
-      attributes: { href: 'https://github.com/ksarise' },
-    });
-    const yearGen = new BaseComponentGenerator({
-      tag: 'p',
-      classNames: ['year'],
-      content: '2024',
-    });
+    const githubGen = tags.a(
+      ['github'],
+      'https://github.com/ksarise',
+      'Ksarise'
+    );
+    const yearGen = tags.p(['year'], '2024');
     footerGen.appendChildren([rssGen, githubGen, yearGen]);
     headerGen.appendChildren([
       usernameGen,
@@ -338,18 +292,20 @@ export default class MainPage {
       }
     } else if ('message' in data.payload) {
       if (this.chosenUser) {
-        if (data.type === RequestTypes.MSG_SEND) {
-          this.getMessage(this.chosenUser);
-        } else if (data.type === RequestTypes.MSG_READED_FROM_SERVER) {
-          this.getMessage(this.chosenUser);
-        } else if (data.type === RequestTypes.MSG_DELETE) {
-          this.getMessage(this.chosenUser);
-        } else if (data.type === RequestTypes.MSG_EDIT) {
-          this.userDialogueInputButton
-            .getButton()
-            .addEventListener('click', this.sendMessageHandler);
-          this.userDialogueInputButton.getButton().textContent = 'Send';
-          this.getMessage(this.chosenUser);
+        switch (data.type) {
+          case RequestTypes.MSG_SEND:
+          case RequestTypes.MSG_READED_FROM_SERVER:
+          case RequestTypes.MSG_DELETE:
+          case RequestTypes.MSG_EDIT:
+            this.getMessage(this.chosenUser);
+            if (data.type === RequestTypes.MSG_EDIT) {
+              const button = this.userDialogueInputButton.getButton();
+              button.addEventListener('click', this.sendMessageHandler);
+              button.textContent = 'Send';
+            }
+            break;
+          default:
+            break;
         }
       }
     }
@@ -357,15 +313,6 @@ export default class MainPage {
 
   private displayUsers(allUsers: User[], status: string) {
     allUsers.forEach((user) => {
-      // if (this.username !== user.login) {
-      //   const userGen = new BaseComponentGenerator({
-      //     tag: 'div',
-      //     classNames: ['user', `${status}`],
-      //     content: `${user.login}`,
-      //   }).getElement();
-      //   userGen.addEventListener('click', (e) => this.chooseUser(e));
-      //   this.userContacts.appendElement(userGen);
-      // }
       if (this.username !== user.login) {
         const userGen = new UserContainerElement();
         userGen.userStatus.classList.add(`${status}`);
@@ -374,7 +321,7 @@ export default class MainPage {
         userGen.userContainer.addEventListener('click', (e) =>
           this.chooseUser(e)
         );
-        this.userContacts.appendElement(userGen.userContainer);
+        this.userContacts.appendChild(userGen.userContainer);
       }
     });
   }
@@ -531,25 +478,14 @@ export default class MainPage {
     e.preventDefault();
     const targetElement = e.target as HTMLElement;
     if (!targetElement) return;
-    const contextMenu = new BaseComponentGenerator({
-      tag: 'div',
-      classNames: ['context-menu'],
-    }).getElement();
-    const contextMenuList = new BaseComponentGenerator({
-      tag: 'ul',
-      classNames: ['context-menu-list'],
-    });
-    const contextMenuListEdit = new BaseComponentGenerator({
-      tag: 'li',
-      classNames: ['context-menu-list-edit'],
-      content: 'Edit',
-    }).getElement();
-    const contextMenuListDelete = new BaseComponentGenerator({
-      tag: 'li',
-      classNames: ['context-menu-list-delete'],
-      content: 'Delete',
-    }).getElement();
-
+    const contextMenu = tags.div(['context-menu']).getElement();
+    const contextMenuList = tags.ul(['context-menu-list']);
+    const contextMenuListEdit = tags
+      .li(['context-menu-list-edit'], 'Edit')
+      .getElement();
+    const contextMenuListDelete = tags
+      .li(['context-menu-list-delete'], 'Delete')
+      .getElement();
     let parentBlock = targetElement.closest('.messageContainer') as HTMLElement;
     if (parentBlock) {
       const rect = parentBlock.getBoundingClientRect();

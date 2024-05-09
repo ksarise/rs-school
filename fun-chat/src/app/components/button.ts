@@ -6,14 +6,17 @@ export default class ButtonElement {
   constructor(
     classNames: string[],
     content: string,
-    attributes: { [key: string]: string }
+    attributes: { [key: string]: string },
+    event?: string,
+    eventCallback: (event?: Event) => void = () => {}
   ) {
     const buttonGen = new BaseComponentGenerator({
       tag: 'button',
       classNames,
       content,
       attributes,
-      event: 'click',
+      event,
+      eventCallback,
     });
     this.button = buttonGen.getElement() as HTMLButtonElement;
   }

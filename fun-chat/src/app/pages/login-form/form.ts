@@ -33,10 +33,16 @@ export default class LoginForm {
       () => this.unblockButton()
     );
 
-    this.loginBtn = new ButtonElement(['loginBtn'], 'Login', {
-      disabled: 'true',
-      type: 'button',
-    });
+    this.loginBtn = new ButtonElement(
+      ['loginBtn'],
+      'Login',
+      {
+        disabled: 'true',
+        type: 'button',
+      },
+      'click',
+      (event?: Event) => this.handleFormSubmission(event || new Event('click'))
+    );
     this.aboutBtn = new ButtonElement(['aboutBtn'], 'About', {
       type: 'button',
     });
@@ -46,9 +52,7 @@ export default class LoginForm {
       this.loginBtn.getButton(),
       this.aboutBtn.getButton(),
     ]);
-    this.loginBtn
-      .getButton()
-      .addEventListener('click', this.handleFormSubmission.bind(this));
+
     this.form.addEventListener('keypress', (event) => {
       if (event.key === 'Enter') {
         this.handleFormSubmission(event);
